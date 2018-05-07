@@ -1,6 +1,6 @@
 <strings>
     <string id="AppName">HiIt</string>
-    <string id="select_workout_prompt">Usa le frecce per selezionare un allenamento.</string>
+    <string id="select_workout_prompt">Seleziona un allenamento con le frecce</string>
     
     <string id="workout_1_title">Titolo allenamento #1</string>
 	<string id="workout_2_title">Titolo allenamento #2</string>
