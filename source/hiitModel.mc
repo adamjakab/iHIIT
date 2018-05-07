@@ -1,7 +1,7 @@
 using Toybox.Application as App;
 using Toybox.System as Sys;
 
-class iqModel
+class hiitModel
 {
 	private var max_workout;
 	private var selected_workout;

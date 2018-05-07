@@ -9,7 +9,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 
 // Controls the UI flow of the app and controlls FIT recording
-class iqController
+class hiitController
 {
 	var is_running;
 

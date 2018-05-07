@@ -1,7 +1,7 @@
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 
-class iqMenuDelegate extends Ui.MenuInputDelegate {
+class saveDiscardMenuDelegate extends Ui.MenuInputDelegate {
 
     function initialize() {
         MenuInputDelegate.initialize();
