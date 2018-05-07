@@ -1,0 +1,10 @@
+<strings>
+    <string id="AppName">HiIt</string>
+    <string id="select_workout_prompt">Use the arrows to select a workout.</string>
+
+	<string id="workout_1_title">Workout #1 title?</string>
+	<string id="workout_2_title">Workout #2 title?</string>
+	<string id="workout_3_title">Workout #3 title?</string>
+	<string id="workout_4_title">Workout #4 title?</string>
+	<string id="workout_5_title">Workout #5 title?</string>
+</strings>

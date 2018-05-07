@@ -1,0 +1,28 @@
+<resources>
+	<properties>
+		<property id="workout_1_title" type="string">HIIT ::: Abdominals</property>
+		<property id="workout_2_title" type="string">HIIT ::: Core</property>
+		<property id="workout_3_title" type="string">HIIT ::: Full body</property>
+		<property id="workout_4_title" type="string">HIIT ::: Legs</property>
+		<property id="workout_5_title" type="string">HIIT ::: TRX</property>
+	</properties>
+	
+	<settings>
+		<setting propertyKey="@Properties.workout_1_title" title="@Strings.workout_1_title">
+			<settingConfig type="alphaNumeric" />
+		</setting>
+		<setting propertyKey="@Properties.workout_2_title" title="@Strings.workout_2_title">
+			<settingConfig type="alphaNumeric" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_title" title="@Strings.workout_3_title">
+			<settingConfig type="alphaNumeric" />
+		</setting>
+		<setting propertyKey="@Properties.workout_4_title" title="@Strings.workout_4_title">
+			<settingConfig type="alphaNumeric" />
+		</setting>
+		<setting propertyKey="@Properties.workout_5_title" title="@Strings.workout_5_title">
+			<settingConfig type="alphaNumeric" />
+		</setting>
+	</settings>
+</resources>
+
