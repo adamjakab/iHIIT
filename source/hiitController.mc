@@ -18,11 +18,12 @@ class hiitController
     	is_running = false;
     }
     
-    function startOrStop() {
-    	if(isRunning())
+    
+    function startOrStop(forceStop) {
+    	if(forceStop == true || isRunning())
     	{
     		stop();
-    		WatchUi.pushView(new Rez.Menus.MainMenu(), new NamasteMenuDelegate(), WatchUi.SLIDE_UP);
+    		WatchUi.pushView(new Rez.Menus.finishWorkoutMenu(), new finishWorkoutDelegate(), WatchUi.SLIDE_UP);
     	} else 
     	{
     		start();
@@ -40,6 +41,11 @@ class hiitController
     function stop() {
     	is_running = false;
        	Sys.println("CTRL - STOP");
+    }
+    
+    function resume() {
+    	is_running = true;
+       	Sys.println("CTRL - RESUME");
     }
     
     // Save

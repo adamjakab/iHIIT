@@ -20,7 +20,7 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
     	} else if (k == Ui.KEY_UP) {
     		WO = m.setPreviousWorkout();
     	} else if (k == Ui.KEY_ENTER) {
-    		 c.startOrStop();
+    		 c.startOrStop(null);
     	} else {
     		Sys.println("Unused Key press: " + keyEvent.getKey() + " / " + keyEvent.getType());
     	}

@@ -16,7 +16,10 @@ class doWorkoutDelegate extends Ui.BehaviorDelegate {
     	
     	var k = keyEvent.getKey();
     	if (k == Ui.KEY_ENTER) {
-    		 c.startOrStop();
+    		 c.startOrStop(null);
+    	} else if (k == Ui.KEY_ESC) {
+    		c.startOrStop(true);
+    		return true;
     	} else {
     		Sys.println("Unused Key press: " + keyEvent.getKey() + " / " + keyEvent.getType());
     	}
