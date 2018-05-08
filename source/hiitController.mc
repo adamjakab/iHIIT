@@ -1,8 +1,3 @@
-//
-// Copyright 2015-2016 by Garmin Ltd. or its subsidiaries.
-// Subject to Garmin SDK License Agreement and Wearables
-// Application Developer Agreement.
-//
 using Toybox.Timer;
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
@@ -23,7 +18,7 @@ class hiitController
     	if(forceStop == true || isRunning())
     	{
     		stop();
-    		WatchUi.pushView(new Rez.Menus.finishWorkoutMenu(), new finishWorkoutDelegate(), WatchUi.SLIDE_UP);
+    		Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
     	} else 
     	{
     		start();
