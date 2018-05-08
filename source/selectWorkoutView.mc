@@ -9,18 +9,13 @@ class selectWorkoutView extends Ui.View {
 	var select_workout_prompt;
 	
     function initialize() {
-    	View.initialize();    
-    	  	
+    	View.initialize();    	  	
     	select_workout_prompt = Ui.loadResource(Rez.Strings.select_workout_prompt);
-    	    
-        Sys.println("selectWorkoutView - INIT");
     }
 
     // Update the view
-    function onUpdate(dc) {
-        // Call the parent onUpdate function to redraw the layout
-        //View.onUpdate(dc);
-        
+    function onUpdate(dc)
+    {        
         var app = App.getApp();
         var m = app.model;
         var WO = m.getSelectedWorkout();

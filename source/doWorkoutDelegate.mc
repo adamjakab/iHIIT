@@ -19,11 +19,10 @@ class doWorkoutDelegate extends Ui.BehaviorDelegate {
     		 c.startOrStop(null);
     	} else if (k == Ui.KEY_ESC) {
     		c.startOrStop(true);
-    		return true;
     	} else {
     		Sys.println("Unused Key press: " + keyEvent.getKey() + " / " + keyEvent.getType());
     	}
-    	
+    	return true;
     }
 
     function onMenu() {

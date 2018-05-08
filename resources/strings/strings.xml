@@ -1,6 +1,11 @@
 <strings>
     <string id="AppName">HiIt</string>
+    
     <string id="select_workout_prompt">Use the arrows to select a workout</string>
+    
+    <string id="finish_workout_prompt_resume">Resume</string>
+    <string id="finish_workout_prompt_save_and_exit">Save and exit</string>
+    <string id="finish_workout_prompt_discard_and_exit">Discard and exit</string>
 
 	<string id="workout_1_title">Workout #1 title</string>
 	<string id="workout_2_title">Workout #2 title</string>

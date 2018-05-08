@@ -3,37 +3,56 @@ using Toybox.Lang as Lang;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
+using Toybox.Attention as Attention; //used for vibration
 
 class doWorkoutView extends Ui.View {
 
 	var dataTimer;
 	var timerCount = 0;
+	
+	var vibeDataStart = [
+	    new Attention.VibeProfile(  75, 500 ),
+	    new Attention.VibeProfile(  0, 500 ),
+	    new Attention.VibeProfile(  75, 500 ),
+	    new Attention.VibeProfile(  0, 500 ),
+	    new Attention.VibeProfile( 	100, 1000 )
+	];
 
     function initialize() {
         View.initialize();
         
+        dataTimer = new Timer.Timer();
         timerCount = 0;
         
         var app = App.getApp();
         //record_prop = app.getProperty("record_prop");
+        
+        
         
          Sys.println("DOWORKOUT - INIT");
     }
     
     // Load your resources here
     function onLayout(dc) {        
-		dataTimer = new Timer.Timer();
-        dataTimer.start( method(:timerCallback), 1000, true );
+		
+        //dataTimer.start( method(:timerCallback), 1000, true );
     }
     
     function timerCallback() 
 	{
-	 	timerCount++;	 		
+	 	timerCount++;		
 	 	Ui.requestUpdate();
  	}
  	
     function onShow() {
     	dataTimer.start( method(:timerCallback), 1000, true );
+    	
+    	if (Attention has :playTone) {
+		   Attention.playTone(Attention.TONE_START);
+		}
+		if (Attention has :vibrate) {
+			Attention.vibrate(vibeDataStart);
+		}
     }
     
     function onHide() 
