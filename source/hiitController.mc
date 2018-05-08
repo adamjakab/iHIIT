@@ -2,13 +2,12 @@ using Toybox.Timer;
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
-using Toybox.ActivityRecording as ActivityRecording; //use to log activity
+
 
 // Controls the UI flow of the app and controlls FIT recording
 class hiitController
 {
-	var is_running;
-	
+	var is_running;	
 	var finish_workout_option;
 
 	// Initialize the controller
@@ -36,24 +35,22 @@ class hiitController
      * Start workout
      */
     function start() {
-    	is_running = true;
-    	
-    	/*
-    	if( Toybox has :ActivityRecording && record_prop == true ) 
-    	{
-    		//SUB_SPORT_STRENGTH_TRAINING
-    		//SUB_SPORT_FLEXIBILITY_TRAINING
-            session = ActivityRecording.createSession({
-            	:name=>"WorkItOut", 
-            	:sport=>ActivityRecording.SPORT_TRAINING, 
-            	:subSport=>ActivityRecording.SUB_SPORT_CARDIO_TRAINING
-            });
-            session.start();
-		}
-		*/
-		
+    	is_running = true;		
        	Sys.println("CTRL - START");
+       	
+       	var m = App.getApp().model;
+		m.startRecording();
     }
+    
+    /*
+     * Resume workout
+     */
+    function resume() {
+    	start();
+    	
+    	Ui.popView(Ui.SLIDE_DOWN);
+       	Sys.println("CTRL - RESUME");
+    } 
     
     /*
      * Stop workout
@@ -61,6 +58,9 @@ class hiitController
     function stop() {
     	is_running = false;
        	Sys.println("CTRL - STOP");
+       	
+       	var m = App.getApp().model;
+		m.stopRecording();
     }
     
     /*
@@ -81,24 +81,27 @@ class hiitController
 		
     }
     
-    /*
-     * Resume workout
-     */
-    function resume() {
-    	is_running = true;
-    	Ui.popView(Ui.SLIDE_DOWN);
-       	Sys.println("CTRL - RESUME");
-    }    
-    
-    // Discard & go back to 
+    // Discard & go back to workout selection
     function discard() {
+    	var m = App.getApp().model;
+		m.discardRecording();
+		m.createNewSession();
+		
        	Sys.println("CTRL - DISCARD");
-       	Sys.exit();
+       	Ui.popView(Ui.SLIDE_DOWN);
+       	Ui.popView(Ui.SLIDE_DOWN);
+       	//Sys.exit();
     }
     
     // Save
     function save() {
+    	var m = App.getApp().model;
+		m.saveRecording();
+		m.createNewSession();
+		
        	Sys.println("CTRL - SAVE");
+       	Ui.popView(Ui.SLIDE_DOWN);
+       	Ui.popView(Ui.SLIDE_DOWN);
     }
     
     // Are we running currently?

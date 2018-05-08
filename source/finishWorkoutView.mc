@@ -21,7 +21,7 @@ class finishWorkoutView extends Ui.View {
     // Update the view
     function onUpdate(dc) {
         var index, txt, text_height, x, y;
-        var text_distance = 30;
+        var text_distance = 35;
         
         var app = App.getApp();
         var c = app.controller;        
@@ -43,9 +43,9 @@ class finishWorkoutView extends Ui.View {
         dc.drawText(width/2, y, Gfx.FONT_SYSTEM_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
   		//CENTRAL LINES
-        y = (height - text_height) / 2;
+        y = (height - text_height - 10) / 2;
         dc.drawLine(0, y, width, y);
-        y = (height + text_height) / 2;
+        y = (height + text_height + 10) / 2;
         dc.drawLine(0, y, width, y);        
 
         //PREVIOUS MENU ITEM

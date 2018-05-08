@@ -5,12 +5,15 @@ using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 using Toybox.Attention as Attention; //used for vibration
 
-class doWorkoutView extends Ui.View {
-
-	var dataTimer;
-	var timerCount = 0;
+class doWorkoutView extends Ui.View
+{
+	private var dataTimer;
+	private var timerCount = 0;
 	
-	var vibeDataStart = [
+	private var screen_width;
+	private var screen_height;
+	
+	private var vibeDataStart = [
 	    new Attention.VibeProfile(  75, 500 ),
 	    new Attention.VibeProfile(  0, 500 ),
 	    new Attention.VibeProfile(  75, 500 ),
@@ -22,20 +25,16 @@ class doWorkoutView extends Ui.View {
         View.initialize();
         
         dataTimer = new Timer.Timer();
-        timerCount = 0;
+        timerCount = 0;        
         
-        var app = App.getApp();
         //record_prop = app.getProperty("record_prop");
-        
-        
-        
          Sys.println("DOWORKOUT - INIT");
     }
     
     // Load your resources here
-    function onLayout(dc) {        
-		
-        //dataTimer.start( method(:timerCallback), 1000, true );
+    function onLayout(dc) {
+    	screen_width = dc.getWidth();
+    	screen_height = dc.getHeight();
     }
     
     function timerCallback() 
@@ -50,6 +49,7 @@ class doWorkoutView extends Ui.View {
     	if (Attention has :playTone) {
 		   Attention.playTone(Attention.TONE_START);
 		}
+		
 		if (Attention has :vibrate) {
 			Attention.vibrate(vibeDataStart);
 		}
@@ -71,9 +71,6 @@ class doWorkoutView extends Ui.View {
         var m = app.model;
         var WO = m.getSelectedWorkout();
         
-        var width = dc.getWidth();
-        var height = dc.getHeight();
-        
         //** clear screen
 		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
         dc.clear(); 
@@ -81,10 +78,10 @@ class doWorkoutView extends Ui.View {
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
         
         txt = "RUNNING...";
-        dc.drawText(width/2, height/2, Gfx.FONT_TINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(screen_width/2, screen_height/2, Gfx.FONT_TINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
         //COUNTER
-        dc.drawText(width/2, 0, Gfx.FONT_SYSTEM_XTINY, timerCount, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(screen_width/2, 0, Gfx.FONT_SYSTEM_XTINY, timerCount, Gfx.TEXT_JUSTIFY_CENTER);
     }
     
 }

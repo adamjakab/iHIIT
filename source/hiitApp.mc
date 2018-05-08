@@ -5,8 +5,8 @@ using Toybox.Application as App;
 */
 class hiitApp extends App.AppBase
 {
-	var controller;
-	var model;
+	public var controller;
+	public var model;
 	
     function initialize() {
         AppBase.initialize();        
