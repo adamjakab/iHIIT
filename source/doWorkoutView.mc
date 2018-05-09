@@ -2,12 +2,13 @@ using Toybox.Application as App;
 using Toybox.Lang as Lang;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
+using Toybox.Timer as Timer;
 using Toybox.Graphics as Gfx;
 using Toybox.Attention as Attention; //used for vibration
 
 class doWorkoutView extends Ui.View
 {
-	private var dataTimer;
+	private var refreshTimer;
 	private var timerCount = 0;
 	
 	private var screen_width;
@@ -24,7 +25,7 @@ class doWorkoutView extends Ui.View
     function initialize() {
         View.initialize();
         
-        dataTimer = new Timer.Timer();
+        refreshTimer = new Timer.Timer();
         timerCount = 0;        
         
         //record_prop = app.getProperty("record_prop");
@@ -38,14 +39,14 @@ class doWorkoutView extends Ui.View
     	screen_height = dc.getHeight();
     }
     
-    function timerCallback() 
+    function refreshTimerCallback() 
 	{
 	 	timerCount++;		
 	 	Ui.requestUpdate();
  	}
  	
     function onShow() {
-    	dataTimer.start( method(:timerCallback), 1000, true );
+    	//refreshTimer.start( method(:refreshTimerCallback), 1000, true );
     	
     	if (Attention has :playTone) {
 		   Attention.playTone(Attention.TONE_START);
@@ -58,7 +59,7 @@ class doWorkoutView extends Ui.View
     
     function onHide() 
     {
-	    dataTimer.stop();
+	    refreshTimer.stop();
     }
     
     // Update the view
@@ -80,7 +81,7 @@ class doWorkoutView extends Ui.View
         
         
         //CENTER BOX
-        text_height = 24;
+        text_height = 22;
         margin = 5;
         y = centerY - (text_height/2) - margin;
         height = text_height + (margin * 2);
@@ -88,14 +89,15 @@ class doWorkoutView extends Ui.View
         dc.fillRectangle(0, y, screen_width, height);
 
 		//CENTER TEXT - CURRENT EXCERCISE
-		txt = "RUNNING...";
+		txt = m.getCurrentExcerciseName();
 		y = centerY - (text_height/2);
-		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
-        dc.drawText(centerX, y, Gfx.FONT_TINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
+		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_PURPLE);
+        dc.drawText(centerX, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
         //COUNTER
+        txt = m.getWorkoutElapsedSeconds();
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, 0, Gfx.FONT_SYSTEM_XTINY, timerCount, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(centerX, 0, Gfx.FONT_SYSTEM_XTINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
     }
     
 }

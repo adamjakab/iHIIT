@@ -1,23 +1,103 @@
 using Toybox.Application as App;
 using Toybox.System as Sys;
+using Toybox.Lang as Lang;
+using Toybox.Timer as Timer;
 using Toybox.ActivityRecording as ActivityRecording; //use to log activity
+using Toybox.WatchUi as Ui;
 
 class hiitModel
 {
+	private var session;
+	private var session_started = false;
+	
 	private var max_workout;
 	private var selected_workout;
-	private var session;
+	
+	private var current_excercise;
+	
+	private var workout_timer;
+	private var excercise_timer;
+	
+	private var workout_elapsed_seconds;
+	private var excercise_elapsed_seconds;
+	
+	private var excercise_duration_seconds;
+	private var rest_duration_seconds;
+	
 	
 	// Initialize
     function initialize() {
-	    /*if( ! Toybox has :ActivityRecording)
-	    {
-		    Sys.error("This device is not capable of activity recording!");
-	    }*/
     	selected_workout = 1;
+    	current_excercise = 1;
     	setMaxWorkout();
+    	
+    	workout_elapsed_seconds = 0;
+    	excercise_elapsed_seconds = 0;
+    	
+    	excercise_duration_seconds = 15;
+    	rest_duration_seconds = 5;
+    	
+    	workout_timer = new Timer.Timer();
+    	excercise_timer = new Timer.Timer();
+    	
     	createNewSession();
     }
+    
+    
+    function getCurrentExcerciseName()
+    {
+	    return getPropertyForWorkoutExcercise(selected_workout, current_excercise, "title");
+    }
+    
+    function getCurrentWorkoutName()
+    {
+	    return getPropertyForWorkout(selected_workout, "title");
+    }
+    
+    function getWorkoutElapsedSeconds()
+    {
+    	return workout_elapsed_seconds;
+    }
+    
+    private function getPropertyForWorkoutExcercise(workout_number, excercise_number, attribute_name)
+    {
+		var property_id = Lang.format("workout_$1$_excercise_$2$_$3$", [workout_number, excercise_number, attribute_name]);
+	    var property_value = App.getApp().getProperty(property_id);
+	    if(property_value == null || property_value == "") {
+				property_value = false;
+			}
+	    return property_value;
+    }
+    
+    private function getPropertyForWorkout(workout_number, attribute_name)
+    {
+		var property_id = Lang.format("workout_$1$_$2$", [workout_number, attribute_name]);
+	    var property_value = App.getApp().getProperty(property_id);
+	    if(property_value == null || property_value == "") {
+				property_value = false;
+			}
+	    return property_value;
+    }
+    
+    
+    function workoutTimerCallback() 
+	{
+	 	workout_elapsed_seconds++;		
+	 	Ui.requestUpdate();
+ 	}
+    
+    function excerciseTimerCallback() 
+	{
+	 	excercise_elapsed_seconds++;
+	 	if(excercise_elapsed_seconds >= excercise_duration_seconds)
+	 	{
+	 		excercise_elapsed_seconds = 0;
+	 		//@todo: make method for incrementing this
+	 		current_excercise++;
+	 		Ui.requestUpdate();
+	 	}
+	 	//Ui.requestUpdate();
+ 	}
     
     /*
      * Start workout recording
@@ -27,6 +107,12 @@ class hiitModel
     	if(!isRecording())
     	{
     		session.start();
+    		if(!isSessionStarted())
+    		{
+    			session_started = true;
+    		}
+    		workout_timer.start( method(:workoutTimerCallback), 1000, true );
+    		excercise_timer.start( method(:excerciseTimerCallback), 1000, true );
     		Sys.println("MODEL - REC");
     	}
     }
@@ -38,7 +124,9 @@ class hiitModel
     {
     	if(isRecording())
     	{
-    		session.stop();		
+    		session.stop();	
+    		workout_timer.stop();
+    		excercise_timer.stop();	
        		Sys.println("MODEL - STOP");
        	}
     }
@@ -54,6 +142,7 @@ class hiitModel
 			{
 				session.stop();
 			}
+			session_started = false;
 			session.discard();
 			session = null;
 			Sys.println("MODEL - DISCARD");
@@ -71,18 +160,21 @@ class hiitModel
 			{
 				session.stop();
 			}
+			session_started = false;
 			session.save();
 			session = null;
 			Sys.println("MODEL - SAVED");
 		}
     }
     
-    /*
-     * Stop workout recording
-     */
     function isRecording()
     {
     	return session.isRecording();
+    }
+    
+    function isSessionStarted()
+    {
+    	return session_started;
     }
     
     /*
