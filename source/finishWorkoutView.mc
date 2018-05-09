@@ -67,7 +67,7 @@ class finishWorkoutView extends Ui.View {
         txt = select_items[index];
         y = (height / 2) + text_distance;
         dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(width/2, y, Gfx.FONT_SYSTEM_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width/2, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
     }
 }
 

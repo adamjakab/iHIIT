@@ -29,6 +29,7 @@ class doWorkoutView extends Ui.View
         
         //record_prop = app.getProperty("record_prop");
          Sys.println("DOWORKOUT - INIT");
+         
     }
     
     // Load your resources here
@@ -65,7 +66,9 @@ class doWorkoutView extends Ui.View
         // Call the parent onUpdate function to redraw the layout
         //View.onUpdate(dc);
         
-        var txt;
+        var txt, text_height, x, y, width, height, margin;
+        var centerX = screen_width / 2;
+        var centerY = screen_height / 2;
         
         var app = App.getApp();
         var m = app.model;
@@ -73,15 +76,26 @@ class doWorkoutView extends Ui.View
         
         //** clear screen
 		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
-        dc.clear(); 
+        dc.clear();
         
-        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
         
-        txt = "RUNNING...";
-        dc.drawText(screen_width/2, screen_height/2, Gfx.FONT_TINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        //CENTER BOX
+        text_height = 24;
+        margin = 5;
+        y = centerY - (text_height/2) - margin;
+        height = text_height + (margin * 2);
+        dc.setColor(Gfx.COLOR_PURPLE, Gfx.COLOR_BLACK);
+        dc.fillRectangle(0, y, screen_width, height);
+
+		//CENTER TEXT - CURRENT EXCERCISE
+		txt = "RUNNING...";
+		y = centerY - (text_height/2);
+		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
+        dc.drawText(centerX, y, Gfx.FONT_TINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
         //COUNTER
-        dc.drawText(screen_width/2, 0, Gfx.FONT_SYSTEM_XTINY, timerCount, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(centerX, 0, Gfx.FONT_SYSTEM_XTINY, timerCount, Gfx.TEXT_JUSTIFY_CENTER);
     }
     
 }
