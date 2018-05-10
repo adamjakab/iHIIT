@@ -5,7 +5,11 @@ using Toybox.Timer as Timer;
 using Toybox.ActivityRecording as ActivityRecording; //use to log activity
 using Toybox.WatchUi as Ui;
 
-class hiitModel
+/**
+ * workoutModel
+ * @todo: split into workout and exercise models
+ */
+class workoutModel
 {
 	private var session;
 	private var session_started = false;

@@ -5,7 +5,7 @@ using Toybox.System as Sys;
 
 
 // Controls the UI flow of the app and controlls FIT recording
-class hiitController
+class mainAppController
 {
 	var is_running;	
 	var finish_workout_option;
