@@ -13,32 +13,32 @@ class hiitModel
 	private var max_workout;
 	private var selected_workout;
 	
-	private var current_excercise;
+	private var current_exercise;
 	
 	private var workout_timer;
-	private var excercise_timer;
+	private var exercise_timer;
 	
 	private var workout_elapsed_seconds;
-	private var excercise_elapsed_seconds;
+	private var exercise_elapsed_seconds;
 	
-	private var excercise_duration_seconds;
+	private var exercise_duration_seconds;
 	private var rest_duration_seconds;
 	
 	
 	// Initialize
     function initialize() {
     	selected_workout = 1;
-    	current_excercise = 1;
+    	current_exercise = 1;
     	setMaxWorkout();
     	
     	workout_elapsed_seconds = 0;
-    	excercise_elapsed_seconds = 0;
+    	exercise_elapsed_seconds = 0;
     	
-    	excercise_duration_seconds = 15;
+    	exercise_duration_seconds = 15;
     	rest_duration_seconds = 5;
     	
     	workout_timer = new Timer.Timer();
-    	excercise_timer = new Timer.Timer();
+    	exercise_timer = new Timer.Timer();
     	
     	createNewSession();
     }
@@ -46,7 +46,7 @@ class hiitModel
     
     function getCurrentExcerciseName()
     {
-	    return getPropertyForWorkoutExcercise(selected_workout, current_excercise, "title");
+	    return getPropertyForWorkoutExcercise(selected_workout, current_exercise, "title");
     }
     
     function getCurrentWorkoutName()
@@ -59,9 +59,9 @@ class hiitModel
     	return workout_elapsed_seconds;
     }
     
-    private function getPropertyForWorkoutExcercise(workout_number, excercise_number, attribute_name)
+    private function getPropertyForWorkoutExcercise(workout_number, exercise_number, attribute_name)
     {
-		var property_id = Lang.format("workout_$1$_excercise_$2$_$3$", [workout_number, excercise_number, attribute_name]);
+		var property_id = Lang.format("workout_$1$_exercise_$2$_$3$", [workout_number, exercise_number, attribute_name]);
 	    var property_value = App.getApp().getProperty(property_id);
 	    if(property_value == null || property_value == "") {
 				property_value = false;
@@ -86,14 +86,14 @@ class hiitModel
 	 	Ui.requestUpdate();
  	}
     
-    function excerciseTimerCallback() 
+    function exerciseTimerCallback() 
 	{
-	 	excercise_elapsed_seconds++;
-	 	if(excercise_elapsed_seconds >= excercise_duration_seconds)
+	 	exercise_elapsed_seconds++;
+	 	if(exercise_elapsed_seconds >= exercise_duration_seconds)
 	 	{
-	 		excercise_elapsed_seconds = 0;
+	 		exercise_elapsed_seconds = 0;
 	 		//@todo: make method for incrementing this
-	 		current_excercise++;
+	 		current_exercise++;
 	 		Ui.requestUpdate();
 	 	}
 	 	//Ui.requestUpdate();
@@ -112,7 +112,7 @@ class hiitModel
     			session_started = true;
     		}
     		workout_timer.start( method(:workoutTimerCallback), 1000, true );
-    		excercise_timer.start( method(:excerciseTimerCallback), 1000, true );
+    		exercise_timer.start( method(:exerciseTimerCallback), 1000, true );
     		Sys.println("MODEL - REC");
     	}
     }
@@ -126,7 +126,7 @@ class hiitModel
     	{
     		session.stop();	
     		workout_timer.stop();
-    		excercise_timer.stop();	
+    		exercise_timer.stop();	
        		Sys.println("MODEL - STOP");
        	}
     }
