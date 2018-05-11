@@ -18,6 +18,7 @@ class workoutModel
 	private var selected_workout;
 	
 	private var current_exercise;
+	private var max_exercise;
 	
 	private var workout_timer;
 	private var exercise_timer;
@@ -34,6 +35,7 @@ class workoutModel
     	selected_workout = 1;
     	current_exercise = 1;
     	setMaxWorkout();
+    	setMaxExercise();
     	
     	workout_elapsed_seconds = 0;
     	exercise_elapsed_seconds = 0;
@@ -50,7 +52,14 @@ class workoutModel
     
     function getCurrentExcerciseName()
     {
-	    return getPropertyForWorkoutExcercise(selected_workout, current_exercise, "title");
+    	var exercise_number = isItRestTime() ? current_exercise + 1 : current_exercise;
+	    var exercise_name = getPropertyForWorkoutExcercise(selected_workout, exercise_number, "title");
+	    if (exercise_name == false)
+	    {
+	    	exercise_name = "";
+	    }
+	    
+	    return exercise_name;
     }
     
     function getCurrentWorkoutName()
@@ -90,18 +99,75 @@ class workoutModel
 	 	Ui.requestUpdate();
  	}
     
+    
     function exerciseTimerCallback() 
 	{
 	 	exercise_elapsed_seconds++;
-	 	if(exercise_elapsed_seconds >= exercise_duration_seconds)
+	 	
+	 	if(isExerciseTimeFinished())
 	 	{
-	 		exercise_elapsed_seconds = 0;
-	 		//@todo: make method for incrementing this
-	 		current_exercise++;
+	 		nextExercise();
 	 		Ui.requestUpdate();
 	 	}
-	 	//Ui.requestUpdate();
  	}
+ 	
+ 	protected function nextExercise()
+ 	{
+ 		if(current_exercise < max_exercise)
+ 		{
+ 			current_exercise++;
+ 			exercise_elapsed_seconds = 0;
+ 		} else
+ 		{
+ 			stopRecording();
+ 			
+ 		} 		
+ 	} 
+ 	
+ 	function isItRestTime()
+ 	{
+ 		return exercise_elapsed_seconds > exercise_duration_seconds;
+ 	}
+ 	
+ 	function isExerciseTimeFinished()
+ 	{
+ 		return exercise_elapsed_seconds > exercise_duration_seconds + rest_duration_seconds;
+ 	}
+ 	
+ 	function getRestElapsedSeconds()
+ 	{
+ 		return isItRestTime() ? exercise_elapsed_seconds - exercise_duration_seconds : 0;
+ 	}
+ 	
+ 	function getRestRemainingSeconds()
+ 	{
+ 		return rest_duration_seconds - getRestElapsedSeconds();
+ 	}
+ 	
+ 	function getExerciseElapsedSeconds()
+ 	{
+ 		return isItRestTime() ? exercise_duration_seconds : exercise_elapsed_seconds;
+ 	}
+ 	
+ 	function getExerciseRemainingSeconds()
+ 	{
+ 		return exercise_duration_seconds - getExerciseElapsedSeconds();
+ 	}
+ 	
+    protected function setMaxExercise()
+    {   	
+		for (var i=1; i<20; i++) {
+	        var exercise_title = getPropertyForWorkoutExcercise(selected_workout, i, "title");
+			if(exercise_title != false) {
+				max_exercise = i;
+			}
+		}
+    }
+    
+    
+    
+    
+    
     
     /*
      * Start workout recording
