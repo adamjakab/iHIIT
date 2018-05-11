@@ -188,7 +188,7 @@ class workoutModel
     {
 		discardRecording();
 
-		var session_name = "HiIt - WO: " + selected_workout;
+		var session_name = "HiiTiT - WO: " + selected_workout;
 		var session_sport = ActivityRecording.SPORT_TRAINING;
 		var session_sub_sport = ActivityRecording.SUB_SPORT_CARDIO_TRAINING;
 		
