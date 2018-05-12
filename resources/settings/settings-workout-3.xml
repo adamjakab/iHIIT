@@ -1,0 +1,76 @@
+<resources>
+	<settings>
+		<setting propertyKey="@Properties.workout_3_divider" title="@Strings.empty">
+			<settingConfig type="alphaNumeric" readonly="true" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_title" title="@Strings.workout_title">
+			<settingConfig type="alphaNumeric" required="false" maxLength="24" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_duration" title="@Strings.exercise_duration">
+			<settingConfig type="numeric" required="false" min="1" max="300" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_rest_duration" title="@Strings.rest_duration">
+			<settingConfig type="numeric" required="false" min="1" max="300" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_1_title" title="@Strings.exercise_title_1">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_2_title" title="@Strings.exercise_title_2">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_3_title" title="@Strings.exercise_title_3">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_4_title" title="@Strings.exercise_title_4">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_5_title" title="@Strings.exercise_title_5">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_6_title" title="@Strings.exercise_title_6">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_7_title" title="@Strings.exercise_title_7">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_8_title" title="@Strings.exercise_title_8">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_9_title" title="@Strings.exercise_title_9">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_10_title" title="@Strings.exercise_title_10">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_11_title" title="@Strings.exercise_title_11">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_12_title" title="@Strings.exercise_title_12">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_13_title" title="@Strings.exercise_title_13">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_14_title" title="@Strings.exercise_title_14">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_15_title" title="@Strings.exercise_title_15">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_16_title" title="@Strings.exercise_title_16">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_17_title" title="@Strings.exercise_title_17">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_18_title" title="@Strings.exercise_title_18">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_19_title" title="@Strings.exercise_title_19">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+		<setting propertyKey="@Properties.workout_3_exercise_20_title" title="@Strings.exercise_title_20">
+			<settingConfig type="alphaNumeric" required="false" maxLength="30" />
+		</setting>
+	</settings>
+</resources>

@@ -7,14 +7,30 @@
     <string id="finish_workout_prompt_save_and_exit">Save and exit</string>
     <string id="finish_workout_prompt_discard_and_exit">Discard and exit</string>
 
+	<string id="empty"></string>
+	
+	<string id="workout_title">Workout title</string>
 	<string id="exercise_duration">Exercise duration(s)</string>
 	<string id="rest_duration">Rest duration(s)</string>
 	
-	<string id="workout_1_title">Workout #1 title</string>
-	<string id="workout_2_title">Workout #2 title</string>
-	<string id="workout_3_title">Workout #3 title</string>
-	<string id="workout_4_title">Workout #4 title</string>
-	<string id="workout_5_title">Workout #5 title</string>
-	
-	
+	<string id="exercise_title_1">Exercise 1</string>
+	<string id="exercise_title_2">Exercise 2</string>
+	<string id="exercise_title_3">Exercise 3</string>
+	<string id="exercise_title_4">Exercise 4</string>
+	<string id="exercise_title_5">Exercise 5</string>
+	<string id="exercise_title_6">Exercise 6</string>
+	<string id="exercise_title_7">Exercise 7</string>
+	<string id="exercise_title_8">Exercise 8</string>
+	<string id="exercise_title_9">Exercise 9</string>
+	<string id="exercise_title_10">Exercise 10</string>	
+	<string id="exercise_title_11">Exercise 11</string>
+	<string id="exercise_title_12">Exercise 12</string>
+	<string id="exercise_title_13">Exercise 13</string>
+	<string id="exercise_title_14">Exercise 14</string>
+	<string id="exercise_title_15">Exercise 15</string>
+	<string id="exercise_title_16">Exercise 16</string>
+	<string id="exercise_title_17">Exercise 17</string>
+	<string id="exercise_title_18">Exercise 18</string>
+	<string id="exercise_title_19">Exercise 19</string>
+	<string id="exercise_title_20">Exercise 20</string>
 </strings>
