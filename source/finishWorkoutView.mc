@@ -23,8 +23,7 @@ class finishWorkoutView extends Ui.View {
         var index, txt, text_height, x, y;
         var text_distance = 35;
         
-        var app = App.getApp();
-        var c = app.controller;        
+        var c = App.getApp().getController();        
         
         var width = dc.getWidth();
         var height = dc.getHeight();

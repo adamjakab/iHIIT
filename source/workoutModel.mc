@@ -104,7 +104,7 @@ class workoutModel
  			exercise_elapsed_seconds = 0;
  		} else
  		{
- 			stopRecording();
+ 			App.getApp().getController().stop();
  		} 		
  	} 
  	

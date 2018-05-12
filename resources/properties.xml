@@ -10,29 +10,52 @@
 		<property id="workout_1_exercise_duration" type="number">8</property>
 		<property id="workout_1_rest_duration" type="number">4</property>
 		<property id="workout_1_exercise_1_title" type="string">Burpie broad jumps</property>
-<!-- 		<property id="workout_1_exercise_2_title" type="string">Marching bridge</property> -->
-<!-- 		<property id="workout_1_exercise_3_title" type="string">Plank - straight legs to side</property> -->
+		<property id="workout_1_exercise_2_title" type="string">Marching bridge</property>
+		<property id="workout_1_exercise_3_title" type="string">Plank - straight legs to side</property>
 		
 		<!-- WORKOUT #2 -->
 		
+		<!-- WORKOUT #3 -->
+		
+		<!-- WORKOUT #4 -->
+		
+		<!-- WORKOUT #5 -->
 		
 	</properties>
 	
 	<settings>
+		<!-- WORKOUT #1 -->
 		<setting propertyKey="@Properties.workout_1_title" title="@Strings.workout_1_title">
-			<settingConfig type="alphaNumeric" />
+			<settingConfig type="alphaNumeric" required="false" maxLength="24" />
 		</setting>
+		<setting propertyKey="@Properties.workout_1_exercise_duration" title="@Strings.exercise_duration">
+			<settingConfig type="numeric" required="false" min="1" max="300" />
+		</setting>
+		<setting propertyKey="@Properties.workout_1_rest_duration" title="@Strings.rest_duration">
+			<settingConfig type="numeric" required="false" min="1" max="300" />
+		</setting>
+		
+		<!-- WORKOUT #2 -->
 		<setting propertyKey="@Properties.workout_2_title" title="@Strings.workout_2_title">
-			<settingConfig type="alphaNumeric" />
+			<settingConfig type="alphaNumeric" required="false" maxLength="24" />
 		</setting>
+		
+		
+		<!-- WORKOUT #3 -->
 		<setting propertyKey="@Properties.workout_3_title" title="@Strings.workout_3_title">
-			<settingConfig type="alphaNumeric" />
+			<settingConfig type="alphaNumeric" required="false" maxLength="24" />
 		</setting>
+		
+		
+		<!-- WORKOUT #4 -->
 		<setting propertyKey="@Properties.workout_4_title" title="@Strings.workout_4_title">
-			<settingConfig type="alphaNumeric" />
+			<settingConfig type="alphaNumeric" required="false" maxLength="24" />
 		</setting>
+		
+		
+		<!-- WORKOUT #5 -->
 		<setting propertyKey="@Properties.workout_5_title" title="@Strings.workout_5_title">
-			<settingConfig type="alphaNumeric" />
+			<settingConfig type="alphaNumeric" required="false" maxLength="24" />
 		</setting>
 	</settings>
 </resources>

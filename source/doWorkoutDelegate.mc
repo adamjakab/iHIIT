@@ -10,15 +10,15 @@ class doWorkoutDelegate extends Ui.BehaviorDelegate {
     
     function onKey( keyEvent )
     {
-    	var m = App.getApp().model;
-    	var c = App.getApp().controller;
+    	var c = App.getApp().getController();
+    	var m = c.getModel();    	
     	var WO = null;
     	
     	var k = keyEvent.getKey();
     	if (k == Ui.KEY_ENTER) {
-    		 c.startOrStop(null);
+    		 c.stop();
     	} else if (k == Ui.KEY_ESC) {
-    		c.startOrStop(true);
+    		c.stop();
     	} else {
     		Sys.println("Unused Key press: " + keyEvent.getKey() + " / " + keyEvent.getType());
     	}

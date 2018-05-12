@@ -17,7 +17,7 @@ class selectWorkoutView extends Ui.View {
     function onUpdate(dc)
     {        
         var app = App.getApp();
-        var m = app.model;
+        var m = app.getController().getModel();
         var WO = m.getSelectedWorkout();
         
         var title_key = "workout_" + WO + "_title";

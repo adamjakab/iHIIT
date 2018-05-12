@@ -64,7 +64,7 @@ class doWorkoutView extends Ui.View
     
     // Update the view
     function onUpdate(dc) {
-    	var m = App.getApp().model;
+    	var m = App.getApp().getController().getModel();
     	if (m.isWorkoutFinished())
     	{
     		updateWorkoutFinished(dc);
@@ -75,7 +75,7 @@ class doWorkoutView extends Ui.View
     
     function updateWorkoutFinished(dc)
     {
-    	var m = App.getApp().model;
+    	var m = App.getApp().getController().getModel();
     	var txt;
     	var centerX = screen_width / 2;
         var centerY = screen_height / 2;
@@ -99,8 +99,7 @@ class doWorkoutView extends Ui.View
         var centerX = screen_width / 2;
         var centerY = screen_height / 2;
         
-        var app = App.getApp();
-        var m = app.model;
+        var m = App.getApp().getController().getModel();
         var WO = m.getSelectedWorkout();
         
         var is_resting = m.isItRestTime();

@@ -7,18 +7,21 @@ using Toybox.System as Sys;
 // Controls the UI flow of the app and controlls FIT recording
 class mainAppController
 {
+	protected var model;
+	
 	var is_running;	
 	var finish_workout_option;
 
 	// Initialize the controller
     function initialize() {
+    	model = new $.workoutModel();
+    
     	is_running = false;
     	finish_workout_option = 0;
     }
     
     /*
-     * Start or stop workout - do we really need this?
-     */
+     * Start or stop workout - do we really need this?     
     function startOrStop(forceStop) {
     	if(forceStop == true || isRunning())
     	{
@@ -29,38 +32,64 @@ class mainAppController
     		start();
     		Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
     	}
-    }
+    }*/
     
 	/*
      * Start workout
      */
     function start() {
-    	is_running = true;		
-       	Sys.println("CTRL - START");
-       	
-       	var m = App.getApp().model;
-		m.startRecording();
+    	if(!isRunning())
+    	{
+	    	Sys.println("CTRL - START");
+	    	is_running = true;
+			var is_session_started = model.isSessionStarted();
+			model.startRecording();
+			if(!is_session_started)
+			{
+				Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
+			}
+    	} else
+    	{
+    		Sys.println("CTRL - START REFUSED - Already running");
+    	}
+    }
+        
+    /*
+     * Stop workout
+     */
+    function stop() {
+    	if(isRunning())
+    	{
+    		Sys.println("CTRL - STOP");
+    		is_running = false;
+			model.stopRecording();
+			if(!model.isWorkoutFinished())
+			{
+				Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
+			}			
+		} else 
+		{
+			Sys.println("CTRL - STOP REFUSED - Already stoped");
+			if(model.isWorkoutFinished())
+			{
+				Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
+			}
+		}
     }
     
     /*
      * Resume workout
      */
     function resume() {
-    	start();
-    	
-    	Ui.popView(Ui.SLIDE_DOWN);
-       	Sys.println("CTRL - RESUME");
-    } 
-    
-    /*
-     * Stop workout
-     */
-    function stop() {
-    	is_running = false;
-       	Sys.println("CTRL - STOP");
-       	
-       	var m = App.getApp().model;
-		m.stopRecording();
+    	if(!model.isWorkoutFinished())
+    	{
+    		Sys.println("CTRL - RESUME");
+    		start();
+    		Ui.popView(Ui.SLIDE_DOWN);
+    	} else 
+    	{
+    		Sys.println("CTRL - RESUME REFUSED - Workout already finished");
+    	}
     }
     
     /*
@@ -83,11 +112,10 @@ class mainAppController
     
     // Discard & go back to workout selection
     function discard() {
-    	var m = App.getApp().model;
-		m.discardRecording();
-		m.createNewSession();
-		
-       	Sys.println("CTRL - DISCARD");
+		Sys.println("CTRL - DISCARD");
+		//@todo: we need confirmation for this
+		model.createNewSession();
+       	
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
        	//Sys.exit();
@@ -95,11 +123,10 @@ class mainAppController
     
     // Save
     function save() {
-    	var m = App.getApp().model;
-		m.saveRecording();
-		m.createNewSession();
-		
-       	Sys.println("CTRL - SAVE");
+		Sys.println("CTRL - SAVE");
+		model.saveRecording();
+		model.createNewSession();
+       	
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
     }
@@ -112,5 +139,10 @@ class mainAppController
     // Handle timing out after exit
     function onExit() {
         Sys.exit();
+    }
+    
+    public function getModel()
+    {
+    	return model;
     }
 }

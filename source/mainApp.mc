@@ -5,29 +5,35 @@ using Toybox.Application as App;
 */
 class mainApp extends App.AppBase
 {
-	public var controller;
-	public var model;
+	protected var controller;
 	
-    function initialize() {
+    public function initialize() {
         AppBase.initialize();        
         controller = new $.mainAppController();
-        model = new $.workoutModel();
     }
 
     // onStart() is called on application start up
-    function onStart(state) {
+    public function onStart(state)
+    {
     }
 
     // onStop() is called when your application is exiting
-    function onStop(state) {
+    public function onStop(state)
+    {
     }
 
     // Return the initial view of your application here
-    function getInitialView() {
-        //return [ new selectWorkoutView(), new selectWorkoutDelegate() ];
+    public function getInitialView()
+    {
+        return [ new selectWorkoutView(), new selectWorkoutDelegate() ];
         
         //TEMPORARY SHORTCUT
-        controller.start();
-        return [ new doWorkoutView(), new doWorkoutDelegate() ];
+        //controller.start();
+        //return [ new doWorkoutView(), new doWorkoutDelegate() ];
+    }
+    
+    public function getController()
+    {
+    	return controller;
     }
 }

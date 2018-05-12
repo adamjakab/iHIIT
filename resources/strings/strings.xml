@@ -7,9 +7,14 @@
     <string id="finish_workout_prompt_save_and_exit">Save and exit</string>
     <string id="finish_workout_prompt_discard_and_exit">Discard and exit</string>
 
+	<string id="exercise_duration">Exercise duration(s)</string>
+	<string id="rest_duration">Rest duration(s)</string>
+	
 	<string id="workout_1_title">Workout #1 title</string>
 	<string id="workout_2_title">Workout #2 title</string>
 	<string id="workout_3_title">Workout #3 title</string>
 	<string id="workout_4_title">Workout #4 title</string>
 	<string id="workout_5_title">Workout #5 title</string>
+	
+	
 </strings>
