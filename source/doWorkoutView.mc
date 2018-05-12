@@ -64,9 +64,37 @@ class doWorkoutView extends Ui.View
     
     // Update the view
     function onUpdate(dc) {
-        // Call the parent onUpdate function to redraw the layout
-        //View.onUpdate(dc);
+    	var m = App.getApp().model;
+    	if (m.isWorkoutFinished())
+    	{
+    		updateWorkoutFinished(dc);
+    	} else {
+    		updateWorkoutRunning(dc);
+    	}
+    }
+    
+    function updateWorkoutFinished(dc)
+    {
+    	var m = App.getApp().model;
+    	var txt;
+    	var centerX = screen_width / 2;
+        var centerY = screen_height / 2;
         
+    	//** clear screen
+		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
+        dc.clear();
+        
+    	txt = "WELL DONE!";
+		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
+        dc.drawText(centerX, centerY - 12, Gfx.FONT_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
+        txt = "Total time: " + m.getWorkoutElapsedSeconds(true);
+        dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_BLACK);
+        dc.drawText(centerX, centerY + 20, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
+    }
+    
+    function updateWorkoutRunning(dc)
+    {    
         var txt, text_height, x, y, width, height, margin, color;
         var centerX = screen_width / 2;
         var centerY = screen_height / 2;
@@ -76,6 +104,7 @@ class doWorkoutView extends Ui.View
         var WO = m.getSelectedWorkout();
         
         var is_resting = m.isItRestTime();
+        
         
         //** clear screen
 		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
@@ -94,7 +123,7 @@ class doWorkoutView extends Ui.View
 		//CENTER TEXT - CURRENT EXERCISE
 		txt = m.getCurrentExcerciseName();
 		y = centerY - (text_height/2);
-		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_PINK);
+		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
         dc.drawText(centerX, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
         //SMALL CENTER BOX

@@ -2,6 +2,7 @@ using Toybox.Application as App;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
+using Toybox.Math as Math;
 using Toybox.ActivityRecording as ActivityRecording; //use to log activity
 using Toybox.WatchUi as Ui;
 
@@ -33,15 +34,11 @@ class workoutModel
 	// Initialize
     function initialize() {
     	selected_workout = 1;
-    	current_exercise = 1;
+    	current_exercise = 0;
     	setMaxWorkout();
     	setMaxExercise();
     	
     	workout_elapsed_seconds = 0;
-    	exercise_elapsed_seconds = 0;
-    	
-    	exercise_duration_seconds = 15;
-    	rest_duration_seconds = 5;
     	
     	workout_timer = new Timer.Timer();
     	exercise_timer = new Timer.Timer();
@@ -53,10 +50,10 @@ class workoutModel
     function getCurrentExcerciseName()
     {
     	var exercise_number = isItRestTime() ? current_exercise + 1 : current_exercise;
-	    var exercise_name = getPropertyForWorkoutExcercise(selected_workout, exercise_number, "title");
+	    var exercise_name = getPropertyForWorkoutExcercise(selected_workout, exercise_number, "title", false);
 	    if (exercise_name == false)
 	    {
-	    	exercise_name = "";
+	    	exercise_name = "END OF WORKOUT";
 	    }
 	    
 	    return exercise_name;
@@ -64,33 +61,21 @@ class workoutModel
     
     function getCurrentWorkoutName()
     {
-	    return getPropertyForWorkout(selected_workout, "title");
+	    return getPropertyForWorkout(selected_workout, "title", false);
     }
     
-    function getWorkoutElapsedSeconds()
+    function getWorkoutElapsedSeconds(format)
     {
-    	return workout_elapsed_seconds;
+    	var answer = workout_elapsed_seconds;
+    	if(format == true) {
+    		var min = Math.floor(workout_elapsed_seconds / 60);
+    		var sec = workout_elapsed_seconds - (60*min);
+			answer = Lang.format("$1$:$2$", [min, sec]);  	
+    	}
+    	return answer;
     }
     
-    private function getPropertyForWorkoutExcercise(workout_number, exercise_number, attribute_name)
-    {
-		var property_id = Lang.format("workout_$1$_exercise_$2$_$3$", [workout_number, exercise_number, attribute_name]);
-	    var property_value = App.getApp().getProperty(property_id);
-	    if(property_value == null || property_value == "") {
-				property_value = false;
-			}
-	    return property_value;
-    }
     
-    private function getPropertyForWorkout(workout_number, attribute_name)
-    {
-		var property_id = Lang.format("workout_$1$_$2$", [workout_number, attribute_name]);
-	    var property_value = App.getApp().getProperty(property_id);
-	    if(property_value == null || property_value == "") {
-				property_value = false;
-			}
-	    return property_value;
-    }
     
     
     function workoutTimerCallback() 
@@ -113,14 +98,13 @@ class workoutModel
  	
  	protected function nextExercise()
  	{
- 		if(current_exercise < max_exercise)
+ 		current_exercise++;
+ 		if(current_exercise <= max_exercise)
  		{
- 			current_exercise++;
  			exercise_elapsed_seconds = 0;
  		} else
  		{
  			stopRecording();
- 			
  		} 		
  	} 
  	
@@ -157,17 +141,17 @@ class workoutModel
     protected function setMaxExercise()
     {   	
 		for (var i=1; i<20; i++) {
-	        var exercise_title = getPropertyForWorkoutExcercise(selected_workout, i, "title");
+	        var exercise_title = getPropertyForWorkoutExcercise(selected_workout, i, "title", false);
 			if(exercise_title != false) {
 				max_exercise = i;
 			}
 		}
     }
     
-    
-    
-    
-    
+    function isWorkoutFinished()
+    {
+    	return current_exercise > max_exercise;
+    }
     
     /*
      * Start workout recording
@@ -253,8 +237,15 @@ class workoutModel
     function createNewSession()
     {
 		discardRecording();
-
-		var session_name = "HiiTiT - WO: " + selected_workout;
+		
+		exercise_duration_seconds = getPropertyForWorkout(selected_workout, "exercise_duration", 40);
+    	rest_duration_seconds = getPropertyForWorkout(selected_workout, "rest_duration", 20);
+    	exercise_elapsed_seconds = exercise_duration_seconds + 1;
+    	
+    	Sys.println("eDUR: " + exercise_duration_seconds);
+    	Sys.println("rDUR: " + rest_duration_seconds);
+		
+		var session_name = getCurrentWorkoutName();
 		var session_sport = ActivityRecording.SPORT_TRAINING;
 		var session_sub_sport = ActivityRecording.SUB_SPORT_CARDIO_TRAINING;
 		
@@ -306,4 +297,26 @@ class workoutModel
 			}
 		}
     }
+    
+    private function getPropertyForWorkoutExcercise(workout_number, exercise_number, attribute_name, default_value)
+    {
+		var property_id = Lang.format("workout_$1$_exercise_$2$_$3$", [workout_number, exercise_number, attribute_name]);
+	    var property_value = App.getApp().getProperty(property_id);
+	    if(property_value == null || property_value == "") {
+				property_value = default_value;
+			}
+	    return property_value;
+    }
+    
+    
+    private function getPropertyForWorkout(workout_number, attribute_name, default_value)
+    {
+		var property_id = Lang.format("workout_$1$_$2$", [workout_number, attribute_name]);
+	    var property_value = App.getApp().getProperty(property_id);
+	    if(property_value == null || property_value == "") {
+				property_value = default_value;
+			}
+	    return property_value;
+    }
+    
 }

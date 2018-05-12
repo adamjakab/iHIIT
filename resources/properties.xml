@@ -7,9 +7,11 @@
 		<property id="workout_5_title" type="string">HIIT ::: TRX</property>
 		
 		<!-- WORKOUT #1 -->
+		<property id="workout_1_exercise_duration" type="number">8</property>
+		<property id="workout_1_rest_duration" type="number">4</property>
 		<property id="workout_1_exercise_1_title" type="string">Burpie broad jumps</property>
-		<property id="workout_1_exercise_2_title" type="string">Marching bridge</property>
-		<property id="workout_1_exercise_3_title" type="string">Plank - straight legs to side</property>
+<!-- 		<property id="workout_1_exercise_2_title" type="string">Marching bridge</property> -->
+<!-- 		<property id="workout_1_exercise_3_title" type="string">Plank - straight legs to side</property> -->
 		
 		<!-- WORKOUT #2 -->
 		
