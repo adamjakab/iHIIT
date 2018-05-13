@@ -1,5 +1,13 @@
 <iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
-    <iq:application entry="mainApp" id="803e49680b0e4378a1ca292da35505f0" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="1.2.0" name="@Strings.AppName" type="watch-app" version="0.0.2">
+    <iq:application
+			    	entry="mainApp" 
+			    	id="803e49680b0e4378a1ca292da35505f0" 
+			    	launcherIcon="@Drawables.LauncherIcon" 
+			    	minSdkVersion="1.2.0" 
+			    	name="@Strings.AppName" 
+			    	type="watch-app" 
+			    	version="0.0.3"
+    >
         <iq:products>
             <iq:product id="fr230"/>
             <iq:product id="fr235"/>

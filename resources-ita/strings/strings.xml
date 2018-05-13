@@ -1,8 +1,35 @@
 <strings>
-    <string id="AppName">HiiTiT</string>
-    <string id="select_workout_prompt">Seleziona un allenamento con le frecce</string>
+    <string id="AppName">iHIIT</string>
+    <string id="select_workout_prompt">Seleziona un allenamento</string>
+    <string id="empty"></string>
     
-    <string id="workout_title">Allenamento</string>
+    <string id="finish_workout_prompt_resume">Continua</string>
+    <string id="finish_workout_prompt_save_and_exit">Salva ed esci</string>
+    <string id="finish_workout_prompt_discard_and_exit">Scarta ed esci</string>
 	
+	<string id="workout_title">Allenamento</string>
+	<string id="exercise_duration">Durata esercizio(s)</string>
+	<string id="rest_duration">Durata riposo(s)</string>
+	
+	<string id="exercise_title_1">Esercizio 1</string>
+	<string id="exercise_title_2">Esercizio 2</string>
+	<string id="exercise_title_3">Esercizio 3</string>
+	<string id="exercise_title_4">Esercizio 4</string>
+	<string id="exercise_title_5">Esercizio 5</string>
+	<string id="exercise_title_6">Esercizio 6</string>
+	<string id="exercise_title_7">Esercizio 7</string>
+	<string id="exercise_title_8">Esercizio 8</string>
+	<string id="exercise_title_9">Esercizio 9</string>
+	<string id="exercise_title_10">Esercizio 10</string>	
+	<string id="exercise_title_11">Esercizio 11</string>
+	<string id="exercise_title_12">Esercizio 12</string>
+	<string id="exercise_title_13">Esercizio 13</string>
+	<string id="exercise_title_14">Esercizio 14</string>
+	<string id="exercise_title_15">Esercizio 15</string>
+	<string id="exercise_title_16">Esercizio 16</string>
+	<string id="exercise_title_17">Esercizio 17</string>
+	<string id="exercise_title_18">Esercizio 18</string>
+	<string id="exercise_title_19">Esercizio 19</string>
+	<string id="exercise_title_20">Esercizio 20</string>
 	
 </strings>

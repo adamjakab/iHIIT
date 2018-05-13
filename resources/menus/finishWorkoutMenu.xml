@@ -1,5 +1,0 @@
-<menu id="finishWorkoutMenu">
-	<menu-item id="resume" label="Resume" />
-    <menu-item id="save_and_exit" label="Save and exit" />
-    <menu-item id="discard_and_exit" label="Discard and exit" />
-</menu>

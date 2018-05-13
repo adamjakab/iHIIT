@@ -1,13 +1,11 @@
 <strings>
-    <string id="AppName">HiiTiT</string>
-    
-    <string id="select_workout_prompt">Use the arrows to select a workout</string>
+    <string id="AppName">iHIIT</string>    
+    <string id="select_workout_prompt">Select a workout</string>
+    <string id="empty"></string>
     
     <string id="finish_workout_prompt_resume">Resume</string>
     <string id="finish_workout_prompt_save_and_exit">Save and exit</string>
     <string id="finish_workout_prompt_discard_and_exit">Discard and exit</string>
-
-	<string id="empty"></string>
 	
 	<string id="workout_title">Workout title</string>
 	<string id="exercise_duration">Exercise duration(s)</string>
@@ -33,4 +31,5 @@
 	<string id="exercise_title_18">Exercise 18</string>
 	<string id="exercise_title_19">Exercise 19</string>
 	<string id="exercise_title_20">Exercise 20</string>
+	
 </strings>
