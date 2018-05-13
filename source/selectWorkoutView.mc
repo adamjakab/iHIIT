@@ -18,10 +18,8 @@ class selectWorkoutView extends Ui.View {
     {        
         var app = App.getApp();
         var m = app.getController().getModel();
-        var WO = m.getSelectedWorkout();
-        
-        var title_key = "workout_" + WO + "_title";
-        var workout_title = app.getProperty(title_key);
+        var WOI = m.getSelectedWorkout();
+        var txt, x, y;
         
         var width = dc.getWidth();
         var height = dc.getHeight();
@@ -30,10 +28,19 @@ class selectWorkoutView extends Ui.View {
 		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
         dc.clear(); 
         
+        y = (height/2) - 32;
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);        
-        dc.drawText(width/2, height/3, Gfx.FONT_TINY, select_workout_prompt, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width/2, y, Gfx.FONT_TINY, select_workout_prompt, Gfx.TEXT_JUSTIFY_CENTER);
         
+        txt = m.getPropertyForWorkout(WOI, "title", "");
+        y = (height/2) - 12;
         dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(width/2, height/2, Gfx.FONT_MEDIUM, workout_title, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width/2, y, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
+        txt = "Number of exercises: " + m.getNumberOfExercises();
+        y = (height/2) + 20;
+        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
     }
 }

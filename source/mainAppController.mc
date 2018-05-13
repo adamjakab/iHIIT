@@ -3,8 +3,6 @@ using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 
-
-// Controls the UI flow of the app and controlls FIT recording
 class mainAppController
 {
 	protected var model;
@@ -19,20 +17,6 @@ class mainAppController
     	is_running = false;
     	finish_workout_option = 0;
     }
-    
-    /*
-     * Start or stop workout - do we really need this?     
-    function startOrStop(forceStop) {
-    	if(forceStop == true || isRunning())
-    	{
-    		stop();
-    		Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
-    	} else 
-    	{
-    		start();
-    		Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
-    	}
-    }*/
     
 	/*
      * Start workout

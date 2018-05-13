@@ -2,11 +2,11 @@
 	<properties>	
 		<property id="workout_2_divider" type="string">|---------- WORKOUT #2 ----------|</property>
 		<property id="workout_2_title" type="string">HIIT ::: Core</property>
-		<property id="workout_2_exercise_duration" type="number">40</property>
-		<property id="workout_2_rest_duration" type="number">20</property>
-		<property id="workout_2_exercise_1_title" type="string"></property>
-		<property id="workout_2_exercise_2_title" type="string"></property>
-		<property id="workout_2_exercise_3_title" type="string"></property>
+		<property id="workout_2_exercise_duration" type="number">30</property>
+		<property id="workout_2_rest_duration" type="number">15</property>
+		<property id="workout_2_exercise_1_title" type="string">Modified bird-dog</property>
+		<property id="workout_2_exercise_2_title" type="string">Plank</property>
+		<property id="workout_2_exercise_3_title" type="string">Lower-body russian twists</property>
 		<property id="workout_2_exercise_4_title" type="string"></property>
 		<property id="workout_2_exercise_5_title" type="string"></property>
 		<property id="workout_2_exercise_6_title" type="string"></property>

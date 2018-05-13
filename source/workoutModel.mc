@@ -139,13 +139,20 @@ class workoutModel
  	}
  	
     protected function setMaxExercise()
-    {   	
-		for (var i=1; i<20; i++) {
-	        var exercise_title = getPropertyForWorkoutExcercise(selected_workout, i, "title", false);
-			if(exercise_title != false) {
-				max_exercise = i;
-			}
-		}
+    {
+    	max_exercise = 0;
+    	var i = 1;
+    	while(getPropertyForWorkoutExcercise(selected_workout, i, "title", false) != false)
+    	{
+    		max_exercise = i;
+    		i++;
+    	}
+    	Sys.println("MAXEXERCISE("+selected_workout+") set to: " + max_exercise);
+    }
+    
+    function getNumberOfExercises()
+    {
+    	return max_exercise;
     }
     
     function isWorkoutFinished()
@@ -238,12 +245,13 @@ class workoutModel
     {
 		discardRecording();
 		
+		setMaxExercise();
 		exercise_duration_seconds = getPropertyForWorkout(selected_workout, "exercise_duration", 40);
     	rest_duration_seconds = getPropertyForWorkout(selected_workout, "rest_duration", 20);
     	exercise_elapsed_seconds = exercise_duration_seconds + 1;
     	
-    	Sys.println("eDUR: " + exercise_duration_seconds);
-    	Sys.println("rDUR: " + rest_duration_seconds);
+    	//Sys.println("eDUR: " + exercise_duration_seconds);
+    	//Sys.println("rDUR: " + rest_duration_seconds);
 		
 		var session_name = getCurrentWorkoutName();
 		var session_sport = ActivityRecording.SPORT_TRAINING;
@@ -269,7 +277,7 @@ class workoutModel
     	if(selected_workout > max_workout)
     	{
     		selected_workout = 1;
-    	}    	
+    	}
     	createNewSession();
     	
     	return getSelectedWorkout();
@@ -280,7 +288,7 @@ class workoutModel
     	if(selected_workout < 1)
     	{
     		selected_workout = max_workout;
-    	}    	
+    	}
     	createNewSession();
     	
     	return getSelectedWorkout();
@@ -288,34 +296,31 @@ class workoutModel
     
     private function setMaxWorkout()
     {
-    	var app = App.getApp();    	
-		for (var i=1; i<10; i++) {
-			var title_key = "workout_" + i + "_title";
-	        var workout_title = app.getProperty(title_key);
-			if(workout_title != null && workout_title != "") {
+		for (var i=1; i < 99; i++) {
+			if(getPropertyForWorkout(i, "title", false) != false) {
 				max_workout = i;
 			}
 		}
     }
     
-    private function getPropertyForWorkoutExcercise(workout_number, exercise_number, attribute_name, default_value)
+    
+    public function getPropertyForWorkoutExcercise(workout_number, exercise_number, attribute_name, default_value)
     {
 		var property_id = Lang.format("workout_$1$_exercise_$2$_$3$", [workout_number, exercise_number, attribute_name]);
 	    var property_value = App.getApp().getProperty(property_id);
-	    if(property_value == null || property_value == "") {
-				property_value = default_value;
-			}
+	    if(property_value == null || (property_value instanceof String && property_value.length() == 0)) {
+			property_value = default_value;
+		}
 	    return property_value;
     }
     
-    
-    private function getPropertyForWorkout(workout_number, attribute_name, default_value)
+    public function getPropertyForWorkout(workout_number, attribute_name, default_value)
     {
 		var property_id = Lang.format("workout_$1$_$2$", [workout_number, attribute_name]);
 	    var property_value = App.getApp().getProperty(property_id);
-	    if(property_value == null || property_value == "") {
-				property_value = default_value;
-			}
+	    if(property_value == null || (property_value instanceof String && property_value.length() == 0)) {
+			property_value = default_value;
+		}
 	    return property_value;
     }
     
