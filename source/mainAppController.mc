@@ -2,17 +2,23 @@ using Toybox.Timer;
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
+//using ApeTools;
 
 class mainAppController
 {
-	protected var model;
+	protected var workoutCount;
+	protected var currentWorkout;
 	
 	var is_running;	
+	
 	var finish_workout_option;
 
 	// Initialize the controller
     function initialize() {
-    	model = new $.workoutModel();
+    	workoutCount = ApeTools.WorkoutHelper.getWorkoutCount();
+    	Sys.println("Workout count: " + workoutCount);
+    	
+    	currentWorkout = new $.workout(1);
     
     	is_running = false;
     	finish_workout_option = 0;
@@ -119,14 +125,43 @@ class mainAppController
     function isRunning() {
        	return is_running;
     }
-
+    
+    function setNextWorkout()
+    {
+    	var WOI = currentWorkout.getWorkoutIndex();
+    	WOI++;
+    	if(WOI > workoutCount)
+    	{
+    		WOI = 1;
+    	}
+    	
+    	currentWorkout = new $.workout(WOI);
+    	
+    	return WOI;
+    }
+    
+    function setPreviousWorkout()
+    {
+    	var WOI = currentWorkout.getWorkoutIndex();
+    	WOI--;
+    	if(WOI < 1)
+    	{
+    		WOI = workoutCount;
+    	}
+    	
+    	currentWorkout = new $.workout(WOI);
+    	
+    	return WOI;
+    }
+    
+    // Renamed from getModel
+    public function getCurrentWorkout()
+    {
+    	return currentWorkout;
+    }
+    
     // Handle timing out after exit
     function onExit() {
         Sys.exit();
-    }
-    
-    public function getModel()
-    {
-    	return model;
     }
 }

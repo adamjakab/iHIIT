@@ -11,14 +11,14 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
     function onKey( keyEvent )
     {
     	var c = App.getApp().getController();
-    	var m = c.getModel();
+    	var m;
     	var WOI = null;
     	
     	var k = keyEvent.getKey();
     	if(k == Ui.KEY_DOWN) {
-    		WOI = m.setNextWorkout();
+    		WOI = c.setNextWorkout();
     	} else if (k == Ui.KEY_UP) {
-    		WOI = m.setPreviousWorkout();
+    		WOI = c.setPreviousWorkout();
     	} else if (k == Ui.KEY_ENTER) {
     		 c.start();
     	} else {
@@ -27,7 +27,8 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
     	
     	if (WOI != null)
     	{
-    		Sys.println("NEW WORKOUT SET(" + WOI + "): " + m.getCurrentWorkoutName());
+    		//m = c.getCurrentWorkout();
+    		//Sys.println("NEW WORKOUT SET(" + WOI + "): " + m.getTitle());
     		Ui.requestUpdate();
     	}
     }

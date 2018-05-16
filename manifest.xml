@@ -6,7 +6,7 @@
 			    	minSdkVersion="1.2.0" 
 			    	name="@Strings.AppName" 
 			    	type="watch-app" 
-			    	version="0.0.3"
+			    	version="0.0.0"
     >
         <iq:products>
             <iq:product id="fr230"/>

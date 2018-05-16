@@ -12,13 +12,19 @@ class selectWorkoutView extends Ui.View {
     	View.initialize();    	  	
     	select_workout_prompt = Ui.loadResource(Rez.Strings.select_workout_prompt);
     }
-
-    // Update the view
+	
+	// TMP
     function onUpdate(dc)
+    {
+    	onUpdate_OLD(dc);
+    }
+    
+    // Update the view
+    function onUpdate_OLD(dc)
     {        
         var app = App.getApp();
-        var m = app.getController().getModel();
-        var WOI = m.getSelectedWorkout();
+        var m = app.getController().getCurrentWorkout();
+        //var WOI = m.getWorkoutIndex();
         var txt, x, y;
         
         var width = dc.getWidth();
@@ -32,12 +38,12 @@ class selectWorkoutView extends Ui.View {
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);        
         dc.drawText(width/2, y, Gfx.FONT_TINY, select_workout_prompt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        txt = m.getPropertyForWorkout(WOI, "title", "");
+        txt = m.getTitle();
         y = (height/2) - 12;
         dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
         dc.drawText(width/2, y, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        txt = "Number of exercises: " + m.getNumberOfExercises();
+        txt = "Number of exercises: " + m.getExerciseCount();
         y = (height/2) + 20;
         dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
         dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
