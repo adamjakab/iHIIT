@@ -27,12 +27,12 @@ class mainAppController
      * Start the selected workout
      */
     function beginCurrentWorkout() {
-    	if(currentWorkout.getState() != workout.STATE_NOT_STARTED)
+    	if(!currentWorkout.isNotStarted())
     	{
     		Sys.println("CTRL - START REFUSED - Current workout must be in stopped state to be started");
     		return;
     	}
-    	Sys.println("CTRL - START - WO STATE OK: " + currentWorkout.getState());
+    	Sys.println("CTRL - START");
 
 		currentWorkout.startRecording();
 		Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
@@ -42,38 +42,35 @@ class mainAppController
      * Stop workout
      */
     function stop() {
-    	if(isRunning())
-    	{
-    		Sys.println("CTRL - STOP");
-
-			model.stopRecording();
-			if(!model.isWorkoutFinished())
-			{
-				Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
-			}			
-		} else 
+		if(currentWorkout.isTerminated())
 		{
-			Sys.println("CTRL - STOP REFUSED - Already stoped");
-			if(model.isWorkoutFinished())
-			{
-				Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
-			}
+			Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
+			return;
 		}
+		
+    	if(!currentWorkout.isRunning())
+    	{
+    		Sys.println("CTRL - STOP REFUSED - Current workout must be running to be stoped");
+    		return;
+    	}
+    	
+		Sys.println("CTRL - STOP");
+		currentWorkout.stopRecording();
     }
     
     /*
      * Resume workout
      */
     function resume() {
-    	if(!model.isWorkoutFinished())
-    	{
-    		Sys.println("CTRL - RESUME");
-    		//start();//-----------------------NO! -
-    		Ui.popView(Ui.SLIDE_DOWN);
-    	} else 
-    	{
-    		Sys.println("CTRL - RESUME REFUSED - Workout already finished");
-    	}
+    	if(currentWorkout.isTerminated())
+		{
+			Sys.println("CTRL - RESUME REFUSED - Workout already finished");
+			return;
+		}
+	
+		Sys.println("CTRL - RESUME");
+		currentWorkout.startRecording();
+		Ui.popView(Ui.SLIDE_DOWN);
     }
     
     /*
@@ -98,7 +95,7 @@ class mainAppController
     function discard() {
 		Sys.println("CTRL - DISCARD");
 		//@todo: we need confirmation for this
-		model.createNewSession();
+		model.discardRecording();
        	
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);

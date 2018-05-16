@@ -192,11 +192,6 @@ class workout
 		return Lang.format("$1$:$2$", [min, sec]);
     }
     
-   
-    function isWorkoutFinished()
-    {
-    	return self.current_exercise > self.exercise_count;
-    }
     
     function getElapsedSeconds(format)
     {
@@ -207,5 +202,31 @@ class workout
 			answer = Lang.format("$1$:$2$", [min, sec]);
     	}
     	return answer;
+    }
+    
+    function isWorkoutFinished()
+    {
+    	return self.current_exercise > self.exercise_count;
+    }
+    
+    
+    public function isNotStarted()
+    {
+    	return self.state == STATE_NOT_STARTED;
+    }
+    
+    public function isRunning()
+    {
+    	return self.state == STATE_RUNNING;
+    }
+    
+    public function isPaused()
+    {
+    	return self.state == STATE_PAUSED;
+    }
+    
+    public function isTerminated()
+    {
+    	return self.state == STATE_TERMINATED;
     }
 }
