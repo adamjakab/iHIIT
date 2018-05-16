@@ -9,39 +9,33 @@ class mainAppController
 	protected var workoutCount;
 	protected var currentWorkout;
 	
-	var is_running;	
 	
 	var finish_workout_option;
 
 	// Initialize the controller
-    function initialize() {
+    public function initialize() {
     	workoutCount = ApeTools.WorkoutHelper.getWorkoutCount();
     	Sys.println("Workout count: " + workoutCount);
     	
     	currentWorkout = new $.workout(1);
     
-    	is_running = false;
     	finish_workout_option = 0;
     }
     
+    
 	/*
-     * Start workout
+     * Start the selected workout
      */
-    function start() {
-    	if(!isRunning())
+    function beginCurrentWorkout() {
+    	if(currentWorkout.getState() != workout.STATE_NOT_STARTED)
     	{
-	    	Sys.println("CTRL - START");
-	    	is_running = true;
-			var is_session_started = model.isSessionStarted();
-			model.startRecording();
-			if(!is_session_started)
-			{
-				Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
-			}
-    	} else
-    	{
-    		Sys.println("CTRL - START REFUSED - Already running");
+    		Sys.println("CTRL - START REFUSED - Current workout must be in stopped state to be started");
+    		return;
     	}
+    	Sys.println("CTRL - START - WO STATE OK: " + currentWorkout.getState());
+
+		currentWorkout.startRecording();
+		Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
     }
         
     /*
@@ -51,7 +45,7 @@ class mainAppController
     	if(isRunning())
     	{
     		Sys.println("CTRL - STOP");
-    		is_running = false;
+
 			model.stopRecording();
 			if(!model.isWorkoutFinished())
 			{
@@ -74,7 +68,7 @@ class mainAppController
     	if(!model.isWorkoutFinished())
     	{
     		Sys.println("CTRL - RESUME");
-    		start();
+    		//start();//-----------------------NO! -
     		Ui.popView(Ui.SLIDE_DOWN);
     	} else 
     	{
@@ -121,10 +115,6 @@ class mainAppController
        	Ui.popView(Ui.SLIDE_DOWN);
     }
     
-    // Are we running currently?
-    function isRunning() {
-       	return is_running;
-    }
     
     function setNextWorkout()
     {

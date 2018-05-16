@@ -3,15 +3,15 @@ using Toybox.System as Sys;
 using Toybox.Application as App;
 
 class selectWorkoutDelegate extends Ui.BehaviorDelegate {
-
-    function initialize() {
+	//Init
+    public function initialize() {
         BehaviorDelegate.initialize();
     }
     
-    function onKey( keyEvent )
+    //Key events
+    public function onKey( keyEvent )
     {
     	var c = App.getApp().getController();
-    	var m;
     	var WOI = null;
     	
     	var k = keyEvent.getKey();
@@ -20,22 +20,21 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
     	} else if (k == Ui.KEY_UP) {
     		WOI = c.setPreviousWorkout();
     	} else if (k == Ui.KEY_ENTER) {
-    		 c.start();
+    		 c.beginCurrentWorkout();
     	} else {
     		//Sys.println("Unused Key press: " + keyEvent.getKey() + " / " + keyEvent.getType());
     	}
     	
     	if (WOI != null)
     	{
-    		//m = c.getCurrentWorkout();
-    		//Sys.println("NEW WORKOUT SET(" + WOI + "): " + m.getTitle());
+    		var workout = c.getCurrentWorkout();
+    		Sys.println("NEW WORKOUT SET(" + workout.getWorkoutIndex() + "): " + workout.getTitle());
     		Ui.requestUpdate();
     	}
     }
 
-    function onMenu() {
-        //Ui.pushView(new Rez.Menus.MainMenu(), new iqMenuDelegate(), Ui.SLIDE_UP);
+	//Menu handling
+    public function onMenu() {
         return false;
     }
-
 }

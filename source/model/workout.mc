@@ -11,13 +11,20 @@ using Toybox.WatchUi as Ui;
  */
 class workout
 {
+	const STATE_NOT_STARTED = 0;
+	const STATE_RUNNING = 1;
+	const STATE_PAUSED = 2;
+	const STATE_TERMINATED = 3;
+	
 	private var workout_index;
 	private var title;
 	private var exercise_duration;
 	private var rest_duration;
+	
+	private var state = STATE_NOT_STARTED;
 
 	private var session;
-	private var session_started = false;
+	//private var session_started = false;
 	
 	private var workout_timer;
 	
@@ -31,17 +38,21 @@ class workout
 	// @param WOI - Workout index
     function initialize(WOI)
     {
+    	//self.state = self.STATE_NOT_STARTED;
+    	
     	self.workout_index = WOI;
     	self.title = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "title", "");
     	self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", 40);
     	self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", 20);
     	
+    	
+    	
     	self.exercise_count = ApeTools.ExerciseHelper.getExerciseCount(self.workout_index);
     	self.current_exercise = 0;
     	self.workout_elapsed_seconds = 0;    	
-    	Sys.println("Exercise count[WOI:"+self.workout_index+"]: " + exercise_count);
     	
-    	self.workout_timer = new Timer.Timer();
+    	Sys.println("STATE: " + self.state);
+    	
     }
     
 
@@ -58,13 +69,16 @@ class workout
      */
     function startRecording()
     {
-    	if(!isRecording())
+    	if(self.state == self.STATE_NOT_STARTED)
     	{
-    		session.start();
-    		if(!isSessionStarted())
-    		{
-    			session_started = true;
-    		}
+    		createNewSession();
+    		self.workout_timer = new Timer.Timer();
+    	}
+    	
+    	if(self.state != self.STATE_RUNNING)
+    	{
+    		self.session.start();
+    		self.state = self.STATE_RUNNING;    		
     		workout_timer.start( method(:workoutTimerCallback), 1000, true );
     		Sys.println("MODEL - REC");
     	}
@@ -89,15 +103,15 @@ class workout
      */
     function discardRecording()
     {
-    	if(session instanceof ActivityRecording.Session)
+    	if(self.session instanceof ActivityRecording.Session)
 		{
-			if(session.isRecording())
+			if(self.session.isRecording())
 			{
-				session.stop();
+				self.session.stop();
 			}
-			session_started = false;
-			session.discard();
-			session = null;
+			self.session.discard();
+			self.session = null;
+			self.state = self.STATE_TERMINATED;
 			Sys.println("MODEL - DISCARD");
 		}
     }
@@ -107,44 +121,32 @@ class workout
      */
     function saveRecording()
     {
-    	if(session instanceof ActivityRecording.Session)
+    	if(self.session instanceof ActivityRecording.Session)
 		{
-			if(session.isRecording())
+			if(self.session.isRecording())
 			{
-				session.stop();
+				self.session.stop();
 			}
-			session_started = false;
-			session.save();
-			session = null;
+			self.session.save();
+			self.session = null;
+			self.state = self.STATE_TERMINATED;
 			Sys.println("MODEL - SAVED");
 		}
     }
     
-    function isRecording()
-    {
-    	return session.isRecording();
-    }
-    
-    function isSessionStarted()
-    {
-    	return session_started;
-    }
     
     /*
      * Create a new recording session - discarding a previous one if necessary
      */
     function createNewSession()
     {
-		discardRecording();
+		if(self.session instanceof ActivityRecording.Session)
+		{
+			Sys.println("MODEL - CANNOT CREATE NEW SESSION - ONE ALREADY EXISTS!");
+			return;
+		}		
 		
-		exercise_duration_seconds = getPropertyForWorkout(selected_workout, "exercise_duration", 40);
-    	rest_duration_seconds = getPropertyForWorkout(selected_workout, "rest_duration", 20);
-    	exercise_elapsed_seconds = exercise_duration_seconds + 1;
-    	
-    	//Sys.println("eDUR: " + exercise_duration_seconds);
-    	//Sys.println("rDUR: " + rest_duration_seconds);
-		
-		var session_name = getCurrentWorkoutName();
+		var session_name = self.title;
 		var session_sport = ActivityRecording.SPORT_TRAINING;
 		var session_sub_sport = ActivityRecording.SUB_SPORT_CARDIO_TRAINING;
 		
@@ -177,6 +179,10 @@ class workout
     
     function getExerciseCount() {
     	return self.exercise_count;
+    }
+    
+    function getState() {
+    	return self.state;
     }
     
     function getCalculatedWorkoutDuration() {

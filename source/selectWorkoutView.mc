@@ -12,19 +12,12 @@ class selectWorkoutView extends Ui.View {
     	View.initialize();    	  	
     	select_workout_prompt = Ui.loadResource(Rez.Strings.select_workout_prompt);
     }
-	
-	// TMP
-    function onUpdate(dc)
-    {
-    	onUpdate_OLD(dc);
-    }
     
     // Update the view
-    function onUpdate_OLD(dc)
+    function onUpdate(dc)
     {        
         var app = App.getApp();
-        var m = app.getController().getCurrentWorkout();
-        //var WOI = m.getWorkoutIndex();
+        var workout = app.getController().getCurrentWorkout();
         var txt, x, y;
         
         var width = dc.getWidth();
@@ -38,23 +31,23 @@ class selectWorkoutView extends Ui.View {
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);        
         dc.drawText(width/2, y, Gfx.FONT_TINY, select_workout_prompt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        txt = m.getTitle();
+        txt = workout.getTitle();
         y = (height/2) - 12;
         dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
         dc.drawText(width/2, y, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        txt = "Exercises: " + m.getExerciseCount();
+        txt = "Exercises: " + workout.getExerciseCount();
         y = (height/2) + 20;
         dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
         dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
         
-        txt = "WRK: " + m.getExerciseDuration() + "s - RST: " + m.getRestDuration() + "s";
+        txt = "WRK: " + workout.getExerciseDuration() + "s - RST: " + workout.getRestDuration() + "s";
         y = (height/2) + 40;
         dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
         dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        txt = "Duration: " + m.getCalculatedWorkoutDuration();
+        txt = "Duration: " + workout.getCalculatedWorkoutDuration();
         y = (height/2) + 60;
         dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
         dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
