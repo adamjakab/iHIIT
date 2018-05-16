@@ -43,10 +43,20 @@ class selectWorkoutView extends Ui.View {
         dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
         dc.drawText(width/2, y, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        txt = "Number of exercises: " + m.getExerciseCount();
+        txt = "Exercises: " + m.getExerciseCount();
         y = (height/2) + 20;
         dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
         dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
+        
+        txt = "WRK: " + m.getExerciseDuration() + "s - RST: " + m.getRestDuration() + "s";
+        y = (height/2) + 40;
+        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
+        txt = "Duration: " + m.getCalculatedWorkoutDuration();
+        y = (height/2) + 60;
+        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
     }
 }

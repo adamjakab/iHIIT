@@ -13,6 +13,8 @@ class workout
 {
 	private var workout_index;
 	private var title;
+	private var exercise_duration;
+	private var rest_duration;
 
 	private var session;
 	private var session_started = false;
@@ -31,7 +33,9 @@ class workout
     {
     	self.workout_index = WOI;
     	self.title = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "title", "");
- 
+    	self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", 40);
+    	self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", 20);
+    	
     	self.exercise_count = ApeTools.ExerciseHelper.getExerciseCount(self.workout_index);
     	self.current_exercise = 0;
     	self.workout_elapsed_seconds = 0;    	
@@ -163,8 +167,23 @@ class workout
     	return self.title;
     }
     
+    function getExerciseDuration() {
+    	return self.exercise_duration;
+    }
+    
+    function getRestDuration() {
+    	return self.rest_duration;
+    }
+    
     function getExerciseCount() {
     	return self.exercise_count;
+    }
+    
+    function getCalculatedWorkoutDuration() {
+    	var total = self.exercise_count * (self.exercise_duration + self.rest_duration);
+    	var min = Math.floor(total / 60);
+		var sec = total - (60 * min);
+		return Lang.format("$1$:$2$", [min, sec]);
     }
     
    
@@ -179,7 +198,7 @@ class workout
     	if(format == true) {
     		var min = Math.floor(workout_elapsed_seconds / 60);
     		var sec = workout_elapsed_seconds - (60*min);
-			answer = Lang.format("$1$:$2$", [min, sec]);  	
+			answer = Lang.format("$1$:$2$", [min, sec]);
     	}
     	return answer;
     }

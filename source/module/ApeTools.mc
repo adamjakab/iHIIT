@@ -27,7 +27,7 @@ module ApeTools
 	
 	module ExerciseHelper
 	{
-		protected function getExerciseCount(WOI)
+		function getExerciseCount(WOI)
 	    {
 	    	var cnt = 0;
 	    	
