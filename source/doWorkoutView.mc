@@ -46,7 +46,7 @@ class doWorkoutView extends Ui.View
  	}
  	
     function onShow() {
-    	//refreshTimer.start( method(:refreshTimerCallback), 1000, true );
+    	refreshTimer.start( method(:refreshTimerCallback), 1000, true );
     	
     	if (Attention has :playTone) {
 		   //Attention.playTone(Attention.TONE_START);
@@ -92,7 +92,7 @@ class doWorkoutView extends Ui.View
 		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
         dc.drawText(centerX, centerY - 12, Gfx.FONT_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        txt = "Total time: " + workout.getWorkoutElapsedSeconds(true);
+        txt = "Total time: " + workout.getElapsedSeconds(true);
         dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_BLACK);
         dc.drawText(centerX, centerY + 20, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
     }

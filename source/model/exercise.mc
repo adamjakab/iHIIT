@@ -50,7 +50,10 @@ class exercise
 	function stop()
 	{
 		Sys.println("EXERCISE - STOP");
-		self.exercise_timer.stop();
+		if(self.exercise_timer instanceof Timer.Timer)
+		{
+			self.exercise_timer.stop();
+		}
 	}
 
 	function exerciseTimerCallback() 

@@ -40,17 +40,20 @@ class mainAppController
         
     /*
      * Stop workout
+     * This is also called after Workout reaches last exercise and auto-terminates
      */
     function stop() {
-    	if(!currentWorkout.isRunning())
+    	if(!currentWorkout.isRunning() && !currentWorkout.isTerminated())
     	{
-    		Sys.println("CTRL - STOP REFUSED - Workout must be running to be stoped");
+    		Sys.println("CTRL - STOP REFUSED - Workout must be running or terminated");
     		return;
     	}
     	
-    	//if(currentWorkout.isTerminated())
     	Sys.println("CTRL - STOP");
-		currentWorkout.stopRecording();
+    	if(currentWorkout.isRunning())
+    	{
+    		currentWorkout.stopRecording();
+    	}		
 		Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);		
     }
     
@@ -90,8 +93,12 @@ class mainAppController
     // Discard & go back to workout selection
     function discard() {
 		Sys.println("CTRL - DISCARD");
+		
 		//@todo: we need confirmation for this
-		model.discardRecording();
+		currentWorkout.discardRecording();
+		
+		var WOI = currentWorkout.getWorkoutIndex();
+		currentWorkout = new $.workout(WOI);
        	
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
@@ -101,8 +108,11 @@ class mainAppController
     // Save
     function save() {
 		Sys.println("CTRL - SAVE");
-		model.saveRecording();
-		model.createNewSession();
+		
+		currentWorkout.saveRecording();
+		
+		var WOI = currentWorkout.getWorkoutIndex();
+		currentWorkout = new $.workout(WOI);
        	
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
