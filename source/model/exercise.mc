@@ -72,7 +72,7 @@ class exercise
  	//--------------------------------------------------------------------------GETTERS
  	function isItRestTime()
  	{
- 		return self.exercise_elapsed > self.exercise_duration;
+ 		return self.exercise_elapsed < self.rest_duration;
  	}
  	
  	function isExerciseTimeFinished()
@@ -80,6 +80,28 @@ class exercise
  		return self.exercise_elapsed > self.exercise_duration + self.rest_duration;
  	}
  	
+ 	
+ 	function getRestElapsedSeconds()
+ 	{
+ 		return isItRestTime() ? self.exercise_elapsed : self.rest_duration;
+ 	}
+ 	
+ 	function getRestRemainingSeconds()
+ 	{
+ 		return self.rest_duration - getRestElapsedSeconds();
+ 	}
+ 	
+ 	function getExerciseElapsedSeconds()
+ 	{
+ 		return isItRestTime() ? 0 : self.exercise_elapsed - self.rest_duration;
+ 	}
+ 	
+ 	function getExerciseRemainingSeconds()
+ 	{
+ 		return self.exercise_duration - getExerciseElapsedSeconds();
+ 	}
+ 	
+ 	/*
  	function getRestElapsedSeconds()
  	{
  		return isItRestTime() ? self.exercise_elapsed - self.exercise_duration : 0;
@@ -99,7 +121,7 @@ class exercise
  	{
  		return self.exercise_duration - getExerciseElapsedSeconds();
  	}
- 	
+ 	*/
     
 	function getWorkoutIndex() {
     	return self.workout_index;

@@ -64,20 +64,109 @@ class doWorkoutView extends Ui.View
     
     // Update the view
     function onUpdate(dc) {
-    	var workout = App.getApp().getController().getCurrentWorkout();
+    	var currentWorkout = App.getApp().getController().getCurrentWorkout();
     	
-    	if (workout.isTerminated())
+    	if (currentWorkout.isTerminated())
     	{
-    		updateWorkoutFinished(dc);
-    	} else if (workout.isRunning())
+    		updateWorkoutTerminated(dc);
+    	} else if (currentWorkout.isRunning())
     	{
-    		updateWorkoutRunning(dc);
+    		var currentExercise = currentWorkout.getCurrentExercise();
+    		if(currentExercise.isItRestTime())
+    		{
+    			updateWorkoutResting(dc);
+    		} else {
+    			updateWorkoutExercising(dc);
+    		}
     	} else {
-    		Sys.println("Workout view - workout is in an invalid state: " + workout.getState());
+    		Sys.println("Workout view - workout is in an invalid state: " + currentWorkout.getState());
     	}
     }
     
-    function updateWorkoutFinished(dc)
+    protected function updateWorkoutExercising(dc)
+    {
+        var txt, text_height, x, y, width, height, margin, color;
+        var centerX = screen_width / 2;
+        var centerY = screen_height / 2;
+        
+        var currentWorkout = App.getApp().getController().getCurrentWorkout();
+        var currentExercise = currentWorkout.getCurrentExercise();
+        
+        //** clear screen
+		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
+        dc.clear();
+        
+        color = Gfx.COLOR_ORANGE;
+        
+        //REMAINING TIME
+        txt = currentExercise.getExerciseRemainingSeconds();
+        text_height = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
+        x = centerX;
+        y = centerY - (text_height / 2) - 20;
+        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(x, y, Gfx.FONT_NUMBER_THAI_HOT, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
+		//CENTER TEXT - CURRENT EXERCISE
+		txt = currentExercise.getTitle();
+		x = centerX;
+		y = centerY + (text_height / 2) - 30;
+		dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(x, y, Gfx.FONT_SYSTEM_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
+        y = centerY + (text_height / 2) - 30;
+        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
+        dc.drawLine(0, y, screen_width, y);
+    }
+    
+    
+    protected function updateWorkoutResting(dc)
+    {
+        var txt, text_height, x, y, width, height, margin, color;
+        var centerX = screen_width / 2;
+        var centerY = screen_height / 2;
+        
+        var currentWorkout = App.getApp().getController().getCurrentWorkout();
+        var currentExercise = currentWorkout.getCurrentExercise();
+        
+        //** clear screen
+		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
+        dc.clear();
+        
+        //CENTER BOX
+        text_height = 24;
+        margin = 5;
+        y = centerY - (text_height/2) - margin;
+        height = text_height + (margin * 2);
+        color = Gfx.COLOR_DK_GREEN;
+        dc.setColor(color, Gfx.COLOR_BLACK);
+        dc.drawRectangle(0, y, screen_width, height);
+
+		//CENTER TEXT - NEXT EXERCISE
+		txt = currentExercise.getTitle();
+		y = centerY - (text_height/2);
+		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(centerX, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
+        //SMALL CENTER BOX
+        width = 100;
+        height = 16;
+        x = centerX - (width/2);
+        y = centerY - (text_height/2) - margin - height + 1;
+        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+        dc.drawRectangle(x, y, width, height);
+        
+        //SMALL CENTER TEXT
+        txt = "coming up";
+        y = y - 3;
+        dc.drawText(centerX, y, Gfx.FONT_XTINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
+        //REMAINING TIME
+        txt = currentExercise.getRestRemainingSeconds();
+        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(centerX, centerY + 10, Gfx.FONT_NUMBER_HOT, txt, Gfx.TEXT_JUSTIFY_CENTER);
+    }
+    
+    protected function updateWorkoutTerminated(dc)
     {
     	var workout = App.getApp().getController().getCurrentWorkout();
     	var txt;
@@ -96,60 +185,4 @@ class doWorkoutView extends Ui.View
         dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_BLACK);
         dc.drawText(centerX, centerY + 20, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
     }
-    
-    function updateWorkoutRunning(dc)
-    {    
-        var txt, text_height, x, y, width, height, margin, color;
-        var centerX = screen_width / 2;
-        var centerY = screen_height / 2;
-        
-        var currentWorkout = App.getApp().getController().getCurrentWorkout();
-        var currentExercise = currentWorkout.getCurrentExercise();
-        //var WO = workout.getSelectedWorkout();
-        
-        var is_resting = currentExercise.isItRestTime();
-        
-        
-        //** clear screen
-		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
-        dc.clear();
-        
-        
-        //CENTER BOX
-        text_height = 24;
-        margin = 5;
-        y = centerY - (text_height/2) - margin;
-        height = text_height + (margin * 2);
-        color = is_resting ? Gfx.COLOR_DK_GREEN : Gfx.COLOR_ORANGE;
-        dc.setColor(color, Gfx.COLOR_BLACK);
-        dc.drawRectangle(0, y, screen_width, height);
-
-		//CENTER TEXT - CURRENT EXERCISE
-		txt = currentExercise.getTitle();
-		y = centerY - (text_height/2);
-		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        //SMALL CENTER BOX
-        width = 100;
-        height = 16;
-        x = centerX - (width/2);
-        y = centerY - (text_height/2) - margin - height + 1;
-        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-        dc.drawRectangle(x, y, width, height);
-        
-        //SMALL CENTER TEXT
-        txt = is_resting ? "coming up" : "exercise";
-        y = y - 3;
-        //dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, y, Gfx.FONT_XTINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        //REMAINING TIME
-        txt = is_resting ? currentExercise.getRestRemainingSeconds() : currentExercise.getExerciseRemainingSeconds();
-        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, centerX + 10, Gfx.FONT_NUMBER_HOT, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-
-    }
-    
 }
