@@ -10,10 +10,7 @@ class doWorkoutDelegate extends Ui.BehaviorDelegate {
     
     function onKey( keyEvent )
     {
-    	var c = App.getApp().getController();
-    	var m = c.getModel();    	
-    	var WO = null;
-    	
+    	var c = App.getApp().getController();    	
     	var k = keyEvent.getKey();
     	if (k == Ui.KEY_ENTER) {
     		 c.stop();
@@ -26,8 +23,8 @@ class doWorkoutDelegate extends Ui.BehaviorDelegate {
     }
 
     function onMenu() {
-        //Ui.pushView(new Rez.Menus.MainMenu(), new iqMenuDelegate(), Ui.SLIDE_UP);
-        return false;
+    	var c = App.getApp().getController(); 
+    	c.stop();
+        return true;
     }
-
 }

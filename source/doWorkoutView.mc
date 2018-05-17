@@ -29,7 +29,7 @@ class doWorkoutView extends Ui.View
         timerCount = 0;        
         
         //record_prop = app.getProperty("record_prop");
-         Sys.println("DOWORKOUT - INIT");
+         Sys.println("DO-WORKOUT-VIEW - INIT");
          
     }
     
@@ -64,18 +64,22 @@ class doWorkoutView extends Ui.View
     
     // Update the view
     function onUpdate(dc) {
-    	var m = App.getApp().getController().getModel();
-    	if (m.isWorkoutFinished())
+    	var workout = App.getApp().getController().getCurrentWorkout();
+    	
+    	if (workout.isTerminated())
     	{
     		updateWorkoutFinished(dc);
-    	} else {
+    	} else if (workout.isRunning())
+    	{
     		updateWorkoutRunning(dc);
+    	} else {
+    		Sys.println("Workout view - workout is in an invalid state: " + workout.getState());
     	}
     }
     
     function updateWorkoutFinished(dc)
     {
-    	var m = App.getApp().getController().getModel();
+    	var workout = App.getApp().getController().getCurrentWorkout();
     	var txt;
     	var centerX = screen_width / 2;
         var centerY = screen_height / 2;
@@ -88,7 +92,7 @@ class doWorkoutView extends Ui.View
 		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
         dc.drawText(centerX, centerY - 12, Gfx.FONT_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        txt = "Total time: " + m.getWorkoutElapsedSeconds(true);
+        txt = "Total time: " + workout.getWorkoutElapsedSeconds(true);
         dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_BLACK);
         dc.drawText(centerX, centerY + 20, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
     }
@@ -99,10 +103,11 @@ class doWorkoutView extends Ui.View
         var centerX = screen_width / 2;
         var centerY = screen_height / 2;
         
-        var m = App.getApp().getController().getModel();
-        var WO = m.getSelectedWorkout();
+        var currentWorkout = App.getApp().getController().getCurrentWorkout();
+        var currentExercise = currentWorkout.getCurrentExercise();
+        //var WO = workout.getSelectedWorkout();
         
-        var is_resting = m.isItRestTime();
+        var is_resting = currentExercise.isItRestTime();
         
         
         //** clear screen
@@ -120,7 +125,7 @@ class doWorkoutView extends Ui.View
         dc.drawRectangle(0, y, screen_width, height);
 
 		//CENTER TEXT - CURRENT EXERCISE
-		txt = m.getCurrentExcerciseName();
+		txt = currentExercise.getTitle();
 		y = centerY - (text_height/2);
 		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
         dc.drawText(centerX, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
@@ -140,7 +145,7 @@ class doWorkoutView extends Ui.View
         dc.drawText(centerX, y, Gfx.FONT_XTINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
         //REMAINING TIME
-        txt = is_resting ? m.getRestRemainingSeconds() : m.getExerciseRemainingSeconds();
+        txt = is_resting ? currentExercise.getRestRemainingSeconds() : currentExercise.getExerciseRemainingSeconds();
         dc.setColor(color, Gfx.COLOR_TRANSPARENT);
         dc.drawText(centerX, centerX + 10, Gfx.FONT_NUMBER_HOT, txt, Gfx.TEXT_JUSTIFY_CENTER);
         

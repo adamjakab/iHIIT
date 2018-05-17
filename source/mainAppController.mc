@@ -29,7 +29,7 @@ class mainAppController
     function beginCurrentWorkout() {
     	if(!currentWorkout.isNotStarted())
     	{
-    		Sys.println("CTRL - START REFUSED - Current workout must be in stopped state to be started");
+    		Sys.println("CTRL - START REFUSED - Workout must be in stopped state to be started");
     		return;
     	}
     	Sys.println("CTRL - START");
@@ -42,29 +42,25 @@ class mainAppController
      * Stop workout
      */
     function stop() {
-		if(currentWorkout.isTerminated())
-		{
-			Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
-			return;
-		}
-		
     	if(!currentWorkout.isRunning())
     	{
-    		Sys.println("CTRL - STOP REFUSED - Current workout must be running to be stoped");
+    		Sys.println("CTRL - STOP REFUSED - Workout must be running to be stoped");
     		return;
     	}
     	
-		Sys.println("CTRL - STOP");
+    	//if(currentWorkout.isTerminated())
+    	Sys.println("CTRL - STOP");
 		currentWorkout.stopRecording();
+		Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);		
     }
     
     /*
      * Resume workout
      */
     function resume() {
-    	if(currentWorkout.isTerminated())
+    	if(!currentWorkout.isPaused())
 		{
-			Sys.println("CTRL - RESUME REFUSED - Workout already finished");
+			Sys.println("CTRL - RESUME REFUSED - Workout must be paused to be resumed");
 			return;
 		}
 	

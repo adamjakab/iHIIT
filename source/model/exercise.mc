@@ -10,91 +10,104 @@ using Toybox.WatchUi as Ui;
  */
 class exercise
 {
-	private var current_exercise;
-	private var max_exercise;
+	const DEFAULT_EXERCISE_DURATION = 40;
+	const DEFAULT_REST_DURATION = 20;
 	
-	private var exercise_timer;
+	private var workout_index;
+	private var exercise_index;
 	
-	private var exercise_elapsed_seconds;
+	private var title;
+	private var exercise_duration;
+	private var rest_duration;
 	
-	private var exercise_duration_seconds;
-	private var rest_duration_seconds;
+	private var exercise_timer;	
+	private var exercise_elapsed;
 	
-	
-	function getCurrentExcerciseName()
+	// Initialize
+	// @param WOI - Workout index
+	// @param EI -  Exercise index
+    function initialize(WOI, EI)
     {
-    	var exercise_number = isItRestTime() ? current_exercise + 1 : current_exercise;
-	    var exercise_name = getPropertyForWorkoutExcercise(selected_workout, exercise_number, "title", false);
-	    if (exercise_name == false)
-	    {
-	    	exercise_name = "END OF WORKOUT";
-	    }
-	    
-	    return exercise_name;
+    	self.workout_index = WOI;
+    	self.exercise_index = EI;
+    	
+    	self.title = ApeTools.ExerciseHelper.getPropertyForWorkoutExcercise(self.workout_index, self.exercise_index, "title", "");
+    	self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", exercise.DEFAULT_EXERCISE_DURATION);
+    	self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", exercise.DEFAULT_REST_DURATION);
+    	
+    	self.exercise_timer = new Timer.Timer();
+    	self.exercise_elapsed = 0;
+    	
+    	Sys.println("EXERCISE created["+EI+"]: " + self.title);
     }
 
+	function start()
+	{
+		Sys.println("EXERCISE - START");
+		self.exercise_timer.start( method(:exerciseTimerCallback), 1000, true );
+	}
+	
+	function stop()
+	{
+		Sys.println("EXERCISE - STOP");
+		self.exercise_timer.stop();
+	}
 
 	function exerciseTimerCallback() 
 	{
-	 	exercise_elapsed_seconds++;
+	 	self.exercise_elapsed++;
 	 	
 	 	if(isExerciseTimeFinished())
 	 	{
-	 		nextExercise();
-	 		Ui.requestUpdate();
+	 		self.exercise_timer.stop();
+	 		self.exercise_timer = null;
+	 		App.getApp().getController().getCurrentWorkout().setNextExercise(true);
 	 	}
- 	}
+ 	} 	
  	
- 	protected function nextExercise()
- 	{
- 		current_exercise++;
- 		if(current_exercise <= max_exercise)
- 		{
- 			exercise_elapsed_seconds = 0;
- 		} else
- 		{
- 			App.getApp().getController().stop();
- 		} 		
- 	} 
  	
+ 	//--------------------------------------------------------------------------GETTERS
  	function isItRestTime()
  	{
- 		return exercise_elapsed_seconds > exercise_duration_seconds;
+ 		return self.exercise_elapsed > self.exercise_duration;
  	}
  	
  	function isExerciseTimeFinished()
  	{
- 		return exercise_elapsed_seconds > exercise_duration_seconds + rest_duration_seconds;
+ 		return self.exercise_elapsed > self.exercise_duration + self.rest_duration;
  	}
  	
  	function getRestElapsedSeconds()
  	{
- 		return isItRestTime() ? exercise_elapsed_seconds - exercise_duration_seconds : 0;
+ 		return isItRestTime() ? self.exercise_elapsed - self.exercise_duration : 0;
  	}
  	
  	function getRestRemainingSeconds()
  	{
- 		return rest_duration_seconds - getRestElapsedSeconds();
+ 		return self.rest_duration - getRestElapsedSeconds();
  	}
  	
  	function getExerciseElapsedSeconds()
  	{
- 		return isItRestTime() ? exercise_duration_seconds : exercise_elapsed_seconds;
+ 		return isItRestTime() ? self.exercise_duration : self.exercise_elapsed;
  	}
  	
  	function getExerciseRemainingSeconds()
  	{
- 		return exercise_duration_seconds - getExerciseElapsedSeconds();
+ 		return self.exercise_duration - getExerciseElapsedSeconds();
  	}
  	
     
-    
-    function getNumberOfExercises()
-    {
-    	return max_exercise;
+	function getWorkoutIndex() {
+    	return self.workout_index;
     }
     
-
+    function getExerciseIndex() {
+    	return self.exercise_index;
+    }
     
+    function getTitle() {
+    	return self.title;
+    }
     
 }

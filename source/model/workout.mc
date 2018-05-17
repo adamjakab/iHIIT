@@ -24,13 +24,13 @@ class workout
 	private var state = STATE_NOT_STARTED;
 
 	private var session;
-	//private var session_started = false;
 	
 	private var workout_timer;
 	
 	private var workout_elapsed_seconds;
 	
-	private var current_exercise;
+	private var currentExercise;
+	
 	private var exercise_count;
 	
 	
@@ -38,21 +38,13 @@ class workout
 	// @param WOI - Workout index
     function initialize(WOI)
     {
-    	//self.state = self.STATE_NOT_STARTED;
-    	
     	self.workout_index = WOI;
     	self.title = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "title", "");
-    	self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", 40);
-    	self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", 20);
-    	
-    	
+    	self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", exercise.DEFAULT_EXERCISE_DURATION);
+    	self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", exercise.DEFAULT_REST_DURATION);
     	
     	self.exercise_count = ApeTools.ExerciseHelper.getExerciseCount(self.workout_index);
-    	self.current_exercise = 0;
-    	self.workout_elapsed_seconds = 0;    	
-    	
-    	Sys.println("STATE: " + self.state);
-    	
+    	self.workout_elapsed_seconds = 0;
     }
     
 
@@ -64,23 +56,55 @@ class workout
  	}
     
     
+    public function setNextExercise(autostart)
+    {
+    	if(self.currentExercise instanceof exercise && !self.currentExercise.isExerciseTimeFinished())
+    	{
+    		Sys.println("WORKOUT - cannot start next exercise - current one is still running");
+    		return;
+    	}
+    	
+    	var exercise_index = 1;
+    	if(self.currentExercise instanceof exercise)
+    	{
+    		exercise_index = self.currentExercise.getExerciseIndex() + 1;
+    	}
+    	
+    	if(exercise_index > self.exercise_count)
+    	{
+    		Sys.println("WORKOUT - LAST EXERCISE REACHED!");
+    		stopRecording();
+    		self.state = self.STATE_TERMINATED;
+    		//do something else...
+    	} else {
+    		self.currentExercise = new $.exercise(self.workout_index, exercise_index);
+    		if(autostart)
+    		{
+    			self.currentExercise.start();
+    		}
+    	}
+    }
+    
     /*
      * Start workout recording
      */
     function startRecording()
     {
-    	if(self.state == self.STATE_NOT_STARTED)
+    	if(isNotStarted())
     	{
     		createNewSession();
+    		setNextExercise(false);
     		self.workout_timer = new Timer.Timer();
     	}
     	
-    	if(self.state != self.STATE_RUNNING)
+    	if(!isRunning())
     	{
+    		Sys.println("WORKOUT - START");
     		self.session.start();
+    		self.currentExercise.start();
+    		self.workout_timer.start( method(:workoutTimerCallback), 1000, true );
     		self.state = self.STATE_RUNNING;    		
-    		workout_timer.start( method(:workoutTimerCallback), 1000, true );
-    		Sys.println("MODEL - REC");
+    		
     	}
     }
     
@@ -89,12 +113,13 @@ class workout
      */
     function stopRecording()
     {
-    	if(isRecording())
+    	if(isRunning())
     	{
+    		Sys.println("WORKOUT - STOP");
     		session.stop();	
-    		workout_timer.stop();
-    		exercise_timer.stop();	
-       		Sys.println("MODEL - STOP");
+    		self.currentExercise.stop();
+    		self.workout_timer.stop();    		
+    		self.state = self.STATE_PAUSED;
        	}
     }
     
@@ -112,7 +137,7 @@ class workout
 			self.session.discard();
 			self.session = null;
 			self.state = self.STATE_TERMINATED;
-			Sys.println("MODEL - DISCARD");
+			Sys.println("WORKOUT - DISCARD");
 		}
     }
     
@@ -130,7 +155,7 @@ class workout
 			self.session.save();
 			self.session = null;
 			self.state = self.STATE_TERMINATED;
-			Sys.println("MODEL - SAVED");
+			Sys.println("WORKOUT - SAVED");
 		}
     }
     
@@ -181,6 +206,10 @@ class workout
     	return self.exercise_count;
     }
     
+    function getCurrentExercise() {
+    	return self.currentExercise;
+    }
+    
     function getState() {
     	return self.state;
     }
@@ -190,8 +219,7 @@ class workout
     	var min = Math.floor(total / 60);
 		var sec = total - (60 * min);
 		return Lang.format("$1$:$2$", [min, sec]);
-    }
-    
+    }    
     
     function getElapsedSeconds(format)
     {
@@ -203,12 +231,6 @@ class workout
     	}
     	return answer;
     }
-    
-    function isWorkoutFinished()
-    {
-    	return self.current_exercise > self.exercise_count;
-    }
-    
     
     public function isNotStarted()
     {
