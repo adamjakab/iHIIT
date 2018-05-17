@@ -4,7 +4,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Timer as Timer;
 using Toybox.Graphics as Gfx;
-using Toybox.Attention as Attention; //used for vibration
+using Toybox.Attention as Attention;
 
 class doWorkoutView extends Ui.View
 {

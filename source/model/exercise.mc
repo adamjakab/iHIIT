@@ -4,6 +4,7 @@ using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
 using Toybox.Math as Math;
 using Toybox.WatchUi as Ui;
+using Toybox.Attention as Attention;
 
 /**
  * Model: exercise
@@ -22,6 +23,16 @@ class exercise
 	
 	private var exercise_timer;	
 	private var exercise_elapsed;
+	
+	private var is_in_rest_mode = false;
+	
+	private var vibeDataStart = [
+	    new Attention.VibeProfile(  75, 500 ),
+	    new Attention.VibeProfile(  0, 500 ),
+	    new Attention.VibeProfile(  75, 500 ),
+	    new Attention.VibeProfile(  0, 500 ),
+	    new Attention.VibeProfile( 	100, 1000 )
+	];
 	
 	// Initialize
 	// @param WOI - Workout index
@@ -45,6 +56,7 @@ class exercise
 	{
 		Sys.println("EXERCISE - START");
 		self.exercise_timer.start( method(:exerciseTimerCallback), 1000, true );
+		alert();
 	}
 	
 	function stop()
@@ -54,19 +66,39 @@ class exercise
 		{
 			self.exercise_timer.stop();
 		}
+		alert();
 	}
 
 	function exerciseTimerCallback() 
 	{
 	 	self.exercise_elapsed++;
 	 	
+	 	//alert when changing from rest to exercise mode
+	 	if(self.is_in_rest_mode != isItRestTime())
+	 	{
+	 		alert();
+	 	}
+	 	self.is_in_rest_mode = isItRestTime();
+	 	
 	 	if(isExerciseTimeFinished())
 	 	{
 	 		self.exercise_timer.stop();
 	 		self.exercise_timer = null;
+	 		alert();
 	 		App.getApp().getController().getCurrentWorkout().setNextExercise(true);
 	 	}
- 	} 	
+ 	}
+ 	
+ 	private function alert()
+ 	{
+ 		if (Attention has :playTone) {
+		   Attention.playTone(Attention.TONE_START);
+		}
+		
+		if (Attention has :vibrate) {
+			Attention.vibrate(self.vibeDataStart);
+		}
+ 	}
  	
  	
  	//--------------------------------------------------------------------------GETTERS
@@ -100,28 +132,6 @@ class exercise
  	{
  		return self.exercise_duration - getExerciseElapsedSeconds();
  	}
- 	
- 	/*
- 	function getRestElapsedSeconds()
- 	{
- 		return isItRestTime() ? self.exercise_elapsed - self.exercise_duration : 0;
- 	}
- 	
- 	function getRestRemainingSeconds()
- 	{
- 		return self.rest_duration - getRestElapsedSeconds();
- 	}
- 	
- 	function getExerciseElapsedSeconds()
- 	{
- 		return isItRestTime() ? self.exercise_duration : self.exercise_elapsed;
- 	}
- 	
- 	function getExerciseRemainingSeconds()
- 	{
- 		return self.exercise_duration - getExerciseElapsedSeconds();
- 	}
- 	*/
     
 	function getWorkoutIndex() {
     	return self.workout_index;
