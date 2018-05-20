@@ -24,7 +24,7 @@ class exercise
 	private var exercise_timer;	
 	private var exercise_elapsed;
 	
-	private var is_in_rest_mode = false;
+	private var is_in_rest_mode = true;
 	
 	private var vibeDataStart = [
 	    new Attention.VibeProfile(  75, 500 ),
@@ -32,6 +32,10 @@ class exercise
 	    new Attention.VibeProfile(  75, 500 ),
 	    new Attention.VibeProfile(  0, 500 ),
 	    new Attention.VibeProfile( 	100, 1000 )
+	];
+	
+	private var vibeDataStop = [
+	    new Attention.VibeProfile( 	100, 2000 )
 	];
 	
 	// Initialize
@@ -56,7 +60,7 @@ class exercise
 	{
 		Sys.println("EXERCISE - START");
 		self.exercise_timer.start( method(:exerciseTimerCallback), 1000, true );
-		alert();
+		alert("start");
 	}
 	
 	function stop()
@@ -66,7 +70,7 @@ class exercise
 		{
 			self.exercise_timer.stop();
 		}
-		alert();
+		alert("stop");
 	}
 
 	function exerciseTimerCallback() 
@@ -76,7 +80,7 @@ class exercise
 	 	//alert when changing from rest to exercise mode
 	 	if(self.is_in_rest_mode != isItRestTime())
 	 	{
-	 		alert();
+	 		alert("work");
 	 	}
 	 	self.is_in_rest_mode = isItRestTime();
 	 	
@@ -84,19 +88,32 @@ class exercise
 	 	{
 	 		self.exercise_timer.stop();
 	 		self.exercise_timer = null;
-	 		alert();
+	 		//alert();
 	 		App.getApp().getController().getCurrentWorkout().setNextExercise(true);
 	 	}
  	}
  	
- 	private function alert()
+ 	
+ 	private function alert(mode)
  	{
+ 		var tone = Attention.TONE_START;
+ 		var vibeData = self.vibeDataStart;
+ 		
+ 		if(mode == "stop")
+ 		{
+ 			tone = Attention.TONE_STOP;
+ 			vibeData = self.vibeDataStop;
+ 		} else if (mode == "work")
+ 		{
+ 			tone = Attention.TONE_LAP;
+ 		}
+ 		
  		if (Attention has :playTone) {
-		   Attention.playTone(Attention.TONE_START);
+		   Attention.playTone(tone);
 		}
 		
 		if (Attention has :vibrate) {
-			Attention.vibrate(self.vibeDataStart);
+			Attention.vibrate(vibeData);
 		}
  	}
  	
@@ -109,6 +126,7 @@ class exercise
  	
  	function isExerciseTimeFinished()
  	{
+ 		//return getExerciseRemainingSeconds() > 0;
  		return self.exercise_elapsed > self.exercise_duration + self.rest_duration;
  	}
  	
@@ -125,7 +143,7 @@ class exercise
  	
  	function getExerciseElapsedSeconds()
  	{
- 		return isItRestTime() ? 0 : self.exercise_elapsed - self.rest_duration;
+ 		return isItRestTime() ? 0 : self.exercise_elapsed - self.rest_duration/* - 1*/;
  	}
  	
  	function getExerciseRemainingSeconds()

@@ -2,12 +2,13 @@ using Toybox.Timer;
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
-//using ApeTools;
 
 class mainAppController
 {
 	protected var workoutCount;
 	protected var currentWorkout;
+	
+	public var discardConfirmationSelection = 0;
 	
 	
 	var finish_workout_option;
@@ -54,7 +55,7 @@ class mainAppController
     	{
     		currentWorkout.stopRecording();
     	}		
-		Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);		
+		Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
     }
     
     /*
@@ -86,23 +87,32 @@ class mainAppController
 		} else if(finish_workout_option == 2) /* DISCARD & EXIT */
 		{
 			discard();
-		} 
-		
+		}
     }
     
-    // Discard & go back to workout selection
+    // Discard - Ask confirmation
     function discard() {
 		Sys.println("CTRL - DISCARD");
-		
-		//@todo: we need confirmation for this
+		Ui.pushView(new discardConfirmationView(), new discardConfirmationDelegate(), Ui.SLIDE_UP);
+	}
+	
+	// Discard & go back to workout selection
+	function discard_confirmed()
+	{	
 		currentWorkout.discardRecording();
-		
 		var WOI = currentWorkout.getWorkoutIndex();
 		currentWorkout = new $.workout(WOI);
        	
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
+       	Ui.popView(Ui.SLIDE_DOWN);
        	//Sys.exit();
+    }
+    
+    // Discard & go back to workout selection
+	function discard_cancelled()
+	{	
+       	Ui.popView(Ui.SLIDE_DOWN);
     }
     
     // Save

@@ -232,17 +232,6 @@ class workout
     	return answer;
     }
     
-    /*
-    function getNextExerciseTitle()
-    {
-    	var title = "";
-    	var next_exercise_index = self.workout_index + 1;
-    	if(next_exercise_index > self.exercise_count)
-    	{
-    		title = "FINISHED";
-    	}
-    }*/
-    
     public function isNotStarted()
     {
     	return self.state == STATE_NOT_STARTED;

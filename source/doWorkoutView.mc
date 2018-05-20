@@ -4,7 +4,6 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Timer as Timer;
 using Toybox.Graphics as Gfx;
-using Toybox.Attention as Attention;
 
 class doWorkoutView extends Ui.View
 {
@@ -13,14 +12,6 @@ class doWorkoutView extends Ui.View
 	
 	private var screen_width;
 	private var screen_height;
-	
-	private var vibeDataStart = [
-	    new Attention.VibeProfile(  75, 500 ),
-	    new Attention.VibeProfile(  0, 500 ),
-	    new Attention.VibeProfile(  75, 500 ),
-	    new Attention.VibeProfile(  0, 500 ),
-	    new Attention.VibeProfile( 	100, 1000 )
-	];
 
     function initialize() {
         View.initialize();
@@ -47,14 +38,6 @@ class doWorkoutView extends Ui.View
  	
     function onShow() {
     	refreshTimer.start( method(:refreshTimerCallback), 1000, true );
-    	
-    	if (Attention has :playTone) {
-		   //Attention.playTone(Attention.TONE_START);
-		}
-		
-		if (Attention has :vibrate) {
-			Attention.vibrate(vibeDataStart);
-		}
     }
     
     function onHide() 
