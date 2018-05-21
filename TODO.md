@@ -2,6 +2,7 @@ iHIIT - TODO
 =============
 
 - fix README
+- add LICENSE notice
 - add progress when saving activity
 - move all hard coded strings to strings.xml for multilang
 - substitute resources/drawables/launcher_icon.png with 40x40 version
@@ -14,7 +15,3 @@ iHIIT - DONE
 - [ABJ](20/5/2018) ask confirmation about discarding activity
 
 
-iHIIT - BUGS
-=============
-
-Please use Github issues to report any bug.
