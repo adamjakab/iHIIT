@@ -8,10 +8,9 @@ class mainAppController
 	protected var workoutCount;
 	protected var currentWorkout;
 	
+	public var finish_workout_option;
 	public var discardConfirmationSelection = 0;
 	
-	
-	var finish_workout_option;
 
 	// Initialize the controller
     public function initialize() {

@@ -1,9 +1,51 @@
 using Toybox.Application as App;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
+using Toybox.WatchUi as Ui;
 
 module ApeTools
 {
+	//---------------------------------------------------------------------------------------APPLICATION HELPER
+	module AppHelper
+	{
+		protected var discard_options = {
+			0 => Ui.loadResource(Rez.Strings.finish_workout_prompt_resume),
+			1 => Ui.loadResource(Rez.Strings.finish_workout_prompt_save_and_exit),
+			2 => Ui.loadResource(Rez.Strings.finish_workout_prompt_discard_and_exit),
+		};
+		
+		public function getDiscardOptions(is_workout_terminated)
+		{
+			var options = {};
+			var val;
+			var i = 0;
+			var max = discard_options.size();
+			
+			//duplicate
+			for (i=0; i < max; i++)
+			{
+				options.put(i,discard_options.get(i));
+			}
+			
+			if(is_workout_terminated)
+			{
+				options.remove(0);
+			}
+			
+			if(!is_workout_terminated)
+			{
+				options.remove(1);
+			}
+			
+		
+			return options;
+		}
+		
+		
+		
+	}
+	
+	//---------------------------------------------------------------------------------------WORKOUT HELPER
 	module WorkoutHelper
 	{
 		function getWorkoutCount()
@@ -25,6 +67,7 @@ module ApeTools
 		}
 	}
 	
+	//---------------------------------------------------------------------------------------EXERCISE HELPER
 	module ExerciseHelper
 	{
 		function getExerciseCount(WOI)
@@ -46,6 +89,7 @@ module ApeTools
 	    }
 	}
 	
+	//---------------------------------------------------------------------------------------PROPERTY HELPER
 	module PropertyReader
 	{
 		
