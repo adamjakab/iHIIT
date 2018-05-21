@@ -1,6 +1,7 @@
 iHIIT - TODO
 =============
 
+- fix README
 - add progress when saving activity
 - move all hard coded strings to strings.xml for multilang
 - substitute resources/drawables/launcher_icon.png with 40x40 version
