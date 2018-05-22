@@ -6,6 +6,8 @@ iHIIT - TODO
 - add progress when saving activity
 - move all hard coded strings to strings.xml for multilang
 - substitute resources/drawables/launcher_icon.png with 40x40 version
+- workouts with no exercises should be excluded from workout listing
+- select workout listing - correct min:sec display - seconds in double digit
 
 iHIIT - DONE
 =============
