@@ -12,8 +12,8 @@ iHIIT - TODO
 iHIIT - DONE
 =============
 
-- [ABJ](21/5/2018) remove 'RESUME' element from finish workout list when workout is terminated
-- [ABJ](20/5/2018) set alert on: start & stop workout and pause/work change
-- [ABJ](20/5/2018) ask confirmation about discarding activity
+- [ABJ - 21/5/2018] remove 'RESUME' element from finish workout list when workout is terminated
+- [ABJ - 20/5/2018) set alert on: start & stop workout and pause/work change
+- [ABJ - 20/5/2018) ask confirmation about discarding activity
 
 
