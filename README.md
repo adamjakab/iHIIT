@@ -17,7 +17,7 @@ iHIIT will lead you through your configured exercises alternating between exerci
 
 What can you configure?
 -----------------------
-(For now the app can hold up to 5 workouts - I am doing some tests and most probably will bring this to 10 or even 15.)
+(For now the app can hold up to 5 workouts - I am doing some tests and most probably will increase this to 10 or even 15.)
 
 - Workout title
 - Workout exercise duration(seconds)
