@@ -25,7 +25,7 @@ class mainApp extends App.AppBase
     // Return the initial view of your application here
     public function getInitialView()
     {
-        return [ new selectWorkoutView(), new selectWorkoutDelegate() ];
+        return [new selectWorkoutView(), new selectWorkoutDelegate()];
         
         //TEMPORARY SHORTCUT
         //controller.start();

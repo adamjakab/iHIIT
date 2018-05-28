@@ -5,7 +5,7 @@ using Toybox.System as Sys;
 
 class mainAppController
 {
-	protected var workoutCount;
+	protected var maxWorkoutTestCount = 10;
 	protected var currentWorkout;
 	
 	public var finish_workout_option;
@@ -14,8 +14,8 @@ class mainAppController
 
 	// Initialize the controller
     public function initialize() {
-    	workoutCount = ApeTools.WorkoutHelper.getWorkoutCount();
-    	Sys.println("Workout count: " + workoutCount);
+    	//workoutCount = ApeTools.WorkoutHelper.getWorkoutCount();
+    	//Sys.println("Workout count: " + workoutCount);
     	
     	currentWorkout = new $.workout(1);
     
@@ -130,30 +130,66 @@ class mainAppController
     
     function setNextWorkout()
     {
+    	var i;
+    	var workoutFound = false;
     	var WOI = currentWorkout.getWorkoutIndex();
-    	WOI++;
-    	if(WOI > workoutCount)
+    	
+    	for (i = (WOI+1); i <= maxWorkoutTestCount; i++)
     	{
-    		WOI = 1;
+    		if(ApeTools.WorkoutHelper.isSelectableWorkout(i))
+    		{
+    			workoutFound = true;
+    			currentWorkout = new $.workout(i);
+    			break;
+    		}
     	}
     	
-    	currentWorkout = new $.workout(WOI);
+    	if(workoutFound == false)
+    	{
+    		for (i = 1; i <= WOI; i++)
+    		{
+    			if(ApeTools.WorkoutHelper.isSelectableWorkout(i))
+	    		{
+	    			workoutFound = true;
+	    			currentWorkout = new $.workout(i);
+	    			break;
+	    		}
+    		}
+    	}
     	
-    	return WOI;
+    	return i;
     }
     
     function setPreviousWorkout()
     {
+    	var i;
+    	var workoutFound = false;
     	var WOI = currentWorkout.getWorkoutIndex();
-    	WOI--;
-    	if(WOI < 1)
+    	
+    	for (i = (WOI-1); i > 0; i--)
     	{
-    		WOI = workoutCount;
+    		if(ApeTools.WorkoutHelper.isSelectableWorkout(i))
+    		{
+    			workoutFound = true;
+    			currentWorkout = new $.workout(i);
+    			break;
+    		}
     	}
     	
-    	currentWorkout = new $.workout(WOI);
+    	if(workoutFound == false)
+    	{
+    		for (i = maxWorkoutTestCount; i >= WOI; i--)
+    		{
+    			if(ApeTools.WorkoutHelper.isSelectableWorkout(i))
+	    		{
+	    			workoutFound = true;
+	    			currentWorkout = new $.workout(i);
+	    			break;
+	    		}
+    		}
+    	}
     	
-    	return WOI;
+    	return i;
     }
     
     // Renamed from getModel
