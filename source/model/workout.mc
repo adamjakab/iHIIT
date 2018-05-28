@@ -34,6 +34,8 @@ class workout
 	
 	private var exercise_count;
 	
+	private var currentHR = 0;
+	
 	
 	// Initialize
 	// @param WOI - Workout index
@@ -55,7 +57,7 @@ class workout
     // 
 	function heartrateSensorCallback(info)
 	{
-		var currentHR = 0;
+		currentHR = 0;
         if( info.heartRate != null )
         {
             currentHR = info.heartRate.toNumber();
@@ -227,6 +229,11 @@ class workout
     
     function getState() {
     	return self.state;
+    }
+    
+    function getCurrentHeartRate()
+    {
+    	return currentHR;
     }
     
     function getCalculatedWorkoutDuration() {

@@ -12,6 +12,10 @@ class doWorkoutView extends Ui.View
 	
 	private var screen_width;
 	private var screen_height;
+	private var centerX;
+	private var centerY;
+	
+	private var heart_icon;
 
     function initialize() {
         View.initialize();
@@ -28,6 +32,16 @@ class doWorkoutView extends Ui.View
     function onLayout(dc) {
     	screen_width = dc.getWidth();
     	screen_height = dc.getHeight();
+    	centerX = screen_width / 2;
+        centerY = screen_height / 2;
+    	
+    	heart_icon = new Ui.Bitmap({
+    		:rezId => Rez.Drawables.HeartIcon,
+    		:locX => 45,
+    		:locY => 55,
+    		:width => 24,
+    		:height => 24
+    	});
     }
     
     function refreshTimerCallback() 
@@ -69,8 +83,6 @@ class doWorkoutView extends Ui.View
     protected function updateWorkoutExercising(dc)
     {
         var txt, text_height, x, y, width, height, margin, color;
-        var centerX = screen_width / 2;
-        var centerY = screen_height / 2;
         
         var currentWorkout = App.getApp().getController().getCurrentWorkout();
         var currentExercise = currentWorkout.getCurrentExercise();
@@ -85,28 +97,55 @@ class doWorkoutView extends Ui.View
         txt = currentExercise.getExerciseRemainingSeconds();
         text_height = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
         x = centerX;
-        y = centerY - (text_height / 2) - 20;
+        y = centerY - (text_height / 2);
         dc.setColor(color, Gfx.COLOR_TRANSPARENT);
         dc.drawText(x, y, Gfx.FONT_NUMBER_THAI_HOT, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
 		//CENTER TEXT - CURRENT EXERCISE
 		txt = currentExercise.getTitle();
 		x = centerX;
-		y = centerY + (text_height / 2) - 30;
+		y = centerY + (text_height / 2);
 		dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
         dc.drawText(x, y, Gfx.FONT_SYSTEM_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
         
-        y = centerY + (text_height / 2) - 30;
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawLine(0, y, screen_width, y);
+        //y = centerY + (text_height / 2);
+        //dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
+        //dc.drawLine(0, y, screen_width, y);
+        
+        
+        showHeartRate(dc);
+        //drawCentralLines(dc);
     }
     
+    private function showHeartRate(dc)
+    {
+    	var x, y, txt;
+    	var currentWorkout = App.getApp().getController().getCurrentWorkout();
+    	
+        y = 0;
+        x = centerX - 12;
+        heart_icon.setLocation(x, y);
+        heart_icon.draw(dc);
+        
+        txt = currentWorkout.getCurrentHeartRate() + " bpm";
+        y = 20;
+        x = centerX;
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(x, y, Gfx.FONT_SYSTEM_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
+    }
+    
+    private function drawCentralLines(dc)
+    {
+        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);        
+    	//HORIZONTAL line        
+        dc.drawLine(0, centerY, screen_width, centerY);        
+        //VERTICAL line
+        dc.drawLine(centerX, 0, centerX, screen_height);
+    }
     
     protected function updateWorkoutResting(dc)
     {
         var txt, text_height, x, y, width, height, margin, color;
-        var centerX = screen_width / 2;
-        var centerY = screen_height / 2;
         
         var currentWorkout = App.getApp().getController().getCurrentWorkout();
         var currentExercise = currentWorkout.getCurrentExercise();
@@ -122,7 +161,7 @@ class doWorkoutView extends Ui.View
         height = text_height + (margin * 2);
         color = Gfx.COLOR_DK_GREEN;
         dc.setColor(color, Gfx.COLOR_BLACK);
-        dc.drawRectangle(0, y, screen_width, height);
+        //dc.drawRectangle(0, y, screen_width, height);
 
 		//CENTER TEXT - NEXT EXERCISE
 		txt = currentExercise.getTitle();
@@ -136,7 +175,7 @@ class doWorkoutView extends Ui.View
         x = centerX - (width/2);
         y = centerY - (text_height/2) - margin - height + 1;
         dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-        dc.drawRectangle(x, y, width, height);
+        //dc.drawRectangle(x, y, width, height);
         
         //SMALL CENTER TEXT
         txt = "coming up";
@@ -147,6 +186,10 @@ class doWorkoutView extends Ui.View
         txt = currentExercise.getRestRemainingSeconds();
         dc.setColor(color, Gfx.COLOR_TRANSPARENT);
         dc.drawText(centerX, centerY + 10, Gfx.FONT_NUMBER_HOT, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        
+        showHeartRate(dc);
+        
+        //drawCentralLines(dc);
     }
     
     protected function updateWorkoutTerminated(dc)
