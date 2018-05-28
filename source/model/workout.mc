@@ -4,6 +4,7 @@ using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
 using Toybox.Math as Math;
 using Toybox.ActivityRecording as ActivityRecording;
+using Toybox.Sensor as Sensor;
 using Toybox.WatchUi as Ui;
 
 /**
@@ -45,9 +46,23 @@ class workout
     	
     	self.exercise_count = ApeTools.ExerciseHelper.getExerciseCount(self.workout_index);
     	self.workout_elapsed_seconds = 0;
+    	
+    	//enable heartrate sensor
+        Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE]);
+        Sensor.enableSensorEvents( method(:heartrateSensorCallback) );
     }
     
-
+    // 
+	function heartrateSensorCallback(info)
+	{
+		var currentHR = 0;
+        if( info.heartRate != null )
+        {
+            currentHR = info.heartRate.toNumber();
+        }
+                
+        //Ui.requestUpdate();
+	}
     
     function workoutTimerCallback() 
 	{
