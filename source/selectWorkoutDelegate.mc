@@ -3,8 +3,9 @@ using Toybox.System as Sys;
 using Toybox.Application as App;
 
 class selectWorkoutDelegate extends Ui.BehaviorDelegate {
+	
 	//Init
-    public function initialize() {
+    public function initialize() {    	
         BehaviorDelegate.initialize();
     }
     

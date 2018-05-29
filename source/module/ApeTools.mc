@@ -8,7 +8,7 @@ module ApeTools
 	//---------------------------------------------------------------------------------------APPLICATION HELPER
 	module AppHelper
 	{
-		protected var discard_options = {
+		private var discard_options = {
 			0 => Ui.loadResource(Rez.Strings.finish_workout_prompt_resume),
 			1 => Ui.loadResource(Rez.Strings.finish_workout_prompt_save_and_exit),
 			2 => Ui.loadResource(Rez.Strings.finish_workout_prompt_discard_and_exit),
@@ -48,7 +48,8 @@ module ApeTools
 	//---------------------------------------------------------------------------------------WORKOUT HELPER
 	module WorkoutHelper
 	{
-		function getWorkoutCount()
+		// DO NOT USE THIS
+		public function getWorkoutCount()
 	    {
 	    	var cnt = 0;
 	    	
@@ -60,7 +61,23 @@ module ApeTools
 			return cnt;
 	    }
 	    
-	    function getPropertyForWorkout(workout_number, attribute_name, default_value)
+	    // Check: title, enabled, [at least first exercise]
+	    public function isSelectableWorkout(workout_number)
+	    {
+	    	var answer = false;
+	    	if(getPropertyForWorkout(workout_number, "title", false) != false)
+	    	{
+	    		if(getPropertyForWorkout(workout_number, "enabled", false) == true)
+		    	{
+		    		answer = true;
+		    	}
+	    	}
+	    	
+	    	//@todo: also check if it has exercises to do
+	    	return answer;
+	    }
+	    
+	    public function getPropertyForWorkout(workout_number, attribute_name, default_value)
 		{
 			var property_id = Lang.format("workout_$1$_$2$", [workout_number, attribute_name]);			
 		    return PropertyReader.getProperty(property_id, default_value);

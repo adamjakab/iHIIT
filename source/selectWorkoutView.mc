@@ -4,9 +4,9 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 
-class selectWorkoutView extends Ui.View {
-	
-	var select_workout_prompt;
+class selectWorkoutView extends Ui.View
+{	
+	public var select_workout_prompt;
 	
     function initialize() {
     	View.initialize();    	  	

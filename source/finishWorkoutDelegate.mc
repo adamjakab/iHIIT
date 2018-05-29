@@ -40,7 +40,7 @@ class finishWorkoutDelegate extends Ui.BehaviorDelegate {
     		current_key--;
     		if(current_key < 0)
     		{
-    			current_key = (max_options - 1);
+    			current_key = (max_items - 1);
     		}
     		c.finish_workout_option = item_keys[current_key];
     		Ui.requestUpdate();

@@ -1,13 +1,17 @@
 <strings>
     <string id="AppName">iHIIT</string>
     <string id="select_workout_prompt">Seleziona un allenamento</string>
-    <string id="empty"></string>
+	<string id="empty"> </string>
+    <string id="discard_workout_confirmation_prompt">Scarta l'attività?</string>
+    <string id="yes">Sì</string>
+    <string id="no">No</string>
     
     <string id="finish_workout_prompt_resume">Continua</string>
     <string id="finish_workout_prompt_save_and_exit">Salva ed esci</string>
     <string id="finish_workout_prompt_discard_and_exit">Scarta ed esci</string>
 	
-	<string id="workout_title">Allenamento</string>
+	<string id="workout_title">Titolo allenamento</string>
+	<string id="workout_enabled">Abilitato</string>
 	<string id="exercise_duration">Durata esercizio(s)</string>
 	<string id="rest_duration">Durata riposo(s)</string>
 	
