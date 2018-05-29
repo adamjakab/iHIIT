@@ -44,7 +44,7 @@ class discardConfirmationView extends Ui.View {
         dc.clear();
         
         // PROMPT
-        y = (height/2) - 74;
+        y = (height/2) - 54;
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);        
         dc.drawText(width/2, y, Gfx.FONT_TINY, select_prompt, Gfx.TEXT_JUSTIFY_CENTER);
         
