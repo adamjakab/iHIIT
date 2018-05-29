@@ -2,7 +2,8 @@
 	<!-- WORKOUT #1 -->
 	<properties>
 		<property id="workout_1_divider" type="string">|---------- WORKOUT #1 ----------|</property>
-		<property id="workout_1_title" type="string">HIIT ::: Full body</property>
+		<property id="workout_1_title" type="string">iHIIT-Full body</property>
+		<property id="workout_1_enabled" type="boolean">true</property>
 		<property id="workout_1_exercise_duration" type="number">40</property>
 		<property id="workout_1_rest_duration" type="number">20</property>
 		<property id="workout_1_exercise_1_title" type="string">Burpee broad jumps</property>
@@ -28,7 +29,8 @@
 		
 		<!-- WORKOUT #2 -->
 		<property id="workout_2_divider" type="string">|---------- WORKOUT #2 ----------|</property>
-		<property id="workout_2_title" type="string">Abs routine</property>
+		<property id="workout_2_title" type="string">iHIIT - Abs</property>
+		<property id="workout_2_enabled" type="boolean">true</property>
 		<property id="workout_2_exercise_duration" type="number">40</property>
 		<property id="workout_2_rest_duration" type="number">20</property>
 		<property id="workout_2_exercise_1_title" type="string">Straight leg raises</property>
@@ -54,11 +56,12 @@
 		
 		<!-- WORKOUT #3 -->	
 		<property id="workout_3_divider" type="string">|---------- WORKOUT #3 ----------|</property>
-		<property id="workout_3_title" type="string"></property>
+		<property id="workout_3_title" type="string">iHIIT - Glutes</property>
+		<property id="workout_3_enabled" type="boolean">false</property>
 		<property id="workout_3_exercise_duration" type="number">40</property>
 		<property id="workout_3_rest_duration" type="number">20</property>
-		<property id="workout_3_exercise_1_title" type="string"></property>
-		<property id="workout_3_exercise_2_title" type="string"></property>
+		<property id="workout_3_exercise_1_title" type="string">Jump squats</property>
+		<property id="workout_3_exercise_2_title" type="string">Sumo squats</property>
 		<property id="workout_3_exercise_3_title" type="string"></property>
 		<property id="workout_3_exercise_4_title" type="string"></property>
 		<property id="workout_3_exercise_5_title" type="string"></property>
@@ -81,6 +84,7 @@
 		<!-- WORKOUT #4 -->
 		<property id="workout_4_divider" type="string">|---------- WORKOUT #4 ----------|</property>
 		<property id="workout_4_title" type="string"></property>
+		<property id="workout_4_enabled" type="boolean">false</property>
 		<property id="workout_4_exercise_duration" type="number">40</property>
 		<property id="workout_4_rest_duration" type="number">20</property>
 		<property id="workout_4_exercise_1_title" type="string"></property>
@@ -107,6 +111,7 @@
 		<!-- WORKOUT #5 -->
 		<property id="workout_5_divider" type="string">|---------- WORKOUT #5 ----------|</property>
 		<property id="workout_5_title" type="string"></property>
+		<property id="workout_5_enabled" type="boolean">false</property>
 		<property id="workout_5_exercise_duration" type="number">40</property>
 		<property id="workout_5_rest_duration" type="number">20</property>
 		<property id="workout_5_exercise_1_title" type="string"></property>
