@@ -11,6 +11,7 @@
     <string id="finish_workout_prompt_discard_and_exit">Discard and exit</string>  
     
 	<string id="workout_title">Workout title</string>
+	<string id="workout_enabled">Enabled</string>
 	<string id="exercise_duration">Exercise duration(s)</string>
 	<string id="rest_duration">Rest duration(s)</string>
 	

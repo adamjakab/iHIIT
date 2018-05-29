@@ -11,6 +11,7 @@
     <string id="finish_workout_prompt_discard_and_exit">Scarta ed esci</string>
 	
 	<string id="workout_title">Titolo allenamento</string>
+	<string id="workout_enabled">Abilitato</string>
 	<string id="exercise_duration">Durata esercizio(s)</string>
 	<string id="rest_duration">Durata riposo(s)</string>
 	

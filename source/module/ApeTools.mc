@@ -61,12 +61,16 @@ module ApeTools
 			return cnt;
 	    }
 	    
+	    // Check: title, enabled, [at least first exercise]
 	    public function isSelectableWorkout(workout_number)
 	    {
 	    	var answer = false;
 	    	if(getPropertyForWorkout(workout_number, "title", false) != false)
 	    	{
-	    		answer = true;
+	    		if(getPropertyForWorkout(workout_number, "enabled", false) == true)
+		    	{
+		    		answer = true;
+		    	}
 	    	}
 	    	
 	    	//@todo: also check if it has exercises to do
