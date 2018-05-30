@@ -238,10 +238,19 @@ class workout
     
     function getCalculatedWorkoutDuration() {
     	var total = self.exercise_count * (self.exercise_duration + self.rest_duration);
+		return total;
+    }
+    
+     function getFormattedWorkoutDuration() {
+    	var total = self.getCalculatedWorkoutDuration();
     	var min = Math.floor(total / 60);
 		var sec = total - (60 * min);
+		if(sec < 10)
+		{
+			sec = "0" + sec;
+		}
 		return Lang.format("$1$:$2$", [min, sec]);
-    }    
+    }
     
     function getElapsedSeconds(format)
     {

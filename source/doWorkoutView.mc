@@ -37,8 +37,8 @@ class doWorkoutView extends Ui.View
     	
     	heart_icon = new Ui.Bitmap({
     		:rezId => Rez.Drawables.HeartIcon,
-    		:locX => 45,
-    		:locY => 55,
+    		:locX => centerX,
+    		:locY => centerY,
     		:width => 24,
     		:height => 24
     	});
