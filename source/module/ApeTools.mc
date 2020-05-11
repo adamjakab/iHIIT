@@ -8,7 +8,7 @@ module ApeTools
 	//---------------------------------------------------------------------------------------APPLICATION HELPER
 	module AppHelper
 	{
-		private var discard_options = {
+		var discard_options = {
 			0 => Ui.loadResource(Rez.Strings.finish_workout_prompt_resume),
 			1 => Ui.loadResource(Rez.Strings.finish_workout_prompt_save_and_exit),
 			2 => Ui.loadResource(Rez.Strings.finish_workout_prompt_discard_and_exit),

@@ -1,3 +1,4 @@
+//using Toybox.System as Sys;
 using Toybox.Application as App;
 
 /**
@@ -6,9 +7,9 @@ using Toybox.Application as App;
 class mainApp extends App.AppBase
 {
 	protected var controller;
-	
+
     public function initialize() {
-        AppBase.initialize();        
+        AppBase.initialize();
         controller = new $.mainAppController();
     }
 
@@ -26,12 +27,12 @@ class mainApp extends App.AppBase
     public function getInitialView()
     {
         return [new selectWorkoutView(), new selectWorkoutDelegate()];
-        
+
         //TEMPORARY SHORTCUT
-        //controller.start();
+        //controller.beginCurrentWorkout();
         //return [ new doWorkoutView(), new doWorkoutDelegate() ];
     }
-    
+
     public function getController()
     {
     	return controller;

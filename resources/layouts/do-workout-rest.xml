@@ -1,0 +1,5 @@
+<layout id="doWorkoutRest">
+	<bitmap x="center" y="0" filename="../drawables/heart.png" id="heart" />
+	<label x="center" y="20" text="0" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" id="heart_rate_value" />
+	<label text="next" x="center" y="60" color="Gfx.COLOR_GREEN" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+</layout>

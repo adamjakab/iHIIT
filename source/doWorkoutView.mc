@@ -28,12 +28,20 @@ class doWorkoutView extends Ui.View
          
     }
     
+    
+    
     // Load your resources here
     function onLayout(dc) {
+    
+    	setLayout( Rez.Layouts.doWorkoutRest(dc));
+    
+    
     	screen_width = dc.getWidth();
     	screen_height = dc.getHeight();
     	centerX = screen_width / 2;
         centerY = screen_height / 2;
+        
+        Sys.println("SCREEN: " + screen_width + "x" + screen_height);
     	
     	heart_icon = new Ui.Bitmap({
     		:rezId => Rez.Drawables.HeartIcon,
@@ -60,7 +68,14 @@ class doWorkoutView extends Ui.View
     }
     
     // Update the view
-    function onUpdate(dc) {
+    function onUpdate(dc)
+    {
+    	View.onUpdate(dc);
+		drawCentralLines(dc);
+    }
+    
+    // Update the view
+    function ___onUpdate(dc) {
     	var currentWorkout = App.getApp().getController().getCurrentWorkout();
     	
     	if (currentWorkout.isTerminated())

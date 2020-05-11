@@ -1,4 +1,5 @@
 #IGNORE
+.DS_Store
 .directory
 /bin/
 /release/

@@ -13,12 +13,9 @@ class mainAppController
 	
 
 	// Initialize the controller
-    public function initialize() {
-    	//workoutCount = ApeTools.WorkoutHelper.getWorkoutCount();
-    	//Sys.println("Workout count: " + workoutCount);
-    	
+    public function initialize()
+    {
     	currentWorkout = new $.workout(1);
-    
     	finish_workout_option = 0;
     }
     
