@@ -1,0 +1,6 @@
+<layout id="LayoutSelectWorkout">
+
+	<label id="label_1" x="center" y="20" text="@Strings.select_workout_prompt" color="Gfx.COLOR_LT_GRAY" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	
+	
+</layout>

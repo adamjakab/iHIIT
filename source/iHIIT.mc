@@ -4,13 +4,13 @@ using Toybox.Application as App;
 /**
 * ENTRY POINT
 */
-class mainApp extends App.AppBase
+class iHIIT extends App.AppBase
 {
 	protected var controller;
 
     public function initialize() {
         AppBase.initialize();
-        controller = new $.mainAppController();
+        controller = new $.iHIITController();
     }
 
     // onStart() is called on application start up

@@ -2,33 +2,61 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Application as App;
 
+/**
+	Key constants: https://developer.garmin.com/connect-iq/api-docs/Toybox/WatchUi.html
+ **/
 class selectWorkoutDelegate extends Ui.BehaviorDelegate {
-	
-	//Init
-    public function initialize() {    	
+
+	protected var ctrl;
+	protected var WOI = null;
+
+	// Init
+    public function initialize() {
+    	ctrl = App.getApp().getController();
         BehaviorDelegate.initialize();
     }
-    
-    //Key events
+
+    // Key events
     public function onKey( keyEvent )
     {
-    	var c = App.getApp().getController();
-    	var WOI = null;
-    	
     	var k = keyEvent.getKey();
     	if(k == Ui.KEY_DOWN) {
-    		WOI = c.setNextWorkout();
+    		WOI = ctrl.setNextWorkout();
+    		updateAfterAction(WOI);
     	} else if (k == Ui.KEY_UP) {
-    		WOI = c.setPreviousWorkout();
+    		WOI = ctrl.setPreviousWorkout();
+    		updateAfterAction(WOI);
     	} else if (k == Ui.KEY_ENTER) {
-    		 c.beginCurrentWorkout();
-    	} else {
-    		//Sys.println("Unused Key press: " + keyEvent.getKey() + " / " + keyEvent.getType());
+    		 ctrl.beginCurrentWorkout();
     	}
-    	
+    }
+
+	// Swipe events
+    public function onSwipe( swipeEvent )
+    {
+    	var dir = swipeEvent.getDirection();
+    	if (dir == Ui.SWIPE_DOWN) {
+    		WOI = ctrl.setNextWorkout();
+    		updateAfterAction(WOI);
+    	} else if (dir == Ui.SWIPE_UP) {
+    		WOI = ctrl.setPreviousWorkout();
+    		updateAfterAction(WOI);
+    	}
+    }
+
+    public function onTap(clickEvent)
+    {
+    	if (clickEvent.getType() == Ui.CLICK_TYPE_TAP)
+    	{
+    		ctrl.beginCurrentWorkout();
+    	}
+    }
+
+    protected function updateAfterAction(WOI)
+    {
     	if (WOI != null)
     	{
-    		var workout = c.getCurrentWorkout();
+    		var workout = ctrl.getCurrentWorkout();
     		Sys.println("NEW WORKOUT SET(" + workout.getWorkoutIndex() + "): " + workout.getTitle());
     		Ui.requestUpdate();
     	}

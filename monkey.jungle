@@ -1,2 +1,7 @@
 project.manifest = manifest.xml
 
+# Device Specific
+vivoactive4.resourcePath = $(vivoactive4.resourcePath);resource_overrides/device/vivoactive4
+
+# Internationalization
+base.lang.ita = $(base.lang.ita);resource_overrides/lang/ita
