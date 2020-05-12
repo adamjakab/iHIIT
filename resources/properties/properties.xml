@@ -4,8 +4,8 @@
 		<property id="workout_1_divider" type="string">|---------- WORKOUT #1 ----------|</property>
 		<property id="workout_1_title" type="string">Full Body</property>
 		<property id="workout_1_enabled" type="boolean">true</property>
-		<property id="workout_1_exercise_duration" type="number">10</property>
-		<property id="workout_1_rest_duration" type="number">5</property>
+		<property id="workout_1_exercise_duration" type="number">40</property>
+		<property id="workout_1_rest_duration" type="number">20</property>
 		<property id="workout_1_exercise_1_title" type="string">Burpee broad jumps</property>
 		<property id="workout_1_exercise_2_title" type="string">Modified bird-dog</property>
 		<property id="workout_1_exercise_3_title" type="string">Marching bridge</property>
@@ -56,11 +56,11 @@
 		
 		<!-- WORKOUT #3 -->	
 		<property id="workout_3_divider" type="string">|---------- WORKOUT #3 ----------|</property>
-		<property id="workout_3_title" type="string">Tester</property>
-		<property id="workout_3_enabled" type="boolean">true</property>
-		<property id="workout_3_exercise_duration" type="number">10</property>
-		<property id="workout_3_rest_duration" type="number">5</property>
-		<property id="workout_3_exercise_1_title" type="string">Hip Hop</property>
+		<property id="workout_3_title" type="string"></property>
+		<property id="workout_3_enabled" type="boolean">false</property>
+		<property id="workout_3_exercise_duration" type="number">40</property>
+		<property id="workout_3_rest_duration" type="number">20</property>
+		<property id="workout_3_exercise_1_title" type="string"></property>
 		<property id="workout_3_exercise_2_title" type="string"></property>
 		<property id="workout_3_exercise_3_title" type="string"></property>
 		<property id="workout_3_exercise_4_title" type="string"></property>

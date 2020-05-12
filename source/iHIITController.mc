@@ -211,7 +211,8 @@ class iHIITController
     }
 
     // Handle timing out after exit
-    public function onExit() {
+    public function onExit()
+    {
         Sys.exit();
     }
 }
