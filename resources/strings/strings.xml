@@ -19,8 +19,8 @@
 	    
 	    <!-- Finish Workout -->
 	    <string id="finish_workout_prompt_resume">Resume</string>
-	    <string id="finish_workout_prompt_save_and_exit">Save and exit</string>
-	    <string id="finish_workout_prompt_discard_and_exit">Discard and exit</string>
+	    <string id="finish_workout_prompt_save_and_exit">Save</string>
+	    <string id="finish_workout_prompt_discard_and_exit">Discard</string>
 	    <string id="discard_workout_confirmation_prompt">Discard activity?</string>
 	    
 	    <!-- Settings -->

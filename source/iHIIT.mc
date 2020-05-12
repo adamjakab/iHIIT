@@ -1,4 +1,3 @@
-//using Toybox.System as Sys;
 using Toybox.Application as App;
 
 /**
@@ -14,23 +13,22 @@ class iHIIT extends App.AppBase
     }
 
     // onStart() is called on application start up
-    public function onStart(state)
-    {
-    }
+    //public function onStart(state){}
 
     // onStop() is called when your application is exiting
-    public function onStop(state)
-    {
-    }
+    //public function onStop(state){}
 
     // Return the initial view of your application here
     public function getInitialView()
     {
         //return [new selectWorkoutView(), new selectWorkoutDelegate()];
 
-        //TEMPORARY SHORTCUT
+        //TEMPORARY - SKIP workout selection
         controller.beginCurrentWorkout();
         return [ new doWorkoutView(), new doWorkoutDelegate() ];
+
+        //TEMPORARY - SKIP workout
+        //return [ new finishWorkoutView(), new finishWorkoutDelegate() ];
     }
 
     public function getController()

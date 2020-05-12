@@ -7,15 +7,14 @@ using Toybox.Graphics as Gfx;
 
 class doWorkoutView extends Ui.View
 {
+	const LAYOUT_NONE = 0;
+	const LAYOUT_REST = 1;
+	const LAYOUT_WORK = 2;
+	const LAYOUT_DONE = 3;
+
 	private var app;
 	private var currentWorkout;
-
 	private var currentLayout;
-
-	private var screen_width;
-	private var screen_height;
-	private var centerX;
-	private var centerY;
 
 	// Strings
 	private var str_total_time;
@@ -30,7 +29,7 @@ class doWorkoutView extends Ui.View
     public function initialize() {
         View.initialize();
         app = App.getApp();
-        currentLayout = null;
+        currentLayout = LAYOUT_NONE;
 
         // Strings
         str_total_time = Ui.loadResource(Rez.Strings.do_workout_done_total_time);
@@ -38,14 +37,10 @@ class doWorkoutView extends Ui.View
         Sys.println("DO-WORKOUT-VIEW - INIT");
     }
 
-
-    // 215x180
+    /*
     public function onLayout(dc) {
-		screen_width = dc.getWidth();
-    	screen_height = dc.getHeight();
-    	centerX = screen_width / 2;
-        centerY = screen_height / 2;
     }
+    */
 
     // Update the view - update is requested (Ui.requestUpdate()) by the workout model
     public function onUpdate(dc)
@@ -53,7 +48,7 @@ class doWorkoutView extends Ui.View
     	currentWorkout = app.getController().getCurrentWorkout();
     	updateCurrentLayout(dc);
     	View.onUpdate(dc);
-    	_drawGuides(dc);
+    	ApeTools.AppHelper.drawScreenGuides(dc);
     }
 
     // Update the view with the current layout
@@ -77,10 +72,10 @@ class doWorkoutView extends Ui.View
 
     protected function updateLayoutResting(dc)
     {
-    	if (self.currentLayout != "RST")
+    	if (currentLayout != LAYOUT_REST)
     	{
     		Sys.println("Layout changed to: RST");
-    		self.currentLayout = "RST";
+    		currentLayout = LAYOUT_REST;
 	    	setLayout( Rez.Layouts.LayoutDoWorkoutRest(dc));
 
 	    	//Layout elements
@@ -107,12 +102,11 @@ class doWorkoutView extends Ui.View
 
     protected function updateLayoutWorking(dc)
     {
-    	if (self.currentLayout != "WRK")
+    	if (currentLayout != LAYOUT_WORK)
     	{
     		Sys.println("Layout changed to: WRK");
-	    	self.currentLayout = "WRK";
+	    	currentLayout = LAYOUT_WORK;
 	    	setLayout( Rez.Layouts.LayoutDoWorkoutWork(dc));
-
 
 	    	//Layout elements
 	    	labelHeartRateValue = View.findDrawableById("labelHeartRateValue");
@@ -139,10 +133,10 @@ class doWorkoutView extends Ui.View
 
     protected function updateLayoutTerminated(dc)
     {
-    	if (self.currentLayout != "TRM")
+    	if (currentLayout != LAYOUT_DONE)
     	{
     		Sys.println("Layout changed to: TRM");
-	    	self.currentLayout = "TRM";
+	    	currentLayout = LAYOUT_DONE;
 	    	setLayout( Rez.Layouts.LayoutDoWorkoutDone(dc));
 
 	    	//Layout elements
@@ -151,14 +145,5 @@ class doWorkoutView extends Ui.View
 
         var txt = Lang.format(str_total_time, [currentWorkout.getElapsedSeconds(true)]);
         labelTimeTotal.setText(txt);
-    }
-
-    private function _drawGuides(dc)
-    {
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-    	//HORIZONTAL line
-        dc.drawLine(0, centerY, screen_width, centerY);
-        //VERTICAL line
-        dc.drawLine(centerX, 0, centerX, screen_height);
     }
 }

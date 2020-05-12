@@ -56,7 +56,7 @@
 		
 		<!-- WORKOUT #3 -->	
 		<property id="workout_3_divider" type="string">|---------- WORKOUT #3 ----------|</property>
-		<property id="workout_3_title" type="string"></property>
+		<property id="workout_3_title" type="string">Tester</property>
 		<property id="workout_3_enabled" type="boolean">true</property>
 		<property id="workout_3_exercise_duration" type="number">10</property>
 		<property id="workout_3_rest_duration" type="number">5</property>

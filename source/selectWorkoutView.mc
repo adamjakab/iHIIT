@@ -8,13 +8,10 @@ class selectWorkoutView extends Ui.View
 {
 	private var app;
 
-	private var screen_width;
-	private var screen_height;
-	private var centerX;
-	private var centerY;
-
+	// Strings
 	private var str_exercises, str_work, str_rest, str_duration;
 
+	// Layout elements
 	private var labelName;
 	private var labelExercises;
 	private var labelWrkRst;
@@ -27,12 +24,8 @@ class selectWorkoutView extends Ui.View
     }
 
     // Set up the layout
-    public function onLayout(dc) {
-    	screen_width = dc.getWidth();
-    	screen_height = dc.getHeight();
-    	centerX = screen_width / 2;
-        centerY = screen_height / 2;
-
+    public function onLayout(dc)
+    {
         // Strings
         str_exercises = Ui.loadResource(Rez.Strings.sel_exercises);
         str_work = Ui.loadResource(Rez.Strings.sel_work);
@@ -70,6 +63,7 @@ class selectWorkoutView extends Ui.View
 		txt = str_duration + ": " + workout.getFormattedWorkoutDuration();
 		labelDuration.setText(txt);
 
-		View.onUpdate( dc );
+		View.onUpdate(dc);
+		ApeTools.AppHelper.drawScreenGuides(dc);
     }
 }
