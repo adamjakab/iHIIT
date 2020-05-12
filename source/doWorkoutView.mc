@@ -2,7 +2,6 @@ using Toybox.Application as App;
 using Toybox.Lang as Lang;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
-using Toybox.Timer as Timer;
 using Toybox.Graphics as Gfx;
 
 class doWorkoutView extends Ui.View
@@ -37,10 +36,7 @@ class doWorkoutView extends Ui.View
         Sys.println("DO-WORKOUT-VIEW - INIT");
     }
 
-    /*
-    public function onLayout(dc) {
-    }
-    */
+    //public function onLayout(dc) {}
 
     // Update the view - update is requested (Ui.requestUpdate()) by the workout model
     public function onUpdate(dc)
@@ -48,7 +44,7 @@ class doWorkoutView extends Ui.View
     	currentWorkout = app.getController().getCurrentWorkout();
     	updateCurrentLayout(dc);
     	View.onUpdate(dc);
-    	ApeTools.AppHelper.drawScreenGuides(dc);
+    	//ApeTools.AppHelper.drawScreenGuides(dc);
     }
 
     // Update the view with the current layout

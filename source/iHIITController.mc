@@ -1,10 +1,12 @@
-using Toybox.Timer;
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
+using Toybox.Timer as Timer;
 
 class iHIITController
 {
+	private var saveTimer;
+
 	protected var maxWorkoutTestCount = 10;
 	protected var currentWorkout;
 
@@ -15,7 +17,7 @@ class iHIITController
 	// Initialize the controller
     public function initialize()
     {
-    	currentWorkout = new $.workout(3);//@todo: put me back to: 1
+    	currentWorkout = new $.workout(1);
     	finish_workout_option = 0;
     }
 
@@ -32,7 +34,6 @@ class iHIITController
 
     	Sys.println("CTRL - START");
 		currentWorkout.startRecording();
-
 		Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
     }
 
@@ -113,14 +114,26 @@ class iHIITController
     }
 
     // Save
-    function save() {
+    public function save() {
 		Sys.println("CTRL - SAVE");
+
+		var progressBar = new Ui.ProgressBar("Saving...", null);
+		Ui.pushView(progressBar, new saveWorkoutDelegate(), Ui.SLIDE_UP);
 
 		currentWorkout.saveRecording();
 
-		var WOI = currentWorkout.getWorkoutIndex();
+		progressBar.setDisplayString("Activity saved.");
+		progressBar.setProgress(0);
+
+		saveTimer = new Timer.Timer();
+    	saveTimer.start(method(:saveDone), 3000, false);
+    }
+
+    public function saveDone() {
+    	var WOI = currentWorkout.getWorkoutIndex();
 		currentWorkout = new $.workout(WOI);
 
+       	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
     }
@@ -190,14 +203,13 @@ class iHIITController
     	return i;
     }
 
-    // Renamed from getModel
     public function getCurrentWorkout()
     {
     	return currentWorkout;
     }
 
     // Handle timing out after exit
-    function onExit() {
+    public function onExit() {
         Sys.exit();
     }
 }

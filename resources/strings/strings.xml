@@ -1,6 +1,6 @@
 <resources>
 	<strings>
-	    <string id="AppName">iHIIT</string>    
+	    <string id="app_name">iHIIT(devel)</string>
 	    <string id="empty"> </string>
 	    <string id="yes">Yes</string>
 	    <string id="no">No</string>

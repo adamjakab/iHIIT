@@ -5,14 +5,16 @@ using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 
 class finishWorkoutView extends Ui.View {
+	private var ctrl;
+
 	private var select_items;
 	private var max_items = 3;
 
     function initialize() {
     	View.initialize();
 
-    	var c = App.getApp().getController();
-        var currentWorkout = c.getCurrentWorkout();
+		ctrl = App.getApp().getController();
+        var currentWorkout = ctrl.getCurrentWorkout();
         select_items = ApeTools.AppHelper.getDiscardOptions(currentWorkout.isTerminated());
     	max_items = select_items.size();
     }
@@ -22,8 +24,6 @@ class finishWorkoutView extends Ui.View {
         var index, txt, text_height, x, y;
         var text_distance = 35;
 
-        var c = App.getApp().getController();
-
         var width = dc.getWidth();
         var height = dc.getHeight();
 
@@ -32,7 +32,7 @@ class finishWorkoutView extends Ui.View {
         dc.clear();
 
         //CURRENT MENU ITEM
-        index = c.finish_workout_option;
+        index = ctrl.finish_workout_option;
         txt = select_items.get(index);
         text_height = 34;
         y = (height - text_height) / 2;

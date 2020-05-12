@@ -1,6 +1,6 @@
 <resources>
 	<strings>
-	    <string id="AppName">iHIIT</string>
+		<string id="app_name">iHIIT</string>
 		<string id="empty"> </string>
 	    <string id="yes">Sì</string>
 	    <string id="no">No</string>
@@ -12,10 +12,15 @@
 	    <string id="sel_rest">Riposo</string>
 	    <string id="sel_duration">Durata</string>
 	    
+	    <!-- Do Workout -->
+	    <string id="do_workout_next_up">Prossimo</string>
+	    <string id="do_workout_done_msg">Ben fatto!</string>
+	    <string id="do_workout_done_total_time">Tempo totale: $1$</string>
+	    
 	    <!-- Finish Workout -->
 	    <string id="finish_workout_prompt_resume">Continua</string>
-	    <string id="finish_workout_prompt_save_and_exit">Salva ed esci</string>
-	    <string id="finish_workout_prompt_discard_and_exit">Scarta ed esci</string>
+	    <string id="finish_workout_prompt_save_and_exit">Salva</string>
+	    <string id="finish_workout_prompt_discard_and_exit">Scarta</string>
 	    <string id="discard_workout_confirmation_prompt">Scarta l'attività?</string>
 	    
 		<!-- Settings -->
@@ -44,6 +49,5 @@
 		<string id="exercise_title_18">Esercizio 18</string>
 		<string id="exercise_title_19">Esercizio 19</string>
 		<string id="exercise_title_20">Esercizio 20</string>
-		
 	</strings>
 </resources>

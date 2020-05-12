@@ -64,6 +64,6 @@ class selectWorkoutView extends Ui.View
 		labelDuration.setText(txt);
 
 		View.onUpdate(dc);
-		ApeTools.AppHelper.drawScreenGuides(dc);
+		//ApeTools.AppHelper.drawScreenGuides(dc);
     }
 }
