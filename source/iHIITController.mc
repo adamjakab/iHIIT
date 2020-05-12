@@ -13,7 +13,6 @@ class iHIITController
 	public var finish_workout_option;
 	public var discardConfirmationSelection = 0;
 
-
 	// Initialize the controller
     public function initialize()
     {
@@ -115,14 +114,17 @@ class iHIITController
 
     // Save
     public function save() {
+    	var str_activity_saving = Ui.loadResource(Rez.Strings.activity_saving);
+    	var str_activity_saved = Ui.loadResource(Rez.Strings.activity_saved);
+
 		Sys.println("CTRL - SAVE");
 
-		var progressBar = new Ui.ProgressBar("Saving...", null);
+		var progressBar = new Ui.ProgressBar(str_activity_saving, null);
 		Ui.pushView(progressBar, new saveWorkoutDelegate(), Ui.SLIDE_UP);
 
 		currentWorkout.saveRecording();
 
-		progressBar.setDisplayString("Activity saved.");
+		progressBar.setDisplayString(str_activity_saved);
 		progressBar.setProgress(0);
 
 		saveTimer = new Timer.Timer();
