@@ -4,6 +4,8 @@
 	    <string id="empty"> </string>
 	    <string id="yes">Yes</string>
 	    <string id="no">No</string>
+	    <string id="activity_saving">Saving...</string>
+	    <string id="activity_saved">Activity saved.</string>
 	    
 		<!-- Exercise Selection -->
 		<string id="sel_prompt">Select a workout</string>
