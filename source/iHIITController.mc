@@ -15,7 +15,7 @@ class iHIITController
 	// Initialize the controller
     public function initialize()
     {
-    	currentWorkout = new $.workout(1);
+    	currentWorkout = new $.workout(3);
     	finish_workout_option = 0;
     }
 
@@ -29,10 +29,11 @@ class iHIITController
     		Sys.println("CTRL - START REFUSED - Workout must be in stopped state to be started");
     		return;
     	}
-    	Sys.println("CTRL - START");
 
+    	Sys.println("CTRL - START");
 		currentWorkout.startRecording();
-		Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
+
+		//Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
     }
 
     /*

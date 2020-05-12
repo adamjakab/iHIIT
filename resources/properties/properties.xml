@@ -2,24 +2,24 @@
 	<!-- WORKOUT #1 -->
 	<properties>
 		<property id="workout_1_divider" type="string">|---------- WORKOUT #1 ----------|</property>
-		<property id="workout_1_title" type="string">iHIIT-Full body</property>
+		<property id="workout_1_title" type="string">Full Body</property>
 		<property id="workout_1_enabled" type="boolean">true</property>
-		<property id="workout_1_exercise_duration" type="number">40</property>
-		<property id="workout_1_rest_duration" type="number">20</property>
+		<property id="workout_1_exercise_duration" type="number">10</property>
+		<property id="workout_1_rest_duration" type="number">5</property>
 		<property id="workout_1_exercise_1_title" type="string">Burpee broad jumps</property>
 		<property id="workout_1_exercise_2_title" type="string">Modified bird-dog</property>
 		<property id="workout_1_exercise_3_title" type="string">Marching bridge</property>
 		<property id="workout_1_exercise_4_title" type="string">Mountain climber</property>
-		<property id="workout_1_exercise_5_title" type="string">Plank - straight legs to side</property>
+		<property id="workout_1_exercise_5_title" type="string">Plank</property>
 		<property id="workout_1_exercise_6_title" type="string">Side plank left</property>
 		<property id="workout_1_exercise_7_title" type="string">Side plank right</property>
-		<property id="workout_1_exercise_8_title" type="string">Weighted russian twists</property>
+		<property id="workout_1_exercise_8_title" type="string">Russian twists</property>
 		<property id="workout_1_exercise_9_title" type="string">Horizontal scissors</property>
 		<property id="workout_1_exercise_10_title" type="string">Modified bicycle</property>
 		<property id="workout_1_exercise_11_title" type="string">Lower-body russian twists</property>
 		<property id="workout_1_exercise_12_title" type="string">Candle crunches</property>
 		<property id="workout_1_exercise_13_title" type="string">Plank Superman</property>
-		<property id="workout_1_exercise_14_title" type="string">Jumping lunges</property>
+		<property id="workout_1_exercise_14_title" type="string">Lunges</property>
 		<property id="workout_1_exercise_15_title" type="string">Fast foot shuffles</property>
 		<property id="workout_1_exercise_16_title" type="string"></property>
 		<property id="workout_1_exercise_17_title" type="string"></property>
@@ -29,13 +29,13 @@
 		
 		<!-- WORKOUT #2 -->
 		<property id="workout_2_divider" type="string">|---------- WORKOUT #2 ----------|</property>
-		<property id="workout_2_title" type="string">iHIIT - Abs</property>
+		<property id="workout_2_title" type="string">Abdominals</property>
 		<property id="workout_2_enabled" type="boolean">true</property>
 		<property id="workout_2_exercise_duration" type="number">40</property>
 		<property id="workout_2_rest_duration" type="number">20</property>
 		<property id="workout_2_exercise_1_title" type="string">Straight leg raises</property>
 		<property id="workout_2_exercise_2_title" type="string">Crunches</property>
-		<property id="workout_2_exercise_3_title" type="string">H-scissors</property>
+		<property id="workout_2_exercise_3_title" type="string">Horizontal scissors</property>
 		<property id="workout_2_exercise_4_title" type="string">Flutter kicks</property>
 		<property id="workout_2_exercise_5_title" type="string">Plank crunches</property>
 		<property id="workout_2_exercise_6_title" type="string">Lower-body russian twists</property>
@@ -56,12 +56,12 @@
 		
 		<!-- WORKOUT #3 -->	
 		<property id="workout_3_divider" type="string">|---------- WORKOUT #3 ----------|</property>
-		<property id="workout_3_title" type="string">iHIIT - Glutes</property>
-		<property id="workout_3_enabled" type="boolean">false</property>
-		<property id="workout_3_exercise_duration" type="number">40</property>
-		<property id="workout_3_rest_duration" type="number">20</property>
-		<property id="workout_3_exercise_1_title" type="string">Jump squats</property>
-		<property id="workout_3_exercise_2_title" type="string">Sumo squats</property>
+		<property id="workout_3_title" type="string"></property>
+		<property id="workout_3_enabled" type="boolean">true</property>
+		<property id="workout_3_exercise_duration" type="number">10</property>
+		<property id="workout_3_rest_duration" type="number">5</property>
+		<property id="workout_3_exercise_1_title" type="string">Hip Hop</property>
+		<property id="workout_3_exercise_2_title" type="string"></property>
 		<property id="workout_3_exercise_3_title" type="string"></property>
 		<property id="workout_3_exercise_4_title" type="string"></property>
 		<property id="workout_3_exercise_5_title" type="string"></property>

@@ -26,11 +26,11 @@ class iHIIT extends App.AppBase
     // Return the initial view of your application here
     public function getInitialView()
     {
-        return [new selectWorkoutView(), new selectWorkoutDelegate()];
+        //return [new selectWorkoutView(), new selectWorkoutDelegate()];
 
         //TEMPORARY SHORTCUT
-        //controller.beginCurrentWorkout();
-        //return [ new doWorkoutView(), new doWorkoutDelegate() ];
+        controller.beginCurrentWorkout();
+        return [ new doWorkoutView(), new doWorkoutDelegate() ];
     }
 
     public function getController()
