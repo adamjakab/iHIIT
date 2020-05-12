@@ -1,28 +1,27 @@
-using Toybox.Timer;
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
+using Toybox.Timer as Timer;
 
-class mainAppController
+class iHIITController
 {
+	private var saveTimer;
+
 	protected var maxWorkoutTestCount = 10;
 	protected var currentWorkout;
-	
+
 	public var finish_workout_option;
 	public var discardConfirmationSelection = 0;
-	
+
 
 	// Initialize the controller
-    public function initialize() {
-    	//workoutCount = ApeTools.WorkoutHelper.getWorkoutCount();
-    	//Sys.println("Workout count: " + workoutCount);
-    	
+    public function initialize()
+    {
     	currentWorkout = new $.workout(1);
-    
     	finish_workout_option = 0;
     }
-    
-    
+
+
 	/*
      * Start the selected workout
      */
@@ -32,12 +31,12 @@ class mainAppController
     		Sys.println("CTRL - START REFUSED - Workout must be in stopped state to be started");
     		return;
     	}
-    	Sys.println("CTRL - START");
 
+    	Sys.println("CTRL - START");
 		currentWorkout.startRecording();
 		Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
     }
-        
+
     /*
      * Stop workout
      * This is also called after Workout reaches last exercise and auto-terminates
@@ -48,15 +47,15 @@ class mainAppController
     		Sys.println("CTRL - STOP REFUSED - Workout must be running or terminated");
     		return;
     	}
-    	
+
     	Sys.println("CTRL - STOP");
     	if(currentWorkout.isRunning())
     	{
     		currentWorkout.stopRecording();
-    	}		
+    	}
 		Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
     }
-    
+
     /*
      * Resume workout
      */
@@ -66,12 +65,12 @@ class mainAppController
 			Sys.println("CTRL - RESUME REFUSED - Workout must be paused to be resumed");
 			return;
 		}
-	
+
 		Sys.println("CTRL - RESUME");
 		currentWorkout.startRecording();
 		Ui.popView(Ui.SLIDE_DOWN);
     }
-    
+
     /*
      * Finish workout - decide how
      */
@@ -88,52 +87,64 @@ class mainAppController
 			discard();
 		}
     }
-    
+
     // Discard - Ask confirmation
     function discard() {
 		Sys.println("CTRL - DISCARD");
 		Ui.pushView(new discardConfirmationView(), new discardConfirmationDelegate(), Ui.SLIDE_UP);
 	}
-	
+
 	// Discard & go back to workout selection
 	function discard_confirmed()
-	{	
+	{
 		currentWorkout.discardRecording();
 		var WOI = currentWorkout.getWorkoutIndex();
 		currentWorkout = new $.workout(WOI);
-       	
+
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
        	//Sys.exit();
     }
-    
+
     // Discard & go back to workout selection
 	function discard_cancelled()
-	{	
+	{
        	Ui.popView(Ui.SLIDE_DOWN);
     }
-    
+
     // Save
-    function save() {
+    public function save() {
 		Sys.println("CTRL - SAVE");
-		
+
+		var progressBar = new Ui.ProgressBar("Saving...", null);
+		Ui.pushView(progressBar, new saveWorkoutDelegate(), Ui.SLIDE_UP);
+
 		currentWorkout.saveRecording();
-		
-		var WOI = currentWorkout.getWorkoutIndex();
+
+		progressBar.setDisplayString("Activity saved.");
+		progressBar.setProgress(0);
+
+		saveTimer = new Timer.Timer();
+    	saveTimer.start(method(:saveDone), 3000, false);
+    }
+
+    public function saveDone() {
+    	var WOI = currentWorkout.getWorkoutIndex();
 		currentWorkout = new $.workout(WOI);
-       	
+
+       	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
     }
-    
-    
+
+
     function setNextWorkout()
     {
     	var i;
     	var workoutFound = false;
     	var WOI = currentWorkout.getWorkoutIndex();
-    	
+
     	for (i = (WOI+1); i <= maxWorkoutTestCount; i++)
     	{
     		if(ApeTools.WorkoutHelper.isSelectableWorkout(i))
@@ -143,7 +154,7 @@ class mainAppController
     			break;
     		}
     	}
-    	
+
     	if(workoutFound == false)
     	{
     		for (i = 1; i <= WOI; i++)
@@ -156,16 +167,16 @@ class mainAppController
 	    		}
     		}
     	}
-    	
+
     	return i;
     }
-    
+
     function setPreviousWorkout()
     {
     	var i;
     	var workoutFound = false;
     	var WOI = currentWorkout.getWorkoutIndex();
-    	
+
     	for (i = (WOI-1); i > 0; i--)
     	{
     		if(ApeTools.WorkoutHelper.isSelectableWorkout(i))
@@ -175,7 +186,7 @@ class mainAppController
     			break;
     		}
     	}
-    	
+
     	if(workoutFound == false)
     	{
     		for (i = maxWorkoutTestCount; i >= WOI; i--)
@@ -188,18 +199,17 @@ class mainAppController
 	    		}
     		}
     	}
-    	
+
     	return i;
     }
-    
-    // Renamed from getModel
+
     public function getCurrentWorkout()
     {
     	return currentWorkout;
     }
-    
+
     // Handle timing out after exit
-    function onExit() {
+    public function onExit() {
         Sys.exit();
     }
 }

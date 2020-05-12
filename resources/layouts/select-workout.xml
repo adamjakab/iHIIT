@@ -1,0 +1,12 @@
+<layout id="LayoutSelectWorkout">
+	<bitmap id="appLogo" x="center" y="0" filename="../drawables/launcher_icon.png" />
+	<label id="appName" x="center" y="30" text="@Strings.app_name" color="Gfx.COLOR_WHITE" font="Gfx.FONT_LARGE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	
+	<label id="labelSelectPrompt" x="center" y="55" text="@Strings.sel_prompt" color="Gfx.COLOR_DK_GRAY" font="Gfx.FONT_SYSTEM_XTINY" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	
+	<label id="labelName" x="center" y="75" color="Gfx.COLOR_ORANGE" font="Gfx.FONT_MEDIUM" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	
+	<label id="labelExercises" x="center" y="110" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	<label id="labelWrkRst" x="center" y="130" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	<label id="labelDuration" x="center" y="150" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+</layout>

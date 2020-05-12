@@ -5,76 +5,65 @@ using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 
 class selectWorkoutView extends Ui.View
-{	
-	private var app_icon;
-	
-	public var select_workout_prompt;
-	
-	private var screen_width;
-	private var screen_height;
-	private var centerX;
-	private var centerY;
-	
-	
-    function initialize() {
-    	View.initialize();    	  	
-    	select_workout_prompt = Ui.loadResource(Rez.Strings.select_workout_prompt);
+{
+	private var app;
+
+	// Strings
+	private var str_exercises, str_work, str_rest, str_duration;
+
+	// Layout elements
+	private var labelName;
+	private var labelExercises;
+	private var labelWrkRst;
+	private var labelDuration;
+
+
+    public function initialize() {
+    	View.initialize();
+    	app = App.getApp();
     }
-    
-    // Load your resources here
-    function onLayout(dc) {
-    	screen_width = dc.getWidth();
-    	screen_height = dc.getHeight();
-    	centerX = screen_width / 2;
-        centerY = screen_height / 2;
-    	
-    	app_icon = new Ui.Bitmap({
-    		:rezId => Rez.Drawables.LauncherIcon,
-    		:locX => centerX,
-    		:locY => centerY,
-    		:width => 40,
-    		:height => 40
-    	});
+
+    // Set up the layout
+    public function onLayout(dc)
+    {
+        // Strings
+        str_exercises = Ui.loadResource(Rez.Strings.sel_exercises);
+        str_work = Ui.loadResource(Rez.Strings.sel_work);
+        str_rest = Ui.loadResource(Rez.Strings.sel_rest);
+        str_duration = Ui.loadResource(Rez.Strings.sel_duration);
+
+		// Layout
+    	setLayout( Rez.Layouts.LayoutSelectWorkout(dc));
+
+		// Labels
+    	labelName = View.findDrawableById("labelName");
+    	labelExercises = View.findDrawableById("labelExercises");
+		labelWrkRst = View.findDrawableById("labelWrkRst");
+		labelDuration = View.findDrawableById("labelDuration");
     }
-    
+
     // Update the view
-    function onUpdate(dc)
-    {        
-        var app = App.getApp();
+    public function onUpdate(dc)
+    {
         var workout = app.getController().getCurrentWorkout();
-        var txt, x, y;
-        
-        //** clear screen
-		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
-        dc.clear(); 
-        
-        // App icon
-        app_icon.setLocation(centerX - 20, 10);
-        app_icon.draw(dc);
-        
-        y = centerY - 32;
-        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);        
-        dc.drawText(centerX, y, Gfx.FONT_TINY, select_workout_prompt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        txt = workout.getTitle();
-        y = centerY - 12;
-        dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, y, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        txt = "Exercises: " + workout.getExerciseCount();
-        y = centerY + 20;
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        
-        txt = "WRK: " + workout.getExerciseDuration() + "s - RST: " + workout.getRestDuration() + "s";
-        y = centerY + 40;
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        txt = "Duration: " + workout.getFormattedWorkoutDuration();
-        y = centerY + 60;
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        var txt;
+
+		txt = workout.getTitle();
+        labelName.setText(txt);
+
+		// Exercises: 15
+        txt = str_exercises + ": " + workout.getExerciseCount();
+		labelExercises.setText(txt);
+
+		// WORK: 40s | REST: 20s
+		txt = str_work + ": " + workout.getExerciseDuration() + "s" + " | " + str_rest + ": " + workout.getRestDuration() + "s";
+		labelWrkRst.setText(txt);
+
+		// Duration: 2:40
+		txt = str_duration + ": " + workout.getFormattedWorkoutDuration();
+		labelDuration.setText(txt);
+
+		View.onUpdate(dc);
+		//ApeTools.AppHelper.drawScreenGuides(dc);
     }
 }
