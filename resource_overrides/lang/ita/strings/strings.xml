@@ -10,12 +10,14 @@
 	    <!-- Exercise Selection -->
 		<string id="sel_prompt">Seleziona un allenamento</string>
 	    <string id="sel_exercises">Esercizi</string>
-	    <string id="sel_work">Lavoro</string>
-	    <string id="sel_rest">Riposo</string>
+	    <string id="sel_wrk_rst_pse">L: $1$s | R: $2$s | P: $3$s</string>
 	    <string id="sel_duration">Durata</string>
 	    
 	    <!-- Do Workout -->
 	    <string id="do_workout_next_up">Prossimo</string>
+	    <string id="do_workout_rep_of_reps">R: $1$/$2$</string>
+	    <string id="do_workout_exc_of_excs">E: $1$/$2$</string>
+	    <string id="do_workout_pause">Pausa tra ripetizioni</string>
 	    <string id="do_workout_done_msg">Ben fatto!</string>
 	    <string id="do_workout_done_total_time">Tempo totale: $1$</string>
 	    
@@ -30,6 +32,8 @@
 		<string id="workout_enabled">Abilitato</string>
 		<string id="exercise_duration">Durata esercizio(s)</string>
 		<string id="rest_duration">Durata riposo(s)</string>
+		<string id="workout_reps">Ripetizioni</string>
+		<string id="workout_rep_pause">Pausa tra ripetizioni(s)</string>
 		
 		<string id="exercise_title_1">Esercizio 1</string>
 		<string id="exercise_title_2">Esercizio 2</string>

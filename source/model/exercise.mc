@@ -113,8 +113,7 @@ class exercise
 		if (time_to_phase_end > self.COUNTDOWN_SECONDS || time_to_phase_end == 0) {
 			return;
 		}
-
-		Sys.println("COUNTDOWN: " + time_to_phase_end);
+		//Sys.println("COUNTDOWN: " + time_to_phase_end);
 
 		if (Attention has :playTone) {
 			// or: TONE_LOUD_BEEP | TONE_INTERVAL_ALERT

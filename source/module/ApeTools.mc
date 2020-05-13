@@ -52,18 +52,20 @@ module ApeTools
 
 		public function drawScreenGuides(dc)
 	    {
-	    	var screen_width = dc.getWidth();
-	    	var screen_height = dc.getHeight();
-	    	var centerX = screen_width / 2;
-	        var centerY = screen_height / 2;
+	    	if (App.getApp().isDebugMode()) {
+		    	var screen_width = dc.getWidth();
+		    	var screen_height = dc.getHeight();
+		    	var centerX = screen_width / 2;
+		        var centerY = screen_height / 2;
 
-	        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
+		        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
 
-	    	//HORIZONTAL line
-	        dc.drawLine(0, centerY, screen_width, centerY);
+		    	//HORIZONTAL line
+		        dc.drawLine(0, centerY, screen_width, centerY);
 
-	        //VERTICAL line
-	        dc.drawLine(centerX, 0, centerX, screen_height);
+		        //VERTICAL line
+		        dc.drawLine(centerX, 0, centerX, screen_height);
+			}
 	    }
 	}
 

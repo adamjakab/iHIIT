@@ -9,7 +9,7 @@ class selectWorkoutView extends Ui.View
 	private var app;
 
 	// Strings
-	private var str_exercises, str_work, str_rest, str_duration;
+	private var str_exercises, str_wrk_rst_pse, str_duration;
 
 	// Layout elements
 	private var labelName;
@@ -28,8 +28,7 @@ class selectWorkoutView extends Ui.View
     {
         // Strings
         str_exercises = Ui.loadResource(Rez.Strings.sel_exercises);
-        str_work = Ui.loadResource(Rez.Strings.sel_work);
-        str_rest = Ui.loadResource(Rez.Strings.sel_rest);
+        str_wrk_rst_pse = Ui.loadResource(Rez.Strings.sel_wrk_rst_pse);
         str_duration = Ui.loadResource(Rez.Strings.sel_duration);
 
 		// Layout
@@ -51,12 +50,13 @@ class selectWorkoutView extends Ui.View
 		txt = workout.getTitle();
         labelName.setText(txt);
 
-		// Exercises: 15
-        txt = str_exercises + ": " + workout.getExerciseCount();
+		// Exercises: 3 X 15 (reps X exercises)
+		var reps = workout.getNumberOfRepetitions();
+		txt = str_exercises + ": " + workout.getNumberOfRepetitions() + " X " + workout.getExerciseCount();
 		labelExercises.setText(txt);
 
 		// WORK: 40s | REST: 20s
-		txt = str_work + ": " + workout.getExerciseDuration() + "s" + " | " + str_rest + ": " + workout.getRestDuration() + "s";
+		txt = Lang.format(str_wrk_rst_pse, [workout.getExerciseDuration(), workout.getRestDuration(), workout.getRepetitionPause()]);
 		labelWrkRst.setText(txt);
 
 		// Duration: 2:40
@@ -64,6 +64,6 @@ class selectWorkoutView extends Ui.View
 		labelDuration.setText(txt);
 
 		View.onUpdate(dc);
-		//ApeTools.AppHelper.drawScreenGuides(dc);
+		ApeTools.AppHelper.drawScreenGuides(dc);
     }
 }

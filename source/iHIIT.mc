@@ -6,14 +6,14 @@ using Toybox.Application as App;
 class iHIIT extends App.AppBase
 {
 	//@todo: Make sure to set this to false when creating a release
-	private var debug_mode = true;
+	private var debug_mode = false;
 
 	protected var controller;
 
 
     public function initialize() {
         AppBase.initialize();
-        controller = new $.iHIITController(3);
+        controller = new $.iHIITController(1);
     }
 
     // onStart() is called on application start up

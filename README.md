@@ -22,9 +22,11 @@ The easiest way to configure iHIIT is through the use of GarminExpress applicati
 
 For each workout you can configure the following:
 - Title
+- Enabled (Yes/No)
 - Exercise duration (seconds)
 - Rest duration between exercises (seconds)
-- Enabled (Yes/No)
+- Number of repetitions (the number of times the full set of exercises will be repeated)
+- Pause between repetitions (seconds) 
 - Name of exercises (1-20)
 
 Exercises must be consecutive. The first blank exercise title will indicate the end of the workout.
