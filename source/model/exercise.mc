@@ -12,6 +12,7 @@ class exercise
 {
 	const DEFAULT_EXERCISE_DURATION = 40;
 	const DEFAULT_REST_DURATION = 20;
+	const COUNTDOWN_SECONDS = 3;
 
 	private var workout_index;
 	private var exercise_index;
@@ -26,16 +27,21 @@ class exercise
 	private var is_in_rest_mode = true;
 
 	private var vibeDataStart = [
-	    new Attention.VibeProfile(  75, 500 ),
-	    new Attention.VibeProfile(  0, 500 ),
-	    new Attention.VibeProfile(  75, 500 ),
-	    new Attention.VibeProfile(  0, 500 ),
-	    new Attention.VibeProfile( 	100, 1000 )
+	    new Attention.VibeProfile(75, 1000),
+	    new Attention.VibeProfile(0, 500),
+	    new Attention.VibeProfile(75, 1000),
+	    new Attention.VibeProfile(0, 500),
+	    new Attention.VibeProfile(100, 1000)
 	];
 
 	private var vibeDataStop = [
-	    new Attention.VibeProfile( 	100, 2000 )
+	    new Attention.VibeProfile(100, 2000)
 	];
+
+	private var vibeDataCountdown = [
+	    new Attention.VibeProfile(100, 1000)
+	];
+
 
 	// Initialize
 	// @param WOI - Workout index
@@ -83,15 +89,42 @@ class exercise
 	 	}
 	 	self.is_in_rest_mode = isItRestTime();
 
+		Ui.requestUpdate();
+	 	countdownBeeps();
+
 	 	if(isExerciseTimeFinished())
 	 	{
 	 		self.exercise_timer.stop();
 	 		self.exercise_timer = null;
-	 		//alert();
 	 		App.getApp().getController().getCurrentWorkout().setNextExercise(true);
 	 	}
  	}
 
+
+	private function countdownBeeps()
+	{
+		var time_to_phase_end = 0;
+		if (self.is_in_rest_mode) {
+			time_to_phase_end = self.getRestRemainingSeconds();
+		} else {
+			time_to_phase_end = self.getExerciseRemainingSeconds();
+		}
+
+		if (time_to_phase_end > self.COUNTDOWN_SECONDS || time_to_phase_end == 0) {
+			return;
+		}
+
+		Sys.println("COUNTDOWN: " + time_to_phase_end);
+
+		if (Attention has :playTone) {
+			// or: TONE_LOUD_BEEP | TONE_INTERVAL_ALERT
+			Attention.playTone(Attention.TONE_ALARM);
+		}
+
+		if (Attention has :vibrate) {
+			Attention.vibrate(vibeDataCountdown);
+		}
+	}
 
  	private function alert(mode)
  	{
