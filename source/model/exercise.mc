@@ -39,7 +39,7 @@ class exercise
 	];
 
 	private var vibeDataCountdown = [
-	    new Attention.VibeProfile(100, 1000)
+	    new Attention.VibeProfile(100, 500)
 	];
 
 
@@ -116,8 +116,7 @@ class exercise
 		//Sys.println("COUNTDOWN: " + time_to_phase_end);
 
 		if (Attention has :playTone) {
-			// or: TONE_LOUD_BEEP | TONE_INTERVAL_ALERT
-			Attention.playTone(Attention.TONE_ALARM);
+			Attention.playTone(Attention.TONE_LOUD_BEEP);
 		}
 
 		if (Attention has :vibrate) {
