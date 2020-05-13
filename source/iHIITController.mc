@@ -14,9 +14,9 @@ class iHIITController
 	public var discardConfirmationSelection = 0;
 
 	// Initialize the controller
-    public function initialize()
+    public function initialize(WOI)
     {
-    	currentWorkout = new $.workout(1);
+    	currentWorkout = new $.workout(WOI);
     	finish_workout_option = 0;
     }
 
@@ -97,14 +97,11 @@ class iHIITController
 	function discard_confirmed()
 	{
 		currentWorkout.discardRecording();
-		var WOI = currentWorkout.getWorkoutIndex();
-		currentWorkout = new $.workout(WOI);
-		finish_workout_option = 0;
+		initialize(currentWorkout.getWorkoutIndex());
 
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
-       	//Sys.exit();
     }
 
     // Discard & go back to workout selection
@@ -125,9 +122,12 @@ class iHIITController
     }
 
     public function saveDone() {
-    	var WOI = currentWorkout.getWorkoutIndex();
-		currentWorkout = new $.workout(WOI);
-		finish_workout_option = 0;
+    	if(saveTimer instanceof Timer.Timer)
+		{
+			saveTimer.stop();
+			saveTimer = null;
+		}
+    	initialize(currentWorkout.getWorkoutIndex());
 
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);

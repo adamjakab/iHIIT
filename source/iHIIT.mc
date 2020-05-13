@@ -13,7 +13,7 @@ class iHIIT extends App.AppBase
 
     public function initialize() {
         AppBase.initialize();
-        controller = new $.iHIITController();
+        controller = new $.iHIITController(3);
     }
 
     // onStart() is called on application start up

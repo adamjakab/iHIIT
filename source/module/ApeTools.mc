@@ -3,6 +3,7 @@ using Toybox.System as Sys;
 using Toybox.Lang as Lang;
 using Toybox.WatchUi as Ui;
 using Toybox.Graphics as Gfx;
+using Toybox.Math as Math;
 
 module ApeTools
 {
@@ -39,6 +40,14 @@ module ApeTools
 			}
 
 			return options;
+		}
+
+		public function getFormattedTime(total_seconds)
+		{
+			var min = Math.floor(total_seconds / 60);
+    		var sec = total_seconds - (60 * min);
+    		if (sec < 10) {sec = Lang.format("0$1$", [sec]);}
+			return Lang.format("$1$:$2$", [min, sec]);
 		}
 
 		public function drawScreenGuides(dc)

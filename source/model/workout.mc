@@ -2,7 +2,6 @@ using Toybox.Application as App;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
-using Toybox.Math as Math;
 using Toybox.ActivityRecording as ActivityRecording;
 using Toybox.Sensor as Sensor;
 using Toybox.WatchUi as Ui;
@@ -246,22 +245,14 @@ class workout
 
      function getFormattedWorkoutDuration() {
     	var total = self.getCalculatedWorkoutDuration();
-    	var min = Math.floor(total / 60);
-		var sec = total - (60 * min);
-		if(sec < 10)
-		{
-			sec = "0" + sec;
-		}
-		return Lang.format("$1$:$2$", [min, sec]);
+    	return ApeTools.AppHelper.getFormattedTime(total);
     }
 
     function getElapsedSeconds(format)
     {
     	var answer = workout_elapsed_seconds;
     	if(format == true) {
-    		var min = Math.floor(workout_elapsed_seconds / 60);
-    		var sec = workout_elapsed_seconds - (60*min);
-			answer = Lang.format("$1$:$2$", [min, sec]);
+			answer = ApeTools.AppHelper.getFormattedTime(answer);
     	}
     	return answer;
     }

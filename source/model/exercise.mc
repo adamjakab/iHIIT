@@ -2,7 +2,6 @@ using Toybox.Application as App;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
-using Toybox.Math as Math;
 using Toybox.WatchUi as Ui;
 using Toybox.Attention as Attention;
 
@@ -130,10 +129,8 @@ class exercise
 
  	function isExerciseTimeFinished()
  	{
- 		//return getExerciseRemainingSeconds() > 0;
- 		return self.exercise_elapsed > self.exercise_duration + self.rest_duration;
+ 		return self.exercise_elapsed >= self.exercise_duration + self.rest_duration;
  	}
-
 
  	function getRestElapsedSeconds()
  	{
@@ -147,7 +144,7 @@ class exercise
 
  	function getExerciseElapsedSeconds()
  	{
- 		return isItRestTime() ? 0 : self.exercise_elapsed - self.rest_duration/* - 1*/;
+ 		return isItRestTime() ? 0 : self.exercise_elapsed - self.rest_duration;
  	}
 
  	function getExerciseRemainingSeconds()
