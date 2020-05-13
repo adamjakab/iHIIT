@@ -16,6 +16,7 @@ class workout
 	const STATE_RUNNING = 1;
 	const STATE_PAUSED = 2;
 	const STATE_TERMINATED = 3;
+	const STATE_SAVED = 4;
 
 	private var workout_index;
 	private var title;
@@ -62,8 +63,6 @@ class workout
         {
             currentHR = info.heartRate.toNumber();
         }
-
-        //Ui.requestUpdate();
 	}
 
     function workoutTimerCallback()
@@ -91,7 +90,7 @@ class workout
     	{
     		Sys.println("WORKOUT - LAST EXERCISE REACHED!");
     		stopRecording();
-    		self.state = self.STATE_TERMINATED;
+    		self.state = STATE_TERMINATED;
     		Ui.requestUpdate();
     		//do something else...
     	} else {
@@ -121,7 +120,7 @@ class workout
     		self.session.start();
     		self.currentExercise.start();
     		self.workout_timer.start( method(:workoutTimerCallback), 1000, true );
-    		self.state = self.STATE_RUNNING;
+    		self.state = STATE_RUNNING;
 
     	}
     }
@@ -137,7 +136,7 @@ class workout
     		session.stop();
     		self.currentExercise.stop();
     		self.workout_timer.stop();
-    		self.state = self.STATE_PAUSED;
+    		self.state = STATE_PAUSED;
        	}
     }
 
@@ -154,7 +153,7 @@ class workout
 			}
 			self.session.discard();
 			self.session = null;
-			self.state = self.STATE_TERMINATED;
+			self.state = STATE_TERMINATED;
 			Sys.println("WORKOUT - DISCARD");
 		}
     }
@@ -170,10 +169,13 @@ class workout
 			{
 				self.session.stop();
 			}
+			self.state = STATE_TERMINATED;
+			Ui.requestUpdate();
 			self.session.save();
 			self.session = null;
-			self.state = self.STATE_TERMINATED;
 			Sys.println("WORKOUT - SAVED");
+			self.state = STATE_SAVED;
+			Ui.requestUpdate();
 		}
     }
 
@@ -282,5 +284,9 @@ class workout
     public function isTerminated()
     {
     	return self.state == STATE_TERMINATED;
+    }
+    public function isSaved()
+    {
+    	return self.state == STATE_SAVED;
     }
 }

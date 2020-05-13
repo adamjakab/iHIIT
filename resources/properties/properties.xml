@@ -56,11 +56,11 @@
 		
 		<!-- WORKOUT #3 -->	
 		<property id="workout_3_divider" type="string">|---------- WORKOUT #3 ----------|</property>
-		<property id="workout_3_title" type="string"></property>
-		<property id="workout_3_enabled" type="boolean">false</property>
-		<property id="workout_3_exercise_duration" type="number">40</property>
-		<property id="workout_3_rest_duration" type="number">20</property>
-		<property id="workout_3_exercise_1_title" type="string"></property>
+		<property id="workout_3_title" type="string">Test</property>
+		<property id="workout_3_enabled" type="boolean">true</property>
+		<property id="workout_3_exercise_duration" type="number">2</property>
+		<property id="workout_3_rest_duration" type="number">1</property>
+		<property id="workout_3_exercise_1_title" type="string">Jump</property>
 		<property id="workout_3_exercise_2_title" type="string"></property>
 		<property id="workout_3_exercise_3_title" type="string"></property>
 		<property id="workout_3_exercise_4_title" type="string"></property>

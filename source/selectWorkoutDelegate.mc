@@ -28,6 +28,7 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
         return true;
     }
 
+	// todo: this needs to return false
     public function onBack() {
     	Sys.println("Back pressed");
         return true;

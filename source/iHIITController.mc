@@ -99,6 +99,7 @@ class iHIITController
 		currentWorkout.discardRecording();
 		var WOI = currentWorkout.getWorkoutIndex();
 		currentWorkout = new $.workout(WOI);
+		finish_workout_option = 0;
 
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
@@ -114,26 +115,19 @@ class iHIITController
 
     // Save
     public function save() {
-    	var str_activity_saving = Ui.loadResource(Rez.Strings.activity_saving);
-    	var str_activity_saved = Ui.loadResource(Rez.Strings.activity_saved);
-
 		Sys.println("CTRL - SAVE");
-
-		var progressBar = new Ui.ProgressBar(str_activity_saving, null);
-		Ui.pushView(progressBar, new saveWorkoutDelegate(), Ui.SLIDE_UP);
+		Ui.pushView(new saveWorkoutView(), new saveWorkoutDelegate(), Ui.SLIDE_UP);
 
 		currentWorkout.saveRecording();
 
-		progressBar.setDisplayString(str_activity_saved);
-		progressBar.setProgress(0);
-
 		saveTimer = new Timer.Timer();
-    	saveTimer.start(method(:saveDone), 3000, false);
+    	saveTimer.start(method(:saveDone), 5000, false);
     }
 
     public function saveDone() {
     	var WOI = currentWorkout.getWorkoutIndex();
 		currentWorkout = new $.workout(WOI);
+		finish_workout_option = 0;
 
        	Ui.popView(Ui.SLIDE_DOWN);
        	Ui.popView(Ui.SLIDE_DOWN);
