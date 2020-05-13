@@ -2,8 +2,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Application as App;
 
-class discardConfirmationDelegate extends Ui.BehaviorDelegate
-{
+class discardConfirmationDelegate extends Ui.BehaviorDelegate {
 	private var ctrl;
 
     //Init
@@ -12,48 +11,34 @@ class discardConfirmationDelegate extends Ui.BehaviorDelegate
         ctrl = App.getApp().getController();
     }
 
-    //Key events
-    public function onKey( keyEvent )
-    {
-    	var k = keyEvent.getKey();
-    	if(k == Ui.KEY_DOWN) {
-    		setNextOption();
-    	} else if (k == Ui.KEY_UP) {
-    		setPreviousOption();
-    	} else if (k == Ui.KEY_ENTER) {
-    		if(ctrl.discardConfirmationSelection == 0)
-    		{
-    			ctrl.discard_cancelled();
-    		} else {
-    			ctrl.discard_confirmed();
-    		}
-    	}
+    public function onNextPage() {
+    	setNextOption();
     	Ui.requestUpdate();
+        return true;
     }
 
-    // Swipe events
-    public function onSwipe( swipeEvent )
-    {
-    	var dir = swipeEvent.getDirection();
-    	if (dir == Ui.SWIPE_DOWN) {
-    		setPreviousOption();
-    	} else if (dir == Ui.SWIPE_UP) {
-    		setNextOption();
-    	}
+    public function onPreviousPage() {
+    	setPreviousOption();
     	Ui.requestUpdate();
+        return true;
     }
 
-    public function onTap(clickEvent)
-    {
-    	if (clickEvent.getType() == Ui.CLICK_TYPE_TAP)
-    	{
-    		if(ctrl.discardConfirmationSelection == 0)
-    		{
-    			ctrl.discard_cancelled();
-    		} else {
-    			ctrl.discard_confirmed();
-    		}
-    	}
+    public function onSelect() {
+    	if(ctrl.discardConfirmationSelection == 0)
+		{
+			ctrl.discard_cancelled();
+		} else {
+			ctrl.discard_confirmed();
+		}
+        return true;
+    }
+
+    public function onBack() {
+    	return true;
+    }
+
+    public function onMenu() {
+        return true;
     }
 
     protected function setNextOption()
@@ -74,10 +59,5 @@ class discardConfirmationDelegate extends Ui.BehaviorDelegate
     	{
     		ctrl.discardConfirmationSelection = 1;
     	}
-    }
-
-	//Menu handling
-    public function onMenu() {
-        return false;
     }
 }

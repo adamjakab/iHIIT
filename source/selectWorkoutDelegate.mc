@@ -12,14 +12,14 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
     }
 
     public function onNextPage() {
-    	var WOI = ctrl.setNextWorkout();
-    	updateAfterAction(WOI);
+    	ctrl.setNextWorkout();
+    	Ui.requestUpdate();
         return true;
     }
 
     public function onPreviousPage() {
-    	var WOI = ctrl.setPreviousWorkout();
-    	updateAfterAction(WOI);
+    	ctrl.setPreviousWorkout();
+    	Ui.requestUpdate();
         return true;
     }
 
@@ -28,24 +28,15 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
         return true;
     }
 
-	// todo: this needs to return false
     public function onBack() {
-    	Sys.println("Back pressed");
-        return true;
+    	if (App.getApp().isDebugMode()) {
+    		Sys.println("Debug mode: Not exiting!");
+        	return true;
+    	}
+    	return false;
     }
 
     public function onMenu() {
-    	Sys.println("Menu pressed");
         return true;
-    }
-
-    private function updateAfterAction(WOI)
-    {
-    	if (WOI != null)
-    	{
-    		var workout = ctrl.getCurrentWorkout();
-    		Sys.println("WORKOUT(" + workout.getWorkoutIndex() + ") SET TO: " + workout.getTitle());
-    		Ui.requestUpdate();
-    	}
     }
 }

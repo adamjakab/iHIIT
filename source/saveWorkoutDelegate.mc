@@ -3,7 +3,7 @@ using Toybox.System as Sys;
 using Toybox.Application as App;
 
 class saveWorkoutDelegate extends Ui.BehaviorDelegate {
-	var ctrl, workout;
+	private var ctrl, workout;
 
 	public function initialize() {
         BehaviorDelegate.initialize();

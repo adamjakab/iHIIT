@@ -3,28 +3,33 @@ using Toybox.System as Sys;
 using Toybox.Application as App;
 
 class doWorkoutDelegate extends Ui.BehaviorDelegate {
+	private var ctrl;
 
     function initialize() {
         BehaviorDelegate.initialize();
+        ctrl = App.getApp().getController();
     }
-    
-    function onKey( keyEvent )
-    {
-    	var c = App.getApp().getController();    	
-    	var k = keyEvent.getKey();
-    	if (k == Ui.KEY_ENTER) {
-    		 c.stop();
-    	} else if (k == Ui.KEY_ESC) {
-    		c.stop();
-    	} else {
-    		Sys.println("Unused Key press: " + keyEvent.getKey() + " / " + keyEvent.getType());
-    	}
+
+    public function onNextPage() {
+        return true;
+    }
+
+    public function onPreviousPage() {
+        return true;
+    }
+
+    public function onSelect() {
+    	ctrl.stop();
+        return true;
+    }
+
+    public function onBack() {
+    	ctrl.stop();
     	return true;
     }
 
-    function onMenu() {
-    	var c = App.getApp().getController(); 
-    	c.stop();
+    public function onMenu() {
         return true;
     }
 }
+

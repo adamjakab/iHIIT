@@ -5,7 +5,11 @@ using Toybox.Application as App;
 */
 class iHIIT extends App.AppBase
 {
+	//@todo: Make sure to set this to false when creating a release
+	private var debug_mode = true;
+
 	protected var controller;
+
 
     public function initialize() {
         AppBase.initialize();
@@ -34,5 +38,10 @@ class iHIIT extends App.AppBase
     public function getController()
     {
     	return controller;
+    }
+
+    public function isDebugMode()
+    {
+    	return debug_mode;
     }
 }

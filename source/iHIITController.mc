@@ -134,7 +134,7 @@ class iHIITController
        	Ui.popView(Ui.SLIDE_DOWN);
     }
 
-
+	//@todo: this method needs to be rewritten
     function setNextWorkout()
     {
     	var i;
@@ -164,9 +164,12 @@ class iHIITController
     		}
     	}
 
+    	Sys.println("WORKOUT(" + currentWorkout.getWorkoutIndex() + ") SET TO: " + currentWorkout.getTitle());
+
     	return i;
     }
 
+	//@todo: this method needs to be rewritten
     function setPreviousWorkout()
     {
     	var i;
@@ -195,6 +198,8 @@ class iHIITController
 	    		}
     		}
     	}
+
+    	Sys.println("WORKOUT(" + currentWorkout.getWorkoutIndex() + ") SET TO: " + currentWorkout.getTitle());
 
     	return i;
     }
