@@ -2,40 +2,41 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Application as App;
 
+
 class selectWorkoutDelegate extends Ui.BehaviorDelegate {
-	
-	//Init
-    public function initialize() {    	
+	private var ctrl;
+
+    public function initialize() {
+    	ctrl = App.getApp().getController();
         BehaviorDelegate.initialize();
     }
-    
-    //Key events
-    public function onKey( keyEvent )
-    {
-    	var c = App.getApp().getController();
-    	var WOI = null;
-    	
-    	var k = keyEvent.getKey();
-    	if(k == Ui.KEY_DOWN) {
-    		WOI = c.setNextWorkout();
-    	} else if (k == Ui.KEY_UP) {
-    		WOI = c.setPreviousWorkout();
-    	} else if (k == Ui.KEY_ENTER) {
-    		 c.beginCurrentWorkout();
-    	} else {
-    		//Sys.println("Unused Key press: " + keyEvent.getKey() + " / " + keyEvent.getType());
-    	}
-    	
-    	if (WOI != null)
-    	{
-    		var workout = c.getCurrentWorkout();
-    		Sys.println("NEW WORKOUT SET(" + workout.getWorkoutIndex() + "): " + workout.getTitle());
-    		Ui.requestUpdate();
-    	}
+
+    public function onNextPage() {
+    	ctrl.setNextWorkout();
+    	Ui.requestUpdate();
+        return true;
     }
 
-	//Menu handling
+    public function onPreviousPage() {
+    	ctrl.setPreviousWorkout();
+    	Ui.requestUpdate();
+        return true;
+    }
+
+    public function onSelect() {
+    	ctrl.beginCurrentWorkout();
+        return true;
+    }
+
+    public function onBack() {
+    	if (App.getApp().isDebugMode()) {
+    		Sys.println("Debug mode: Not exiting!");
+        	return true;
+    	}
+    	return false;
+    }
+
     public function onMenu() {
-        return false;
+        return true;
     }
 }

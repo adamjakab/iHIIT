@@ -2,59 +2,62 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Application as App;
 
-class discardConfirmationDelegate extends Ui.BehaviorDelegate
-{
-	
+class discardConfirmationDelegate extends Ui.BehaviorDelegate {
+	private var ctrl;
+
     //Init
     public function initialize() {
         BehaviorDelegate.initialize();
+        ctrl = App.getApp().getController();
     }
-    
-    //Key events
-    public function onKey( keyEvent )
-    {
-    	var c = App.getApp().getController();
-    	
-    	var k = keyEvent.getKey();
-    	if(k == Ui.KEY_DOWN) {
-    		setNextOption();
-    		Sys.println("SEL>: " + c.discardConfirmationSelection);
-    	} else if (k == Ui.KEY_UP) {
-    		setPreviousOption();
-    		Sys.println("SEL<: " + c.discardConfirmationSelection);
-    	} else if (k == Ui.KEY_ENTER) {
-    		if(c.discardConfirmationSelection == 0)
-    		{
-    			c.discard_cancelled();
-    		} else {
-    			c.discard_confirmed();
-    		}
-    	}
+
+    public function onNextPage() {
+    	setNextOption();
     	Ui.requestUpdate();
+        return true;
     }
-    
-    private function setNextOption()
-    {
-    	var c = App.getApp().getController();
-    	c.discardConfirmationSelection++;
-    	if(c.discardConfirmationSelection > 1)
-    	{
-    		c.discardConfirmationSelection = 0;
-    	}
+
+    public function onPreviousPage() {
+    	setPreviousOption();
+    	Ui.requestUpdate();
+        return true;
     }
-    
-    private function setPreviousOption()
+
+    public function onSelect() {
+    	if(ctrl.discardConfirmationSelection == 0)
+		{
+			ctrl.discard_cancelled();
+		} else {
+			ctrl.discard_confirmed();
+		}
+        return true;
+    }
+
+    public function onBack() {
+    	return true;
+    }
+
+    public function onMenu() {
+        return true;
+    }
+
+    protected function setNextOption()
     {
-    	var c = App.getApp().getController();
-    	c.discardConfirmationSelection--;
-    	if(c.discardConfirmationSelection < 0)
+    	//Sys.println("SEL>: " + c.discardConfirmationSelection);
+    	ctrl.discardConfirmationSelection++;
+    	if(ctrl.discardConfirmationSelection > 1)
     	{
-    		c.discardConfirmationSelection = 1;
+    		ctrl.discardConfirmationSelection = 0;
     	}
     }
 
-	//Menu handling
-    public function onMenu() {
-        return false;
+    protected function setPreviousOption()
+    {
+    	//Sys.println("SEL<: " + c.discardConfirmationSelection);
+    	ctrl.discardConfirmationSelection--;
+    	if(ctrl.discardConfirmationSelection < 0)
+    	{
+    		ctrl.discardConfirmationSelection = 1;
+    	}
     }
 }

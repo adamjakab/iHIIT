@@ -5,51 +5,65 @@ using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 
 class selectWorkoutView extends Ui.View
-{	
-	public var select_workout_prompt;
-	
-    function initialize() {
-    	View.initialize();    	  	
-    	select_workout_prompt = Ui.loadResource(Rez.Strings.select_workout_prompt);
+{
+	private var app;
+
+	// Strings
+	private var str_exercises, str_wrk_rst_pse, str_duration;
+
+	// Layout elements
+	private var labelName;
+	private var labelExercises;
+	private var labelWrkRst;
+	private var labelDuration;
+
+
+    public function initialize() {
+    	View.initialize();
+    	app = App.getApp();
     }
-    
+
+    // Set up the layout
+    public function onLayout(dc)
+    {
+        // Strings
+        str_exercises = Ui.loadResource(Rez.Strings.sel_exercises);
+        str_wrk_rst_pse = Ui.loadResource(Rez.Strings.sel_wrk_rst_pse);
+        str_duration = Ui.loadResource(Rez.Strings.sel_duration);
+
+		// Layout
+    	setLayout( Rez.Layouts.LayoutSelectWorkout(dc));
+
+		// Labels
+    	labelName = View.findDrawableById("labelName");
+    	labelExercises = View.findDrawableById("labelExercises");
+		labelWrkRst = View.findDrawableById("labelWrkRst");
+		labelDuration = View.findDrawableById("labelDuration");
+    }
+
     // Update the view
-    function onUpdate(dc)
-    {        
-        var app = App.getApp();
+    public function onUpdate(dc)
+    {
         var workout = app.getController().getCurrentWorkout();
-        var txt, x, y;
-        
-        var width = dc.getWidth();
-        var height = dc.getHeight();
-        
-        //** clear screen
-		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
-        dc.clear(); 
-        
-        y = (height/2) - 32;
-        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);        
-        dc.drawText(width/2, y, Gfx.FONT_TINY, select_workout_prompt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        txt = workout.getTitle();
-        y = (height/2) - 12;
-        dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(width/2, y, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        txt = "Exercises: " + workout.getExerciseCount();
-        y = (height/2) + 20;
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        
-        txt = "WRK: " + workout.getExerciseDuration() + "s - RST: " + workout.getRestDuration() + "s";
-        y = (height/2) + 40;
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        txt = "Duration: " + workout.getCalculatedWorkoutDuration();
-        y = (height/2) + 60;
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(width/2, y, Gfx.FONT_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
+        var txt;
+
+		txt = workout.getTitle();
+        labelName.setText(txt);
+
+		// Exercises: 3 X 15 (reps X exercises)
+		var reps = workout.getNumberOfRepetitions();
+		txt = str_exercises + ": " + workout.getNumberOfRepetitions() + " X " + workout.getExerciseCount();
+		labelExercises.setText(txt);
+
+		// WORK: 40s | REST: 20s
+		txt = Lang.format(str_wrk_rst_pse, [workout.getExerciseDuration(), workout.getRestDuration(), workout.getRepetitionPause()]);
+		labelWrkRst.setText(txt);
+
+		// Duration: 2:40
+		txt = str_duration + ": " + workout.getFormattedWorkoutDuration();
+		labelDuration.setText(txt);
+
+		View.onUpdate(dc);
+		ApeTools.AppHelper.drawScreenGuides(dc);
     }
 }

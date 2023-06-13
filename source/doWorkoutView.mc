@@ -2,213 +2,194 @@ using Toybox.Application as App;
 using Toybox.Lang as Lang;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
-using Toybox.Timer as Timer;
 using Toybox.Graphics as Gfx;
 
 class doWorkoutView extends Ui.View
 {
-	private var refreshTimer;
-	private var timerCount = 0;
-	
-	private var screen_width;
-	private var screen_height;
-	private var centerX;
-	private var centerY;
-	
-	private var heart_icon;
+	const LAYOUT_NONE = 0;
+	const LAYOUT_REST = 1;
+	const LAYOUT_WORK = 2;
+	const LAYOUT_PAUSE = 3;
+	const LAYOUT_DONE = 4;
 
-    function initialize() {
+	private var app;
+	private var currentWorkout;
+	private var currentLayout;
+
+	// Strings
+	private var str_total_time;
+	private var str_rep_of_reps;
+	private var str_exc_of_excs;
+
+	// Layout elements
+	private var labelHeartRateValue;
+	private var labelReps;
+	private var labelExcs;
+	private var labelExerciseName;
+	private var labelTimeRemaining;
+	private var labelTimeTotal;
+
+
+    public function initialize() {
         View.initialize();
-        
-        refreshTimer = new Timer.Timer();
-        timerCount = 0;        
-        
-        //record_prop = app.getProperty("record_prop");
-         Sys.println("DO-WORKOUT-VIEW - INIT");
-         
+        app = App.getApp();
+        currentLayout = LAYOUT_NONE;
+
+        // Strings
+        str_total_time = Ui.loadResource(Rez.Strings.do_workout_done_total_time);
+        str_rep_of_reps = Ui.loadResource(Rez.Strings.do_workout_rep_of_reps);
+        str_exc_of_excs = Ui.loadResource(Rez.Strings.do_workout_exc_of_excs);
+
+
+        Sys.println("DO-WORKOUT-VIEW - INIT");
     }
-    
-    // Load your resources here
-    function onLayout(dc) {
-    	screen_width = dc.getWidth();
-    	screen_height = dc.getHeight();
-    	centerX = screen_width / 2;
-        centerY = screen_height / 2;
-    	
-    	heart_icon = new Ui.Bitmap({
-    		:rezId => Rez.Drawables.HeartIcon,
-    		:locX => 45,
-    		:locY => 55,
-    		:width => 24,
-    		:height => 24
-    	});
-    }
-    
-    function refreshTimerCallback() 
-	{
-	 	timerCount++;		
-	 	Ui.requestUpdate();
- 	}
- 	
-    function onShow() {
-    	refreshTimer.start( method(:refreshTimerCallback), 1000, true );
-    }
-    
-    function onHide() 
+
+    //public function onLayout(dc) {}
+
+    // Update the view - update is requested (Ui.requestUpdate()) by the workout model
+    public function onUpdate(dc)
     {
-	    refreshTimer.stop();
+    	currentWorkout = app.getController().getCurrentWorkout();
+    	updateCurrentLayout(dc);
+    	View.onUpdate(dc);
+    	ApeTools.AppHelper.drawScreenGuides(dc);
     }
-    
-    // Update the view
-    function onUpdate(dc) {
-    	var currentWorkout = App.getApp().getController().getCurrentWorkout();
-    	
+
+    // Update the view with the current layout
+    protected function updateCurrentLayout(dc) {
     	if (currentWorkout.isTerminated())
     	{
-    		updateWorkoutTerminated(dc);
+    		updateLayoutTerminated(dc);
     	} else if (currentWorkout.isRunning())
     	{
     		var currentExercise = currentWorkout.getCurrentExercise();
     		if(currentExercise.isItRestTime())
     		{
-    			updateWorkoutResting(dc);
+    			updateLayoutResting(dc);
     		} else {
-    			updateWorkoutExercising(dc);
+    			updateLayoutWorking(dc);
     		}
+    	} else if (currentWorkout.isInRepetitionPause()) {
+    		updateLayoutRepetitionPause(dc);
     	} else {
-    		Sys.println("Workout view - workout is in an invalid state: " + currentWorkout.getState());
+    		Sys.println("Invalid workout state: " + currentWorkout.getState());
     	}
     }
-    
-    protected function updateWorkoutExercising(dc)
-    {
-        var txt, text_height, x, y, width, height, margin, color;
-        
-        var currentWorkout = App.getApp().getController().getCurrentWorkout();
-        var currentExercise = currentWorkout.getCurrentExercise();
-        
-        //** clear screen
-		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
-        dc.clear();
-        
-        color = Gfx.COLOR_ORANGE;
-        
-        //REMAINING TIME
-        txt = currentExercise.getExerciseRemainingSeconds();
-        text_height = Gfx.getFontHeight(Gfx.FONT_NUMBER_THAI_HOT);
-        x = centerX;
-        y = centerY - (text_height / 2);
-        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(x, y, Gfx.FONT_NUMBER_THAI_HOT, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-		//CENTER TEXT - CURRENT EXERCISE
-		txt = currentExercise.getTitle();
-		x = centerX;
-		y = centerY + (text_height / 2);
-		dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(x, y, Gfx.FONT_SYSTEM_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        //y = centerY + (text_height / 2);
-        //dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        //dc.drawLine(0, y, screen_width, y);
-        
-        
-        showHeartRate(dc);
-        //drawCentralLines(dc);
-    }
-    
-    private function showHeartRate(dc)
-    {
-    	var x, y, txt;
-    	var currentWorkout = App.getApp().getController().getCurrentWorkout();
-    	
-        y = 0;
-        x = centerX - 12;
-        heart_icon.setLocation(x, y);
-        heart_icon.draw(dc);
-        
-        txt = currentWorkout.getCurrentHeartRate() + " bpm";
-        y = 20;
-        x = centerX;
-        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(x, y, Gfx.FONT_SYSTEM_SMALL, txt, Gfx.TEXT_JUSTIFY_CENTER);
-    }
-    
-    private function drawCentralLines(dc)
-    {
-        dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);        
-    	//HORIZONTAL line        
-        dc.drawLine(0, centerY, screen_width, centerY);        
-        //VERTICAL line
-        dc.drawLine(centerX, 0, centerX, screen_height);
-    }
-    
-    protected function updateWorkoutResting(dc)
-    {
-        var txt, text_height, x, y, width, height, margin, color;
-        
-        var currentWorkout = App.getApp().getController().getCurrentWorkout();
-        var currentExercise = currentWorkout.getCurrentExercise();
-        
-        //** clear screen
-		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
-        dc.clear();
-        
-        //CENTER BOX
-        text_height = 24;
-        margin = 5;
-        y = centerY - (text_height/2) - margin;
-        height = text_height + (margin * 2);
-        color = Gfx.COLOR_DK_GREEN;
-        dc.setColor(color, Gfx.COLOR_BLACK);
-        //dc.drawRectangle(0, y, screen_width, height);
 
-		//CENTER TEXT - NEXT EXERCISE
-		txt = currentExercise.getTitle();
-		y = centerY - (text_height/2);
-		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        //SMALL CENTER BOX
-        width = 100;
-        height = 16;
-        x = centerX - (width/2);
-        y = centerY - (text_height/2) - margin - height + 1;
-        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-        //dc.drawRectangle(x, y, width, height);
-        
-        //SMALL CENTER TEXT
-        txt = "coming up";
-        y = y - 3;
-        dc.drawText(centerX, y, Gfx.FONT_XTINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        //REMAINING TIME
-        txt = currentExercise.getRestRemainingSeconds();
-        dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(centerX, centerY + 10, Gfx.FONT_NUMBER_HOT, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        showHeartRate(dc);
-        
-        //drawCentralLines(dc);
-    }
-    
-    protected function updateWorkoutTerminated(dc)
+    protected function updateLayoutResting(dc)
     {
-    	var workout = App.getApp().getController().getCurrentWorkout();
+    	if (currentLayout != LAYOUT_REST)
+    	{
+    		//Sys.println("Layout changed to: RST");
+    		currentLayout = LAYOUT_REST;
+	    	setLayout( Rez.Layouts.LayoutDoWorkoutRest(dc));
+
+	    	//Layout elements
+	    	labelHeartRateValue = View.findDrawableById("labelHeartRateValue");
+	    	labelReps = View.findDrawableById("labelReps");
+			labelExcs = View.findDrawableById("labelExcs");
+	    	labelExerciseName = View.findDrawableById("labelExerciseName");
+	    	labelTimeRemaining = View.findDrawableById("labelTimeRemaining");
+    	}
+
+        var txt;
+        var currentExercise = currentWorkout.getCurrentExercise();
+
+        // HR
+        txt = currentWorkout.getCurrentHeartRate().toString();
+        labelHeartRateValue.setText(txt);
+
+        // REPS (R: 1/3)
+        txt = Lang.format(str_rep_of_reps, [currentWorkout.getTimesRepeated(), currentWorkout.getNumberOfRepetitions()]);
+        labelReps.setText(txt);
+
+        // EXERCISES (E: 4/12)
+        txt = Lang.format(str_exc_of_excs, [currentExercise.getExerciseIndex(), currentWorkout.getExerciseCount()]);
+        labelExcs.setText(txt);
+
+		// NEXT EXERCISE
+		txt = currentExercise.getTitle();
+		labelExerciseName.setText(txt);
+
+        // REMAINING TIME
+        txt = currentExercise.getRestRemainingSeconds().toString();
+        labelTimeRemaining.setText(txt);
+    }
+
+    protected function updateLayoutWorking(dc)
+    {
+    	if (currentLayout != LAYOUT_WORK)
+    	{
+    		//Sys.println("Layout changed to: WRK");
+	    	currentLayout = LAYOUT_WORK;
+	    	setLayout( Rez.Layouts.LayoutDoWorkoutWork(dc));
+
+	    	//Layout elements
+	    	labelHeartRateValue = View.findDrawableById("labelHeartRateValue");
+	    	labelExerciseName = View.findDrawableById("labelExerciseName");
+	    	labelTimeRemaining = View.findDrawableById("labelTimeRemaining");
+    	}
+
+        var txt;
+        var currentExercise = currentWorkout.getCurrentExercise();
+
+		// HR
+        txt = currentWorkout.getCurrentHeartRate().toString();
+        labelHeartRateValue.setText(txt);
+
+		// NEXT EXERCISE
+		txt = currentExercise.getTitle();
+		labelExerciseName.setText(txt);
+
+        // REMAINING TIME
+        txt = currentExercise.getExerciseRemainingSeconds().toString();
+        labelTimeRemaining.setText(txt);
+    }
+
+	protected function updateLayoutRepetitionPause(dc)
+	{
+		//LAYOUT_PAUSE
+		if (currentLayout != LAYOUT_PAUSE)
+    	{
+    		//Sys.println("Layout changed to: PAUSE");
+	    	currentLayout = LAYOUT_PAUSE;
+	    	setLayout( Rez.Layouts.LayoutDoWorkoutPause(dc));
+
+	    	//Layout elements
+	    	labelHeartRateValue = View.findDrawableById("labelHeartRateValue");
+	    	labelReps = View.findDrawableById("labelReps");
+	    	labelTimeRemaining = View.findDrawableById("labelTimeRemaining");
+    	}
+
     	var txt;
-    	var centerX = screen_width / 2;
-        var centerY = screen_height / 2;
-        
-    	//** clear screen
-		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
-        dc.clear();
-        
-    	txt = "WELL DONE!";
-		dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
-        dc.drawText(centerX, centerY - 12, Gfx.FONT_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
-        
-        txt = "Total time: " + workout.getElapsedSeconds(true);
-        dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_BLACK);
-        dc.drawText(centerX, centerY + 20, Gfx.FONT_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
+
+    	// HR
+        txt = currentWorkout.getCurrentHeartRate().toString();
+        labelHeartRateValue.setText(txt);
+
+        // REPS (1/3)
+        txt = Lang.format("$1$ / $2$", [currentWorkout.getTimesRepeated() + 1, currentWorkout.getNumberOfRepetitions()]);
+        labelReps.setText(txt);
+
+
+        // REMAINING TIME
+        txt = currentWorkout.getRepetitionPauseRemainingSeconds().toString();
+        labelTimeRemaining.setText(txt);
+	}
+
+    protected function updateLayoutTerminated(dc)
+    {
+    	if (currentLayout != LAYOUT_DONE)
+    	{
+    		//Sys.println("Layout changed to: TRM");
+	    	currentLayout = LAYOUT_DONE;
+	    	setLayout( Rez.Layouts.LayoutDoWorkoutDone(dc));
+
+	    	//Layout elements
+	    	labelTimeTotal = View.findDrawableById("labelTimeTotal");
+    	}
+
+        var txt = Lang.format(str_total_time, [currentWorkout.getElapsedSeconds(true)]);
+        labelTimeTotal.setText(txt);
     }
 }
