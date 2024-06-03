@@ -131,7 +131,7 @@ class iHIITController
     	saveTimer.start(method(:saveDone), 3000, false);
     }
 
-    public function saveDone() {
+    public function saveDone() as Void {
     	var WOI = currentWorkout.getWorkoutIndex();
 		currentWorkout = new $.workout(WOI);
 

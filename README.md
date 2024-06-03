@@ -35,10 +35,14 @@ Please use github for [Issues & Enhancement requests](https://github.com/adamjak
 If you haven't got a github account write a review or use the 'Contact Developer' link on the right under 'Additional information'.
 
 ## Development
+
 - Follow the SDK setup guide [here](https://developer.garmin.com/connect-iq/sdk/)
 - install Java JRE/JDK:
+
 ```bash
     sudo apt install openjdk-18-jre-headless default-jre
     sudo apt install openjdk-18-jdk --fix-missing
 ```
-Use *Ctrl + Shift + P* to invoke `Monkey C` commands.
+
+- Set `Monkey C: Type Check Level` to `Off` if you get type check errors. (it's better to fix them ;)
+- Use _Ctrl + Shift + P_ to invoke `Monkey C` commands.

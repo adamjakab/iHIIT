@@ -43,8 +43,12 @@ class workout
     {
     	self.workout_index = WOI;
     	self.title = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "title", "");
-    	self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", exercise.DEFAULT_EXERCISE_DURATION);
-    	self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", exercise.DEFAULT_REST_DURATION);
+
+		// These are in exercise.DEFAULT_EXERCISE_DURATION / exercise.DEFAULT_REST_DURATION but need instance to access them (solve me pls)
+		var _def_ex_dur = 40;
+		var _def_ex_rst = 20;
+    	self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", _def_ex_dur);
+    	self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", _def_ex_rst);
 
     	self.exercise_count = ApeTools.ExerciseHelper.getExerciseCount(self.workout_index);
     	self.workout_elapsed_seconds = 0;
@@ -55,7 +59,7 @@ class workout
     }
 
     //
-	function heartrateSensorCallback(info)
+	function heartrateSensorCallback(info as $.Toybox.Sensor.Info) as Void
 	{
 		currentHR = 0;
         if( info.heartRate != null )
