@@ -29,6 +29,7 @@ class discardConfirmationDelegate extends Ui.BehaviorDelegate
     		}
     	}
     	Ui.requestUpdate();
+		return true;
     }
 
     // Swipe events
@@ -41,6 +42,7 @@ class discardConfirmationDelegate extends Ui.BehaviorDelegate
     		setNextOption();
     	}
     	Ui.requestUpdate();
+		return true;
     }
 
     public function onTap(clickEvent)
@@ -53,7 +55,9 @@ class discardConfirmationDelegate extends Ui.BehaviorDelegate
     		} else {
     			ctrl.discard_confirmed();
     		}
+			return true;
     	}
+		return false;
     }
 
     protected function setNextOption()

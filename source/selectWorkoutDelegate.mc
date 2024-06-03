@@ -23,12 +23,16 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
     	if(k == Ui.KEY_DOWN) {
     		WOI = ctrl.setNextWorkout();
     		updateAfterAction(WOI);
+			return true;
     	} else if (k == Ui.KEY_UP) {
     		WOI = ctrl.setPreviousWorkout();
     		updateAfterAction(WOI);
+			return true;
     	} else if (k == Ui.KEY_ENTER) {
     		 ctrl.beginCurrentWorkout();
+			 return true;
     	}
+		return false;
     }
 
 	// Swipe events
@@ -38,10 +42,13 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
     	if (dir == Ui.SWIPE_DOWN) {
     		WOI = ctrl.setNextWorkout();
     		updateAfterAction(WOI);
+			return true;
     	} else if (dir == Ui.SWIPE_UP) {
     		WOI = ctrl.setPreviousWorkout();
     		updateAfterAction(WOI);
+			return true;
     	}
+		return false;
     }
 
     public function onTap(clickEvent)
@@ -49,7 +56,9 @@ class selectWorkoutDelegate extends Ui.BehaviorDelegate {
     	if (clickEvent.getType() == Ui.CLICK_TYPE_TAP)
     	{
     		ctrl.beginCurrentWorkout();
+			return true;
     	}
+		return false;
     }
 
     protected function updateAfterAction(WOI)

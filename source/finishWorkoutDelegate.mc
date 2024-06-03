@@ -52,6 +52,7 @@ class finishWorkoutDelegate extends Ui.BehaviorDelegate {
     	} else if (dir == Ui.SWIPE_UP) {
     		setNextOption();
     	}
+		return true;
     }
 
     public function onTap(clickEvent)
@@ -60,6 +61,7 @@ class finishWorkoutDelegate extends Ui.BehaviorDelegate {
     	{
     		ctrl.finishWorkout();
     	}
+		return true;
     }
 
     private function setNextOption()

@@ -33,3 +33,12 @@ Please use github for [Issues & Enhancement requests](https://github.com/adamjak
 [Contributions](https://github.com/adamjakab/iHIIT) are absolutely welcome!
 
 If you haven't got a github account write a review or use the 'Contact Developer' link on the right under 'Additional information'.
+
+## Development
+- Follow the SDK setup guide [here](https://developer.garmin.com/connect-iq/sdk/)
+- install Java JRE/JDK:
+```bash
+    sudo apt install openjdk-18-jre-headless default-jre
+    sudo apt install openjdk-18-jdk --fix-missing
+```
+Use *Ctrl + Shift + P* to invoke `Monkey C` commands.

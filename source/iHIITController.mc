@@ -125,7 +125,7 @@ class iHIITController
 		currentWorkout.saveRecording();
 
 		progressBar.setDisplayString(str_activity_saved);
-		progressBar.setProgress(0);
+		progressBar.setProgress(0.0);
 
 		saveTimer = new Timer.Timer();
     	saveTimer.start(method(:saveDone), 3000, false);
