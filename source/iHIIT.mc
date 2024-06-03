@@ -1,10 +1,9 @@
-using Toybox.Application as App;
 using Toybox.System as Sys;
 
 /**
  * ENTRY POINT
  */
-class iHIIT extends App.AppBase {
+class iHIIT extends Toybox.Application.AppBase {
   protected var controller;
 
   public function initialize() {
