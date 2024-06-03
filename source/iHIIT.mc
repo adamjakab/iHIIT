@@ -1,4 +1,5 @@
 using Toybox.Application as App;
+using Toybox.System as Sys;
 
 /**
  * ENTRY POINT
@@ -27,13 +28,13 @@ class iHIIT extends App.AppBase {
     return controller;
   }
 
-  // hook called on application start up
+  // Hook called on application start up
   public function onStart(state) {
-    return true;
+    Sys.println("App:::START");
   }
 
-  // hook called when your application is exiting
+  // Hook called on application stop
   public function onStop(state) {
-    return true;
+    Sys.println("App:::STOP");
   }
 }
