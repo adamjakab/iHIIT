@@ -46,3 +46,7 @@ If you haven't got a github account write a review or use the 'Contact Developer
 
 - Set `Monkey C: Type Check Level` to `Off` if you get type check errors. (it's better to fix them ;)
 - Use _Ctrl + Shift + P_ to invoke `Monkey C` commands.
+
+List of resources:
+
+- https://developer.garmin.com/connect-iq/api-docs/Toybox/Lang.html

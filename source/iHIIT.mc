@@ -1,38 +1,39 @@
 using Toybox.Application as App;
 
 /**
-* ENTRY POINT
-*/
-class iHIIT extends App.AppBase
-{
-	protected var controller;
+ * ENTRY POINT
+ */
+class iHIIT extends App.AppBase {
+  protected var controller;
 
-    public function initialize() {
-        AppBase.initialize();
-        controller = new $.iHIITController();
-    }
+  public function initialize() {
+    AppBase.initialize();
+    controller = new $.iHIITController();
+  }
 
-    // onStart() is called on application start up
-    //public function onStart(state){}
+  // Return the initial view of your application here
+  public function getInitialView() {
+    return [new selectWorkoutView(), new selectWorkoutDelegate()];
 
-    // onStop() is called when your application is exiting
-    //public function onStop(state){}
+    //TEMPORARY - SKIP workout selection
+    //controller.beginCurrentWorkout();
+    //return [ new doWorkoutView(), new doWorkoutDelegate() ];
 
-    // Return the initial view of your application here
-    public function getInitialView()
-    {
-        return [new selectWorkoutView(), new selectWorkoutDelegate()];
+    //TEMPORARY - SKIP workout
+    //return [ new finishWorkoutView(), new finishWorkoutDelegate() ];
+  }
 
-        //TEMPORARY - SKIP workout selection
-        //controller.beginCurrentWorkout();
-        //return [ new doWorkoutView(), new doWorkoutDelegate() ];
+  public function getController() {
+    return controller;
+  }
 
-        //TEMPORARY - SKIP workout
-        //return [ new finishWorkoutView(), new finishWorkoutDelegate() ];
-    }
+  // hook called on application start up
+  public function onStart(state) {
+    return true;
+  }
 
-    public function getController()
-    {
-    	return controller;
-    }
+  // hook called when your application is exiting
+  public function onStop(state) {
+    return true;
+  }
 }
