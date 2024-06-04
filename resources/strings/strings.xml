@@ -11,6 +11,8 @@
 		<string id="sel_prompt">Select a workout</string>
 	    <string id="sel_exercises">Exercises</string>
 	    <string id="sel_wrk_rst_pse">W: $1$s | R: $2$s | P: $3$s</string>
+		<string id="sel_work">Work</string>
+	    <string id="sel_rest">Rest</string>
 	    <string id="sel_duration">Duration</string>
 	    
 	    <!-- Do Workout -->
