@@ -84,7 +84,6 @@ class workout {
     if (info.heartRate != null) {
       currentHR = info.heartRate.toNumber();
     }
-
     //Ui.requestUpdate();
   }
 
@@ -249,14 +248,6 @@ class workout {
       :sport => session_sport,
       :subSport => session_sub_sport,
     });
-  }
-
-  //
-  function heartrateSensorCallback(info) {
-    currentHR = 0;
-    if (info.heartRate != null) {
-      currentHR = info.heartRate.toNumber();
-    }
   }
 
   //---------------------------------------------------------------------GETTERS
