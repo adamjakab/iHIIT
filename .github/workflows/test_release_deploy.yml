@@ -1,0 +1,17 @@
+name: Test & Release & Deploy
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  test:
+    name: Test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test application
+        id: run_tests
+        uses: matco/action-connectiq-tester@v1
+        with:
+          device: fr235

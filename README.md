@@ -50,3 +50,4 @@ If you haven't got a github account write a review or use the 'Contact Developer
 List of resources:
 
 - https://developer.garmin.com/connect-iq/api-docs/Toybox/Lang.html
+- https://developer.garmin.com/connect-iq/core-topics/persisting-data/
