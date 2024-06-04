@@ -194,5 +194,4 @@ class exercise
     function getTitle() {
     	return self.title;
     }
-
 }

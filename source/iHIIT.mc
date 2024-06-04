@@ -1,47 +1,46 @@
-using Toybox.Application as App;
+using Toybox.System as Sys;
 
 /**
-* ENTRY POINT
-*/
-class iHIIT extends App.AppBase
-{
-	//@todo: Make sure to set this to false when creating a release
-	private var debug_mode = false;
+ * ENTRY POINT
+ */
+class iHIIT extends Toybox.Application.AppBase {
+  //@TODO: Make sure to set this to false when creating a release
+  private var debug_mode = false;
 
-	protected var controller;
+  protected var controller;
 
+  public function initialize() {
+    AppBase.initialize();
+    controller = new $.iHIITController();
+  }
 
-    public function initialize() {
-        AppBase.initialize();
-        controller = new $.iHIITController(1);
-    }
+  // Return the initial view of your application here
+  public function getInitialView() {
+    return [new selectWorkoutView(), new selectWorkoutDelegate()];
 
-    // onStart() is called on application start up
-    //public function onStart(state){}
+    //TEMPORARY - SKIP workout selection
+    //controller.beginCurrentWorkout();
+    //return [ new doWorkoutView(), new doWorkoutDelegate() ];
 
-    // onStop() is called when your application is exiting
-    //public function onStop(state){}
+    //TEMPORARY - SKIP workout
+    //return [ new finishWorkoutView(), new finishWorkoutDelegate() ];
+  }
 
-    // Return the initial view of your application here
-    public function getInitialView()
-    {
-        return [new selectWorkoutView(), new selectWorkoutDelegate()];
+  public function getController() {
+    return controller;
+  }
 
-        //TEMPORARY - SKIP workout selection
-        //controller.beginCurrentWorkout();
-        //return [ new doWorkoutView(), new doWorkoutDelegate() ];
+  // Hook called on application start up
+  public function onStart(state) {
+    Sys.println("App:::START");
+  }
 
-        //TEMPORARY - SKIP workout
-        //return [ new finishWorkoutView(), new finishWorkoutDelegate() ];
-    }
+  // Hook called on application stop
+  public function onStop(state) {
+    Sys.println("App:::STOP");
+  }
 
-    public function getController()
-    {
-    	return controller;
-    }
-
-    public function isDebugMode()
-    {
-    	return debug_mode;
-    }
+  public function isDebugMode() {
+    return debug_mode;
+  }
 }
