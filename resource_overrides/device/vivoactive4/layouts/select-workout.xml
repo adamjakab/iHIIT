@@ -6,7 +6,7 @@
 	
 	<label id="labelName" x="center" y="110" color="Gfx.COLOR_ORANGE" font="Gfx.FONT_MEDIUM" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 	
-	<label id="labelExercises" x="center" y="160" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SYSTEM_XTINY" justification="Gfx.TEXT_JUSTIFY_CENTER" />
-	<label id="labelWrkRst" x="center" y="180" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SYSTEM_XTINY" justification="Gfx.TEXT_JUSTIFY_CENTER" />
-	<label id="labelDuration" x="center" y="200" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SYSTEM_XTINY" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	<label id="labelExercises" x="center" y="155" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	<label id="labelWrkRst" x="center" y="180" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+	<label id="labelDuration" x="center" y="205" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 </layout>

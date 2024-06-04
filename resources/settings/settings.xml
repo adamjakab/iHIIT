@@ -16,12 +16,6 @@
 		<setting propertyKey="@Properties.workout_1_rest_duration" title="@Strings.rest_duration">
 			<settingConfig type="numeric" required="false" min="1" max="600" />
 		</setting>
-		<setting propertyKey="@Properties.workout_1_repetitions" title="@Strings.workout_reps">
-			<settingConfig type="numeric" required="false" min="1" max="99" />
-		</setting>
-		<setting propertyKey="@Properties.workout_1_repetition_pause" title="@Strings.workout_rep_pause">
-			<settingConfig type="numeric" required="false" min="1" max="600" />
-		</setting>
 		<setting propertyKey="@Properties.workout_1_exercise_1_title" title="@Strings.exercise_title_1">
 			<settingConfig type="alphaNumeric" required="false" maxLength="32" />
 		</setting>
@@ -97,12 +91,6 @@
 			<settingConfig type="numeric" required="false" min="1" max="600" />
 		</setting>
 		<setting propertyKey="@Properties.workout_2_rest_duration" title="@Strings.rest_duration">
-			<settingConfig type="numeric" required="false" min="1" max="600" />
-		</setting>
-		<setting propertyKey="@Properties.workout_2_repetitions" title="@Strings.workout_reps">
-			<settingConfig type="numeric" required="false" min="1" max="99" />
-		</setting>
-		<setting propertyKey="@Properties.workout_2_repetition_pause" title="@Strings.workout_rep_pause">
 			<settingConfig type="numeric" required="false" min="1" max="600" />
 		</setting>
 		<setting propertyKey="@Properties.workout_2_exercise_1_title" title="@Strings.exercise_title_1">
@@ -182,12 +170,6 @@
 		<setting propertyKey="@Properties.workout_3_rest_duration" title="@Strings.rest_duration">
 			<settingConfig type="numeric" required="false" min="1" max="600" />
 		</setting>
-		<setting propertyKey="@Properties.workout_3_repetitions" title="@Strings.workout_reps">
-			<settingConfig type="numeric" required="false" min="1" max="99" />
-		</setting>
-		<setting propertyKey="@Properties.workout_3_repetition_pause" title="@Strings.workout_rep_pause">
-			<settingConfig type="numeric" required="false" min="1" max="600" />
-		</setting>
 		<setting propertyKey="@Properties.workout_3_exercise_1_title" title="@Strings.exercise_title_1">
 			<settingConfig type="alphaNumeric" required="false" maxLength="32" />
 		</setting>
@@ -265,12 +247,6 @@
 		<setting propertyKey="@Properties.workout_4_rest_duration" title="@Strings.rest_duration">
 			<settingConfig type="numeric" required="false" min="1" max="600" />
 		</setting>
-		<setting propertyKey="@Properties.workout_4_repetitions" title="@Strings.workout_reps">
-			<settingConfig type="numeric" required="false" min="1" max="99" />
-		</setting>
-		<setting propertyKey="@Properties.workout_4_repetition_pause" title="@Strings.workout_rep_pause">
-			<settingConfig type="numeric" required="false" min="1" max="600" />
-		</setting>
 		<setting propertyKey="@Properties.workout_4_exercise_1_title" title="@Strings.exercise_title_1">
 			<settingConfig type="alphaNumeric" required="false" maxLength="32" />
 		</setting>
@@ -346,12 +322,6 @@
 			<settingConfig type="numeric" required="false" min="1" max="600" />
 		</setting>
 		<setting propertyKey="@Properties.workout_5_rest_duration" title="@Strings.rest_duration">
-			<settingConfig type="numeric" required="false" min="1" max="600" />
-		</setting>
-		<setting propertyKey="@Properties.workout_5_repetitions" title="@Strings.workout_reps">
-			<settingConfig type="numeric" required="false" min="1" max="99" />
-		</setting>
-		<setting propertyKey="@Properties.workout_5_repetition_pause" title="@Strings.workout_rep_pause">
 			<settingConfig type="numeric" required="false" min="1" max="600" />
 		</setting>
 		<setting propertyKey="@Properties.workout_5_exercise_1_title" title="@Strings.exercise_title_1">

@@ -1,6 +1,6 @@
 <resources>
 	<strings>
-	    <string id="app_name">iHIIT</string>
+	    <string id="app_name">iHIIT(devel)</string>
 	    <string id="empty"> </string>
 	    <string id="yes">Yes</string>
 	    <string id="no">No</string>
@@ -10,16 +10,12 @@
 		<!-- Exercise Selection -->
 		<string id="sel_prompt">Select a workout</string>
 	    <string id="sel_exercises">Exercises</string>
-	    <string id="sel_wrk_rst_pse">W: $1$s | R: $2$s | P: $3$s</string>
-		<string id="sel_work">Work</string>
+	    <string id="sel_work">Work</string>
 	    <string id="sel_rest">Rest</string>
 	    <string id="sel_duration">Duration</string>
 	    
 	    <!-- Do Workout -->
 	    <string id="do_workout_next_up">Next Up</string>
-	    <string id="do_workout_rep_of_reps">R: $1$/$2$</string>
-	    <string id="do_workout_exc_of_excs">E: $1$/$2$</string>
-	    <string id="do_workout_pause">Pausing before next set</string>
 	    <string id="do_workout_done_msg">Well done!</string>
 	    <string id="do_workout_done_total_time">Total time: $1$</string>
 	    
@@ -34,8 +30,6 @@
 		<string id="workout_enabled">Enabled</string>
 		<string id="exercise_duration">Exercise duration(s)</string>
 		<string id="rest_duration">Rest duration(s)</string>
-		<string id="workout_reps">Repetitions(times)</string>
-		<string id="workout_rep_pause">Pause between repetitions(s)</string>
 		
 		<string id="exercise_title_1">Exercise 1</string>
 		<string id="exercise_title_2">Exercise 2</string>
