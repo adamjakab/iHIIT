@@ -1,3 +1,6 @@
 {
-  "monkeyC.testDevices": ["fr235"]
+  "monkeyC.testDevices": [
+    "fr235",
+    "vivoactive4"
+  ]
 }
