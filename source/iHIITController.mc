@@ -23,9 +23,7 @@ class iHIITController {
    */
   function beginCurrentWorkout() {
     if (!currentWorkout.isNotStarted()) {
-      Sys.println(
-        "CTRL - START REFUSED - Workout must be in stopped state to be started"
-      );
+      Sys.println("CTRL - START REFUSED - Workout must be in stopped state to be started");
       return;
     }
 
@@ -40,9 +38,7 @@ class iHIITController {
    */
   function stop() {
     if (!currentWorkout.isRunning() && !currentWorkout.isTerminated()) {
-      Sys.println(
-        "CTRL - STOP REFUSED - Workout must be running or terminated"
-      );
+      Sys.println("CTRL - STOP REFUSED - Workout must be running or terminated");
       return;
     }
 
@@ -50,11 +46,7 @@ class iHIITController {
     if (currentWorkout.isRunning()) {
       currentWorkout.stopRecording();
     }
-    Ui.pushView(
-      new finishWorkoutView(),
-      new finishWorkoutDelegate(),
-      Ui.SLIDE_UP
-    );
+    Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
   }
 
   /*
@@ -62,9 +54,7 @@ class iHIITController {
    */
   function resume() {
     if (!currentWorkout.isPaused()) {
-      Sys.println(
-        "CTRL - RESUME REFUSED - Workout must be paused to be resumed"
-      );
+      Sys.println("CTRL - RESUME REFUSED - Workout must be paused to be resumed");
       return;
     }
 
@@ -92,11 +82,7 @@ class iHIITController {
   // Discard - Ask confirmation
   function discard() {
     Sys.println("CTRL - DISCARD");
-    Ui.pushView(
-      new discardConfirmationView(),
-      new discardConfirmationDelegate(),
-      Ui.SLIDE_UP
-    );
+    Ui.pushView(new discardConfirmationView(), new discardConfirmationDelegate(), Ui.SLIDE_UP);
   }
 
   // Discard & go back to workout selection
@@ -150,7 +136,7 @@ class iHIITController {
     var WOI = currentWorkout.getWorkoutIndex();
 
     for (i = WOI + 1; i <= maxWorkoutTestCount; i++) {
-      if (ApeTools.WorkoutHelper.isSelectableWorkout(i)) {
+      if (WorkoutHelper.isSelectableWorkout(i)) {
         workoutFound = true;
         currentWorkout = new $.workout(i);
         break;
@@ -159,7 +145,7 @@ class iHIITController {
 
     if (workoutFound == false) {
       for (i = 1; i <= WOI; i++) {
-        if (ApeTools.WorkoutHelper.isSelectableWorkout(i)) {
+        if (WorkoutHelper.isSelectableWorkout(i)) {
           workoutFound = true;
           currentWorkout = new $.workout(i);
           break;
@@ -176,7 +162,7 @@ class iHIITController {
     var WOI = currentWorkout.getWorkoutIndex();
 
     for (i = WOI - 1; i > 0; i--) {
-      if (ApeTools.WorkoutHelper.isSelectableWorkout(i)) {
+      if (WorkoutHelper.isSelectableWorkout(i)) {
         workoutFound = true;
         currentWorkout = new $.workout(i);
         break;
@@ -185,7 +171,7 @@ class iHIITController {
 
     if (workoutFound == false) {
       for (i = maxWorkoutTestCount; i >= WOI; i--) {
-        if (ApeTools.WorkoutHelper.isSelectableWorkout(i)) {
+        if (WorkoutHelper.isSelectableWorkout(i)) {
           workoutFound = true;
           currentWorkout = new $.workout(i);
           break;

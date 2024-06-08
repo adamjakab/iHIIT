@@ -15,9 +15,7 @@ class finishWorkoutView extends Ui.View {
 
     ctrl = App.getApp().getController();
     var currentWorkout = ctrl.getCurrentWorkout();
-    select_items = ApeTools.AppHelper.getDiscardOptions(
-      currentWorkout.isTerminated()
-    );
+    select_items = AppHelper.getDiscardOptions(currentWorkout.isTerminated());
     max_items = select_items.size();
   }
 
@@ -39,13 +37,7 @@ class finishWorkoutView extends Ui.View {
     text_height = 34;
     y = (height - text_height) / 2;
     dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-    dc.drawText(
-      width / 2,
-      y,
-      Gfx.FONT_SYSTEM_LARGE,
-      txt,
-      Gfx.TEXT_JUSTIFY_CENTER
-    );
+    dc.drawText(width / 2, y, Gfx.FONT_SYSTEM_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
 
     //CENTRAL LINES
     y = (height - text_height - 10) / 2;
