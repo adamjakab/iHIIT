@@ -16,7 +16,7 @@ var prop_map_workout_1 = {
 function stringPropertyTest(logger as Logger) as Boolean {
   var actual = PropertyHelper.getProperty("w1_title", "");
   var expected = "Workout 1";
-  Test.assert(actual instanceof String);
+  Test.assert(actual instanceof Lang.String);
   Test.assertEqualMessage(actual, expected, "Expected '" + actual + "' to be equal to: '" + expected + "'.");
   return true;
 }
