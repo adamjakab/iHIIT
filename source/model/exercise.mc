@@ -42,7 +42,7 @@ class exercise {
     self.workout_index = WOI;
     self.exercise_index = EI;
 
-    self.title = ExerciseHelper.getPropertyForWorkoutExcercise(self.workout_index, self.exercise_index, "title", "");
+    self.title = ExerciseHelper.getPropertyForWorkoutExcercise(self.workout_index, self.exercise_index, "");
     self.exercise_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "exercise_duration",

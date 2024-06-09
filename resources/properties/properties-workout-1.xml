@@ -1,7 +1,7 @@
 <resources>
 	<properties>
 		<!-- WORKOUT #1 -->
-		<property id="w1_title" type="string">Wourkout 1</property>
+		<property id="w1_title" type="string">Workout 1</property>
 		<property id="w1_enabled" type="boolean">true</property>
 		<property id="w1_exercise_duration" type="number">40</property>
 		<property id="w1_rest_duration" type="number">20</property>

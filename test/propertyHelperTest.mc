@@ -14,28 +14,28 @@ var prop_map_workout_1 = {
 
 (:test)
 function stringPropertyTest(logger as Logger) as Boolean {
-  var actual = PropertyHelper.getProperty("workout_1_title", "");
-  var expected = "Full Body";
-  Test.assert(actual instanceof Lang.String);
-  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
+  var actual = PropertyHelper.getProperty("w1_title", "");
+  var expected = "Workout 1";
+  Test.assert(actual instanceof String);
+  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "' to be equal to: '" + expected + "'.");
   return true;
 }
 
 (:test)
 function booleanPropertyTest(logger as Logger) as Boolean {
-  var actual = PropertyHelper.getProperty("workout_1_enabled", false);
+  var actual = PropertyHelper.getProperty("w1_enabled", false);
   var expected = true;
   Test.assert(actual instanceof Lang.Boolean);
-  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
+  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "' to be equal to: '" + expected + "'.");
   return true;
 }
 
 (:test)
 function numericPropertyTest(logger as Logger) as Boolean {
-  var actual = PropertyHelper.getProperty("workout_1_exercise_duration", 1);
-  var expected = 10;
+  var actual = PropertyHelper.getProperty("w1_exercise_duration", 1);
+  var expected = 40;
   Test.assert(actual instanceof Lang.Number);
-  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
+  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "' to be equal to: '" + expected + "'.");
   return true;
 }
 
@@ -43,7 +43,7 @@ function numericPropertyTest(logger as Logger) as Boolean {
 function missingPropertyTest(logger as Logger) as Boolean {
   var actual = PropertyHelper.getProperty("I_AM_NOT_HERE", true);
   var expected = true;
-  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
+  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "' to be equal to: '" + expected + "'.");
   return true;
 }
 
@@ -51,30 +51,6 @@ function missingPropertyTest(logger as Logger) as Boolean {
 function emptyStringPropertyTest(logger as Logger) as Boolean {
   var actual = PropertyHelper.getProperty("workout_5_exercise_20_title", "DEFAULT");
   var expected = "DEFAULT";
-  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
-  return true;
-}
-
-(:test)
-function oldToNewPropertyMappingTest(logger as Logger) as Boolean {
-  var actual, expected;
-  for (var i = 1; i <= 5; i += 1) {
-    actual = PropertyHelper.mapNewNameToOldName("w" + i + "_title");
-    expected = "workout_" + i + "_title";
-    Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
-
-    actual = PropertyHelper.mapNewNameToOldName("w" + i + "_enabled");
-    expected = "workout_" + i + "_enabled";
-    Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
-
-    actual = PropertyHelper.mapNewNameToOldName("w" + i + "_exercise_duration");
-    expected = "workout_" + i + "_exercise_duration";
-    Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
-
-    actual = PropertyHelper.mapNewNameToOldName("w" + i + "_rest_duration");
-    expected = "workout_" + i + "_rest_duration";
-    Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
-  }
-
+  Test.assertEqualMessage(actual, expected, "Expected '" + actual + "' to be equal to: '" + expected + "'.");
   return true;
 }

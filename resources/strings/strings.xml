@@ -25,12 +25,26 @@
 	    <string id="finish_workout_prompt_discard_and_exit">Discard</string>
 	    <string id="discard_workout_confirmation_prompt">Discard activity?</string>
 	    
-	    <!-- Settings -->
+	    <!-- Settings: Application -->
+		<string id="group_app_title">Application</string>
+		<string id="group_app_description">Application wide settings.</string>
+		<string id="use_sound">Use sound</string>
+		<string id="use_vibration">Use vibration</string>
+
+		<!-- Settings: Workouts -->
+		<string id="group_title_w1">Workout #1</string>
+		<string id="group_title_w2">Workout #2</string>
+		<string id="group_title_w3">Workout #3</string>
+		<string id="group_title_w4">Workout #4</string>
+		<string id="group_title_w5">Workout #5</string>
+		<string id="group_description">Define your exercises for this workout</string>
+
 		<string id="workout_title">Workout title</string>
 		<string id="workout_enabled">Enabled</string>
 		<string id="exercise_duration">Exercise duration(s)</string>
 		<string id="rest_duration">Rest duration(s)</string>
 		
+		<!-- Settings: Exercises -->
 		<string id="exercise_title_1">Exercise 1</string>
 		<string id="exercise_title_2">Exercise 2</string>
 		<string id="exercise_title_3">Exercise 3</string>

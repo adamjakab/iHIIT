@@ -1,6 +1,6 @@
 <resources>
 	<properties>
-		<!-- Application wide properties -->
+		<!-- Application properties -->
 		<property id="app_use_sound" type="boolean">true</property>
 		<property id="app_use_vibration" type="boolean">true</property>
     </properties>
