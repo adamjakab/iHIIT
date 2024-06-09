@@ -14,7 +14,13 @@ When you start the app on your watch it will propose you the configured workouts
 
 ## How to configure iHIIT?
 
-The easiest way to configure iHIIT is through the use of GarminExpress application installed on your PC. Select the `iHIIT` application from the list of IQ Apps installed on your device. Hit the `...` button next to the name of of the application to open the configuration window. Enter/change your configuration and click `Save`. Your configuration will be immediately transferred to your device.
+The easiest way to configure iHIIT is through the use the Garmin ConnctIQ application installed on your obile phone. Alternatively, you can use the GarminExpress application installed on your PC. 
+
+**On Garmin ConnctIQ:**
+Open "My Device Apps" and Select the `iHIIT` application from the list of apps installed on your device. Hit the `Settings` button to open the configuration window. Enter/change your configuration and click `Save`. Your configuration will be immediately transferred to your device.
+
+**On GarminExpress:**
+Select the `iHIIT` application from the list of IQ Apps installed on your device. Hit the `...` button next to the name of of the application to open the configuration window. Enter/change your configuration and click `Save`. Your configuration will be immediately transferred to your device.
 
 For each workout you can configure the following:
 

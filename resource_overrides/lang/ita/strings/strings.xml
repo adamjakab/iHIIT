@@ -1,7 +1,7 @@
 <resources>
 	<strings>
-		<string id="app_name">iHIIT</string>
-		<string id="empty"> </string>
+		<!-- <string id="app_name">iHIIT</string> -->
+		<!-- <string id="empty"> </string> -->
 	    <string id="yes">Sì</string>
 	    <string id="no">No</string>
 	    <string id="activity_saving">Salvataggio...</string>

@@ -54,3 +54,27 @@ function emptyStringPropertyTest(logger as Logger) as Boolean {
   Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
   return true;
 }
+
+(:test)
+function oldToNewPropertyMappingTest(logger as Logger) as Boolean {
+  var actual, expected;
+  for (var i = 1; i <= 5; i += 1) {
+    actual = PropertyHelper.mapNewNameToOldName("w" + i + "_title");
+    expected = "workout_" + i + "_title";
+    Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
+
+    actual = PropertyHelper.mapNewNameToOldName("w" + i + "_enabled");
+    expected = "workout_" + i + "_enabled";
+    Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
+
+    actual = PropertyHelper.mapNewNameToOldName("w" + i + "_exercise_duration");
+    expected = "workout_" + i + "_exercise_duration";
+    Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
+
+    actual = PropertyHelper.mapNewNameToOldName("w" + i + "_rest_duration");
+    expected = "workout_" + i + "_rest_duration";
+    Test.assertEqualMessage(actual, expected, "Expected '" + actual + "'' to be equal to: '" + expected + "'.");
+  }
+
+  return true;
+}

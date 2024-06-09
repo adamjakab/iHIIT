@@ -1,0 +1,29 @@
+<resources>
+	<properties>
+		<!-- WORKOUT #3 -->
+		<property id="w3_title" type="string"></property>
+		<property id="w3_enabled" type="boolean">false</property>
+		<property id="w3_exercise_duration" type="number">0</property>
+		<property id="w3_rest_duration" type="number">0</property>
+		<property id="w3_e1" type="string"></property>
+		<property id="w3_e2" type="string"></property>
+		<property id="w3_e3" type="string"></property>
+		<property id="w3_e4" type="string"></property>
+		<property id="w3_e5" type="string"></property>
+		<property id="w3_e6" type="string"></property>
+		<property id="w3_e7" type="string"></property>
+		<property id="w3_e8" type="string"></property>
+		<property id="w3_e9" type="string"></property>
+		<property id="w3_e10" type="string"></property>
+		<property id="w3_e11" type="string"></property>
+		<property id="w3_e12" type="string"></property>
+		<property id="w3_e13" type="string"></property>
+		<property id="w3_e14" type="string"></property>
+		<property id="w3_e15" type="string"></property>
+		<property id="w3_e16" type="string"></property>
+		<property id="w3_e17" type="string"></property>
+		<property id="w3_e18" type="string"></property>
+		<property id="w3_e19" type="string"></property>
+		<property id="w3_e20" type="string"></property>
+    </properties>
+</resources>
