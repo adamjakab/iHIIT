@@ -1,14 +1,14 @@
 <resources>
 	<settings>
 		<!-- Application -->
-		<group id="application" title="@Strings.group_app_title" description="@Strings.group_app_description">
+		<!-- <group id="application" title="@Strings.group_app_title" description="@Strings.group_app_description"> -->
 			<setting propertyKey="@Properties.app_use_sound" title="@Strings.use_sound">
 				<settingConfig type="boolean"/>
 			</setting>
 			<setting propertyKey="@Properties.app_use_vibration" title="@Strings.use_vibration">
 				<settingConfig type="boolean"/>
 			</setting>
-		</group>
+		<!-- </group> -->
 
 		<!-- WORKOUT #1 -->
 		<group id="workout_1" title="@Strings.group_title_w1" description="@Strings.group_description">

@@ -3,5 +3,135 @@
 		<!-- Application properties -->
 		<property id="app_use_sound" type="boolean">true</property>
 		<property id="app_use_vibration" type="boolean">true</property>
+
+		<!-- WORKOUT #1 -->
+		<property id="w1_title" type="string">Workout 1</property>
+		<property id="w1_enabled" type="boolean">true</property>
+		<property id="w1_exercise_duration" type="number">40</property>
+		<property id="w1_rest_duration" type="number">20</property>
+		<property id="w1_e1" type="string">Exercise 1</property>
+		<property id="w1_e2" type="string">Exercise 2</property>
+		<property id="w1_e3" type="string">Exercise 3</property>
+		<property id="w1_e4" type="string"></property>
+		<property id="w1_e5" type="string"></property>
+		<property id="w1_e6" type="string"></property>
+		<property id="w1_e7" type="string"></property>
+		<property id="w1_e8" type="string"></property>
+		<property id="w1_e9" type="string"></property>
+		<property id="w1_e10" type="string"></property>
+		<property id="w1_e11" type="string"></property>
+		<property id="w1_e12" type="string"></property>
+		<property id="w1_e13" type="string"></property>
+		<property id="w1_e14" type="string"></property>
+		<property id="w1_e15" type="string"></property>
+		<property id="w1_e16" type="string"></property>
+		<property id="w1_e17" type="string"></property>
+		<property id="w1_e18" type="string"></property>
+		<property id="w1_e19" type="string"></property>
+		<property id="w1_e20" type="string"></property>
+
+		<!-- WORKOUT #2 -->
+		<property id="w2_title" type="string"></property>
+		<property id="w2_enabled" type="boolean">false</property>
+		<property id="w2_exercise_duration" type="number">30</property>
+		<property id="w2_rest_duration" type="number">30</property>
+		<property id="w2_e1" type="string"></property>
+		<property id="w2_e2" type="string"></property>
+		<property id="w2_e3" type="string"></property>
+		<property id="w2_e4" type="string"></property>
+		<property id="w2_e5" type="string"></property>
+		<property id="w2_e6" type="string"></property>
+		<property id="w2_e7" type="string"></property>
+		<property id="w2_e8" type="string"></property>
+		<property id="w2_e9" type="string"></property>
+		<property id="w2_e10" type="string"></property>
+		<property id="w2_e11" type="string"></property>
+		<property id="w2_e12" type="string"></property>
+		<property id="w2_e13" type="string"></property>
+		<property id="w2_e14" type="string"></property>
+		<property id="w2_e15" type="string"></property>
+		<property id="w2_e16" type="string"></property>
+		<property id="w2_e17" type="string"></property>
+		<property id="w2_e18" type="string"></property>
+		<property id="w2_e19" type="string"></property>
+		<property id="w2_e20" type="string"></property>
+
+		<!-- WORKOUT #3 -->
+		<property id="w3_title" type="string"></property>
+		<property id="w3_enabled" type="boolean">false</property>
+		<property id="w3_exercise_duration" type="number">30</property>
+		<property id="w3_rest_duration" type="number">30</property>
+		<property id="w3_e1" type="string"></property>
+		<property id="w3_e2" type="string"></property>
+		<property id="w3_e3" type="string"></property>
+		<property id="w3_e4" type="string"></property>
+		<property id="w3_e5" type="string"></property>
+		<property id="w3_e6" type="string"></property>
+		<property id="w3_e7" type="string"></property>
+		<property id="w3_e8" type="string"></property>
+		<property id="w3_e9" type="string"></property>
+		<property id="w3_e10" type="string"></property>
+		<property id="w3_e11" type="string"></property>
+		<property id="w3_e12" type="string"></property>
+		<property id="w3_e13" type="string"></property>
+		<property id="w3_e14" type="string"></property>
+		<property id="w3_e15" type="string"></property>
+		<property id="w3_e16" type="string"></property>
+		<property id="w3_e17" type="string"></property>
+		<property id="w3_e18" type="string"></property>
+		<property id="w3_e19" type="string"></property>
+		<property id="w3_e20" type="string"></property>
+
+		<!-- WORKOUT #4 -->
+		<property id="w4_title" type="string"></property>
+		<property id="w4_enabled" type="boolean">false</property>
+		<property id="w4_exercise_duration" type="number">30</property>
+		<property id="w4_rest_duration" type="number">30</property>
+		<property id="w4_e1" type="string"></property>
+		<property id="w4_e2" type="string"></property>
+		<property id="w4_e3" type="string"></property>
+		<property id="w4_e4" type="string"></property>
+		<property id="w4_e5" type="string"></property>
+		<property id="w4_e6" type="string"></property>
+		<property id="w4_e7" type="string"></property>
+		<property id="w4_e8" type="string"></property>
+		<property id="w4_e9" type="string"></property>
+		<property id="w4_e10" type="string"></property>
+		<property id="w4_e11" type="string"></property>
+		<property id="w4_e12" type="string"></property>
+		<property id="w4_e13" type="string"></property>
+		<property id="w4_e14" type="string"></property>
+		<property id="w4_e15" type="string"></property>
+		<property id="w4_e16" type="string"></property>
+		<property id="w4_e17" type="string"></property>
+		<property id="w4_e18" type="string"></property>
+		<property id="w4_e19" type="string"></property>
+		<property id="w4_e20" type="string"></property>
+
+		<!-- WORKOUT #5 -->
+		<property id="w5_title" type="string"></property>
+		<property id="w5_enabled" type="boolean">false</property>
+		<property id="w5_exercise_duration" type="number">30</property>
+		<property id="w5_rest_duration" type="number">30</property>
+		<property id="w5_e1" type="string"></property>
+		<property id="w5_e2" type="string"></property>
+		<property id="w5_e3" type="string"></property>
+		<property id="w5_e4" type="string"></property>
+		<property id="w5_e5" type="string"></property>
+		<property id="w5_e6" type="string"></property>
+		<property id="w5_e7" type="string"></property>
+		<property id="w5_e8" type="string"></property>
+		<property id="w5_e9" type="string"></property>
+		<property id="w5_e10" type="string"></property>
+		<property id="w5_e11" type="string"></property>
+		<property id="w5_e12" type="string"></property>
+		<property id="w5_e13" type="string"></property>
+		<property id="w5_e14" type="string"></property>
+		<property id="w5_e15" type="string"></property>
+		<property id="w5_e16" type="string"></property>
+		<property id="w5_e17" type="string"></property>
+		<property id="w5_e18" type="string"></property>
+		<property id="w5_e19" type="string"></property>
+		<property id="w5_e20" type="string"></property>
     </properties>
 </resources>
