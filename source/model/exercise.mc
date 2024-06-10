@@ -13,6 +13,9 @@ class exercise {
   const DEFAULT_EXERCISE_DURATION = 40;
   const DEFAULT_REST_DURATION = 20;
 
+  private var app_use_sound = true;
+  private var app_use_vibration = true;
+
   private var workout_index;
   private var exercise_index;
 
@@ -53,6 +56,9 @@ class exercise {
       "rest_duration",
       exercise.DEFAULT_REST_DURATION
     );
+
+    self.app_use_sound = PropertyHelper.getProperty("app_use_sound", self.app_use_sound);
+    self.app_use_vibration = PropertyHelper.getProperty("app_use_vibration", self.app_use_vibration);
 
     self.exercise_timer = new Timer.Timer();
     self.exercise_elapsed = 0;
@@ -95,7 +101,7 @@ class exercise {
     var tone;
     var vibeData;
 
-    if (Attention has :playTone) {
+    if (self.app_use_sound && Attention has :playTone) {
       if (mode == "stop") {
         tone = Attention.TONE_STOP;
       } else {
@@ -104,7 +110,7 @@ class exercise {
       Attention.playTone(tone);
     }
 
-    if (Attention has :vibrate) {
+    if (self.app_use_vibration && Attention has :vibrate) {
       if (mode == "stop") {
         vibeData = vibeDataStop;
       } else {
