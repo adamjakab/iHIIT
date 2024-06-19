@@ -4,6 +4,7 @@ name: Test & Release & Deploy
 #   push:
 #     tags:
 #       - "v*"
+
 on:
   push
 
