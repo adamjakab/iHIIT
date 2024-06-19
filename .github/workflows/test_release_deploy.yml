@@ -12,10 +12,13 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        device: [fr235, fenix3, vivoactive4]
     steps:
       - uses: actions/checkout@v4
-      - name: Test application
+      - name: Test on device: ${{ matrix.device }}
         id: run_tests
         uses: adamjakab/action-connectiq-builder@v1
         with:
-          device: fr235
+          device: ${{ matrix.device }}
