@@ -1,12 +1,9 @@
 name: Test & Release & Deploy
 
-# on:
-#   push:
-#     tags:
-#       - "v*"
-#
 on:
-  push
+  push:
+    tags:
+      - "v*"
 
 jobs:
   test:
@@ -14,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        device: [fr235, fenix3, vivoactive4]
+        device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
     steps:
       - uses: actions/checkout@v4
       - name: Test on device ${{ matrix.device }}
