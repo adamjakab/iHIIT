@@ -7,15 +7,24 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: Test & Release
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
+        #device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
+        device: [fenix3, fr235]
     steps:
       - uses: actions/checkout@v4
       - name: Test on device ${{ matrix.device }}
         id: run_tests
         uses: adamjakab/action-connectiq-builder@v1
         with:
+          operation: TEST
           device: ${{ matrix.device }}
+      # - uses: ncipollo/release-action@v1
+      #   with:
+      #     artifacts: "bin/iHIIT.iq"
+      #     generateReleaseNotes: true
+      #     #bodyFile: "body.md"
+
+
