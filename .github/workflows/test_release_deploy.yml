@@ -21,6 +21,7 @@ jobs:
         with:
           operation: TEST
           device: ${{ matrix.device }}
+          certificate: ${{ secret.CONNECTIQ_DEVELOPER_KEY_BASE64}}
       # - uses: ncipollo/release-action@v1
       #   with:
       #     artifacts: "bin/iHIIT.iq"
