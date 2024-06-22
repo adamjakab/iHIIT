@@ -1,4 +1,4 @@
-name: Test & Release & Deploy
+name: Test & Release
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         #device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
-        device: [fr235]
+        device: [fenix3, fr235]
     steps:
       - uses: actions/checkout@v4
       - name: Test on device ${{ matrix.device }}
@@ -32,10 +32,8 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1
         with:
-          #name: ${{ github.ref_name }}
-          #artifacts: "bin/iHIIT.iq"
           generateReleaseNotes: true
-          prerelease: true
+          prerelease: false
       - name: Package App
         id: package_app
         uses: adamjakab/action-connectiq-builder@v1
@@ -43,13 +41,13 @@ jobs:
           operation: PACKAGE
           certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
           package_name: iHIIT_${{ github.ref_name }}.iq
-      - name: upload linux artifact
+      - name: Add Package to Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./bin/iHIIT_${{ github.ref_name }}.iq
+          asset_path: /github/workspace/bin/iHIIT_${{ github.ref_name }}.iq
           asset_name: iHIIT_${{ github.ref_name }}.iq
           asset_content_type: application/gzip
 
