@@ -45,7 +45,7 @@ jobs:
           echo "WORKSPACE/bin"
           ls -la "${{ github.workspace }}/bin"
           echo "WORK"
-          ls -la /home/runner/work"
+          ls -la /home/runner/work
           echo "PKG PATH: '${{ steps.package_app.outputs.package_path }}'"
           ls -la /github/workspace
       # - name: Create Release
