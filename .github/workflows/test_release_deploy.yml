@@ -1,32 +1,29 @@
 name: Test & Release
 
 on:
-  push
-
-# on:
-#   push:
-#     tags:
-#       - "v*"
+  push:
+    tags:
+      - "v*"
 
 jobs:
-  # test:
-  #   name: Test
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       # device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
-  #       device: [fr235]
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Test on device ${{ matrix.device }}
-  #       id: run_tests
-  #       uses: adamjakab/action-connectiq-builder@v1
-  #       with:
-  #         operation: TEST
-  #         device: ${{ matrix.device }}
-  #         certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
+        device: [fr235]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test on device ${{ matrix.device }}
+        id: run_tests
+        uses: adamjakab/action-connectiq-builder@v1
+        with:
+          operation: TEST
+          device: ${{ matrix.device }}
+          certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
   release:
-    # needs: test
+    needs: test
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -38,15 +35,14 @@ jobs:
           operation: PACKAGE
           certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
           package_name: iHIIT_${{ github.ref_name }}.iq
-      - name: Test Paths
+      - name: Check Package Path
         run: |
-          echo "PKG PATH: '${{ steps.package_app.outputs.package_path }}'"
-          echo "PKG: '${{ github.workspace }}/${{ steps.package_app.outputs.package_path }}'"
+          echo "Relative Package Path: '${{ steps.package_app.outputs.package_path }}'"
+          echo "Absolute Package Path: '${{ github.workspace }}/${{ steps.package_app.outputs.package_path }}'"
           ls -la "${{ github.workspace }}/${{ steps.package_app.outputs.package_path }}"
-      # - name: Create Release
-      #   id: create_release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     generateReleaseNotes: true
-      #     #artifacts: ./bin/iHIIT_${{ github.ref_name }}.iq
-      #     artifacts: ${{ steps.package_app.outputs.package_path }}
+      - name: Create New Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: true
+          artifacts: ${{ github.workspace }}/${{ steps.package_app.outputs.package_path }}
