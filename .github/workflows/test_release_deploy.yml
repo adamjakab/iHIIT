@@ -28,12 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Create Release
-        id: create_release
-        uses: ncipollo/release-action@v1
-        with:
-          generateReleaseNotes: true
-          prerelease: false
       - name: Package App
         id: package_app
         uses: adamjakab/action-connectiq-builder@v1
@@ -41,15 +35,21 @@ jobs:
           operation: PACKAGE
           certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
           package_name: iHIIT_${{ github.ref_name }}.iq
-      - name: Add Package to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          #asset_path - this should be the output of the adamjakab/action-connectiq-builder@v1 gh action!
-          #asset_path: ./bin/iHIIT_${{ github.ref_name }}.iq
-          asset_path: /home/runner/work/iHIIT/iHIIT/bin/iHIIT_${{ github.ref_name }}.iq
-          asset_name: iHIIT_${{ github.ref_name }}.iq
-          asset_content_type: application/gzip
+          generateReleaseNotes: true
+          artifacts: ./bin/iHIIT_${{ github.ref_name }}.iq
+      # - name: Add Package to Release
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ github.token }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     #asset_path - this should be the output of the adamjakab/action-connectiq-builder@v1 gh action!
+      #     #asset_path: ./bin/iHIIT_${{ github.ref_name }}.iq
+      #     asset_path: /home/runner/work/iHIIT/iHIIT/bin/iHIIT_${{ github.ref_name }}.iq
+      #     asset_name: iHIIT_${{ github.ref_name }}.iq
+      #     asset_content_type: application/gzip
 
