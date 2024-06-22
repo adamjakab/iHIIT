@@ -22,10 +22,12 @@ jobs:
           operation: TEST
           device: ${{ matrix.device }}
           certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
-      # - uses: ncipollo/release-action@v1
-      #   with:
-      #     artifacts: "bin/iHIIT.iq"
-      #     generateReleaseNotes: true
-      #     #bodyFile: "body.md"
+      - uses: ncipollo/release-action@v1
+        with:
+          #name: ${{ github.ref_name }}
+          #artifacts: "bin/iHIIT.iq"
+          generateReleaseNotes: true
+          prerelease: true
+          #bodyFile: "body.md"
 
 
