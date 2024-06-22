@@ -26,7 +26,7 @@ jobs:
   #         device: ${{ matrix.device }}
   #         certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
   release:
-    needs: test
+    # needs: test
     name: Release
     runs-on: ubuntu-latest
     steps:
