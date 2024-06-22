@@ -1,9 +1,12 @@
 name: Test & Release
 
 on:
-  push:
-    tags:
-      - "v*"
+  push
+
+# on:
+#   push:
+#     tags:
+#       - "v*"
 
 jobs:
   test:
@@ -12,7 +15,7 @@ jobs:
     strategy:
       matrix:
         # device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
-        device: [fenix3, fr235]
+        device: [fr235]
     steps:
       - uses: actions/checkout@v4
       - name: Test on device ${{ matrix.device }}
@@ -35,6 +38,10 @@ jobs:
           operation: PACKAGE
           certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
           package_name: iHIIT_${{ github.ref_name }}.iq
+      - name: Test Paths
+        run: |
+          echo "WORKSPACE: ${{ github.workspace }}"
+          ls -la "${{ github.workspace }}"
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1
