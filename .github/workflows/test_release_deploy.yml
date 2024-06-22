@@ -9,22 +9,22 @@ on:
 #       - "v*"
 
 jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
-        device: [fr235]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Test on device ${{ matrix.device }}
-        id: run_tests
-        uses: adamjakab/action-connectiq-builder@v1
-        with:
-          operation: TEST
-          device: ${{ matrix.device }}
-          certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
+  # test:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       # device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
+  #       device: [fr235]
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Test on device ${{ matrix.device }}
+  #       id: run_tests
+  #       uses: adamjakab/action-connectiq-builder@v1
+  #       with:
+  #         operation: TEST
+  #         device: ${{ matrix.device }}
+  #         certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
   release:
     needs: test
     name: Release
@@ -42,10 +42,13 @@ jobs:
         run: |
           echo "WORKSPACE: ${{ github.workspace }}"
           ls -la "${{ github.workspace }}"
-      - name: Create Release
-        id: create_release
-        uses: ncipollo/release-action@v1
-        with:
-          generateReleaseNotes: true
-          #artifacts: ./bin/iHIIT_${{ github.ref_name }}.iq
-          artifacts: ${{ steps.package_app.outputs.package_path }}
+          ls -la "${{ github.workspace }}"
+          echo "PKG PATH: '${{ steps.package_app.outputs.package_path }}'"
+          ls -la /github/workspace
+      # - name: Create Release
+      #   id: create_release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     generateReleaseNotes: true
+      #     #artifacts: ./bin/iHIIT_${{ github.ref_name }}.iq
+      #     artifacts: ${{ steps.package_app.outputs.package_path }}
