@@ -40,4 +40,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           generateReleaseNotes: true
-          artifacts: ./bin/iHIIT_${{ github.ref_name }}.iq
+          #artifacts: ./bin/iHIIT_${{ github.ref_name }}.iq
+          artifacts: ${{ steps.package_app.outputs.package_path }}
