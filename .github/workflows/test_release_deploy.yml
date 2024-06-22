@@ -28,11 +28,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ncipollo/release-action@v1
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+          with:
+            #name: ${{ github.ref_name }}
+            #artifacts: "bin/iHIIT.iq"
+            generateReleaseNotes: true
+            prerelease: true
+      - name: Package App
+        id: package_app
+        uses: adamjakab/action-connectiq-builder@v1
         with:
-          #name: ${{ github.ref_name }}
-          #artifacts: "bin/iHIIT.iq"
-          generateReleaseNotes: true
-          prerelease: true
-
+          operation: PACKAGE
+          certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
+          package_name: iHIIT_${{ github.ref_name }}.iq
+      - name: upload linux artifact
+        uses: actions/upload-release-asset@v1
+        # env:
+        #   GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/iHIIT_${{ github.ref_name }}.iq
+          asset_name: iHIIT_${{ github.ref_name }}.iq
+          asset_content_type: application/gzip
 
