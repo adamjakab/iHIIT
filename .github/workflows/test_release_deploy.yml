@@ -47,7 +47,8 @@ jobs:
           echo "WORK"
           ls -la /home/runner/work
           echo "PKG PATH: '${{ steps.package_app.outputs.package_path }}'"
-          ls -la /github/workspace
+          echo "PRINTENV"
+          printenv
       # - name: Create Release
       #   id: create_release
       #   uses: ncipollo/release-action@v1
