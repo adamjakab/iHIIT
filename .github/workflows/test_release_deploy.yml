@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        #  device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
-        device: [d2bravo, fr235]
+        device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
+        device: [fr235]
     steps:
       - uses: actions/checkout@v4
       - name: Test on device ${{ matrix.device }}
