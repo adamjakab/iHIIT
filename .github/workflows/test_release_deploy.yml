@@ -40,9 +40,12 @@ jobs:
           package_name: iHIIT_${{ github.ref_name }}.iq
       - name: Test Paths
         run: |
-          echo "WORKSPACE: ${{ github.workspace }}"
+          echo "WORKSPACE:"
           ls -la "${{ github.workspace }}"
-          ls -la "${{ github.workspace }}"
+          echo "WORKSPACE/bin"
+          ls -la "${{ github.workspace }}/bin"
+          echo "WORK"
+          ls -la /home/runner/work"
           echo "PKG PATH: '${{ steps.package_app.outputs.package_path }}'"
           ls -la /github/workspace
       # - name: Create Release
