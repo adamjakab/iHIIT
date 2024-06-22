@@ -47,7 +47,9 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /github/workspace/bin/iHIIT_${{ github.ref_name }}.iq
+          #asset_path - this should be the output of the adamjakab/action-connectiq-builder@v1 gh action!
+          #asset_path: ./bin/iHIIT_${{ github.ref_name }}.iq
+          asset_path: /home/runner/work/iHIIT/iHIIT/bin/iHIIT_${{ github.ref_name }}.iq
           asset_name: iHIIT_${{ github.ref_name }}.iq
           asset_content_type: application/gzip
 
