@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        #device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
+        # device: [d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr735xt, vivoactive4]
         device: [fenix3, fr235]
     steps:
       - uses: actions/checkout@v4
@@ -41,15 +41,3 @@ jobs:
         with:
           generateReleaseNotes: true
           artifacts: ./bin/iHIIT_${{ github.ref_name }}.iq
-      # - name: Add Package to Release
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ github.token }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #     #asset_path - this should be the output of the adamjakab/action-connectiq-builder@v1 gh action!
-      #     #asset_path: ./bin/iHIIT_${{ github.ref_name }}.iq
-      #     asset_path: /home/runner/work/iHIIT/iHIIT/bin/iHIIT_${{ github.ref_name }}.iq
-      #     asset_name: iHIIT_${{ github.ref_name }}.iq
-      #     asset_content_type: application/gzip
-
