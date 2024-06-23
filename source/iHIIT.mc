@@ -1,4 +1,5 @@
 using Toybox.Application as App;
+using Toybox.System as Sys;
 
 /**
  * ENTRY POINT
@@ -14,15 +15,9 @@ class iHIIT extends App.AppBase {
     controller = new $.iHIITController(1);
   }
 
-  // onStart() is called on application start up
-  //public function onStart(state){}
-
-  // onStop() is called when your application is exiting
-  //public function onStop(state){}
-
   // Return the initial view of your application here
   public function getInitialView() {
-    return [new selectWorkoutView(), new selectWorkoutDelegate()];
+    return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
 
     //TEMPORARY - SKIP workout selection
     //controller.beginCurrentWorkout();
@@ -30,6 +25,16 @@ class iHIIT extends App.AppBase {
 
     //TEMPORARY - SKIP workout
     //return [ new finishWorkoutView(), new finishWorkoutDelegate() ];
+  }
+
+  // Hook called on application start up
+  public function onStart(state) {
+    Sys.println("App:::START");
+  }
+
+  // Hook called on application stop
+  public function onStop(state) {
+    Sys.println("App:::STOP");
   }
 
   public function getController() {

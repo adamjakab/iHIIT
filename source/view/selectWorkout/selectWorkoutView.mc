@@ -4,7 +4,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 
-class selectWorkoutView extends Ui.View {
+class SelectWorkoutView extends Ui.View {
   private var app;
 
   // Strings
