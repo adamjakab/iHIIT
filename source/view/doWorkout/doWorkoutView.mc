@@ -4,7 +4,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 
-class doWorkoutView extends Ui.View {
+class DoWorkoutView extends Ui.View {
   const LAYOUT_NONE = 0;
   const LAYOUT_REST = 1;
   const LAYOUT_WORK = 2;

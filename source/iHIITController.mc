@@ -31,7 +31,7 @@ class iHIITController {
 
     Sys.println("CTRL - START");
     currentWorkout.startRecording();
-    Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
+    Ui.pushView(new DoWorkoutView(), new DoWorkoutDelegate(), Ui.SLIDE_UP);
   }
 
   /*
@@ -51,8 +51,8 @@ class iHIITController {
       currentWorkout.stopRecording();
     }
     Ui.pushView(
-      new finishWorkoutView(),
-      new finishWorkoutDelegate(),
+      new FinishWorkoutView(),
+      new FinishWorkoutDelegate(),
       Ui.SLIDE_UP
     );
   }
@@ -93,8 +93,8 @@ class iHIITController {
   function discard() {
     Sys.println("CTRL - DISCARD");
     Ui.pushView(
-      new discardConfirmationView(),
-      new discardConfirmationDelegate(),
+      new DiscardConfirmationView(),
+      new DiscardConfirmationDelegate(),
       Ui.SLIDE_UP
     );
   }
@@ -117,7 +117,7 @@ class iHIITController {
   // Save
   public function save() {
     Sys.println("CTRL - SAVE");
-    Ui.pushView(new saveWorkoutView(), new saveWorkoutDelegate(), Ui.SLIDE_UP);
+    Ui.pushView(new SaveWorkoutView(), new SaveWorkoutDelegate(), Ui.SLIDE_UP);
 
     currentWorkout.saveRecording();
 

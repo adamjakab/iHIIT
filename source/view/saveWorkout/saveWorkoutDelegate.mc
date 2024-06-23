@@ -2,7 +2,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Application as App;
 
-class saveWorkoutDelegate extends Ui.BehaviorDelegate {
+class SaveWorkoutDelegate extends Ui.BehaviorDelegate {
   private var ctrl, currentWorkout;
 
   public function initialize() {

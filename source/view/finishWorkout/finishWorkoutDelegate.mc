@@ -1,7 +1,7 @@
 using Toybox.WatchUi as Ui;
 using Toybox.Application as App;
 
-class finishWorkoutDelegate extends Ui.BehaviorDelegate {
+class FinishWorkoutDelegate extends Ui.BehaviorDelegate {
   private var ctrl, currentWorkout;
 
   private var select_items;
