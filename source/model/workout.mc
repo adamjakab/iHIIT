@@ -18,6 +18,9 @@ class Workout {
   const STATE_SAVED = 4; //Save completed - Workout can be disposed
   const STATE_IN_REPETITION_PAUSE = 5; // In pause between two repetitions
 
+  private var app_use_sound = true;
+  private var app_use_vibration = true;
+
   private var workout_index;
 
   private var title;
@@ -73,6 +76,14 @@ class Workout {
       "repetition_pause",
       0
     );
+    self.app_use_sound = PropertyHelper.getProperty(
+      "app_use_sound",
+      self.app_use_sound
+    );
+    self.app_use_vibration = PropertyHelper.getProperty(
+      "app_use_vibration",
+      self.app_use_vibration
+    );
 
     self.state = STATE_NOT_STARTED;
     self.exercise_count = ExerciseHelper.getExerciseCount(self.workout_index);
@@ -127,7 +138,7 @@ class Workout {
       ])
     );
 
-    if (Attention has :playTone) {
+    if (self.app_use_sound && Attention has :playTone) {
       Attention.playTone(Attention.TONE_INTERVAL_ALERT);
     }
 

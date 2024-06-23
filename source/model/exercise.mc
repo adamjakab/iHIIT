@@ -13,6 +13,9 @@ class Exercise {
   const DEFAULT_REST_DURATION = 20;
   const COUNTDOWN_SECONDS = 3;
 
+  private var app_use_sound = true;
+  private var app_use_vibration = true;
+
   private var workout_index;
   private var exercise_index;
 
@@ -58,6 +61,15 @@ class Exercise {
       self.workout_index,
       "rest_duration",
       Exercise.DEFAULT_REST_DURATION
+    );
+
+    self.app_use_sound = PropertyHelper.getProperty(
+      "app_use_sound",
+      self.app_use_sound
+    );
+    self.app_use_vibration = PropertyHelper.getProperty(
+      "app_use_vibration",
+      self.app_use_vibration
     );
 
     self.exercise_timer = new Timer.Timer();
@@ -112,11 +124,11 @@ class Exercise {
     }
     //Sys.println("COUNTDOWN: " + time_to_phase_end);
 
-    if (Attention has :playTone) {
+    if (self.app_use_sound && Attention has :playTone) {
       Attention.playTone(Attention.TONE_LOUD_BEEP);
     }
 
-    if (Attention has :vibrate) {
+    if (self.app_use_vibration && Attention has :vibrate) {
       Attention.vibrate(vibeDataCountdown);
     }
   }
@@ -125,7 +137,7 @@ class Exercise {
     var tone;
     var vibeData;
 
-    if (Attention has :playTone) {
+    if (self.app_use_sound && Attention has :playTone) {
       if (mode == "stop") {
         tone = Attention.TONE_STOP;
       } else {
@@ -134,7 +146,7 @@ class Exercise {
       Attention.playTone(tone);
     }
 
-    if (Attention has :vibrate) {
+    if (self.app_use_vibration && Attention has :vibrate) {
       if (mode == "stop") {
         vibeData = vibeDataStop;
       } else {
