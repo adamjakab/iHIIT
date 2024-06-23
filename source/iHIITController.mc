@@ -13,8 +13,8 @@ class iHIITController {
   public var discardConfirmationSelection = 0;
 
   // Initialize the controller
-  public function initialize() {
-    currentWorkout = new $.workout(1);
+  public function initialize(WOI) {
+    currentWorkout = new $.Workout(WOI);
     finish_workout_option = 0;
   }
 
@@ -29,7 +29,7 @@ class iHIITController {
 
     Sys.println("CTRL - START");
     currentWorkout.startRecording();
-    Ui.pushView(new doWorkoutView(), new doWorkoutDelegate(), Ui.SLIDE_UP);
+    Ui.pushView(new DoWorkoutView(), new DoWorkoutDelegate(), Ui.SLIDE_UP);
   }
 
   /*
@@ -46,7 +46,7 @@ class iHIITController {
     if (currentWorkout.isRunning()) {
       currentWorkout.stopRecording();
     }
-    Ui.pushView(new finishWorkoutView(), new finishWorkoutDelegate(), Ui.SLIDE_UP);
+    Ui.pushView(new FinishWorkoutView(), new FinishWorkoutDelegate(), Ui.SLIDE_UP);
   }
 
   /*
@@ -82,19 +82,17 @@ class iHIITController {
   // Discard - Ask confirmation
   function discard() {
     Sys.println("CTRL - DISCARD");
-    Ui.pushView(new discardConfirmationView(), new discardConfirmationDelegate(), Ui.SLIDE_UP);
+    Ui.pushView(new DiscardConfirmationView(), new DiscardConfirmationDelegate(), Ui.SLIDE_UP);
   }
 
   // Discard & go back to workout selection
   function discard_confirmed() {
     currentWorkout.discardRecording();
-    var WOI = currentWorkout.getWorkoutIndex();
-    currentWorkout = new $.workout(WOI);
+    initialize(currentWorkout.getWorkoutIndex());
 
     Ui.popView(Ui.SLIDE_DOWN);
     Ui.popView(Ui.SLIDE_DOWN);
     Ui.popView(Ui.SLIDE_DOWN);
-    //Sys.exit();
   }
 
   // Discard & go back to workout selection
@@ -104,32 +102,28 @@ class iHIITController {
 
   // Save
   public function save() {
-    var str_activity_saving = Ui.loadResource(Rez.Strings.activity_saving);
-    var str_activity_saved = Ui.loadResource(Rez.Strings.activity_saved);
-
     Sys.println("CTRL - SAVE");
-
-    var progressBar = new Ui.ProgressBar(str_activity_saving, null);
-    Ui.pushView(progressBar, new saveWorkoutDelegate(), Ui.SLIDE_UP);
+    Ui.pushView(new SaveWorkoutView(), new SaveWorkoutDelegate(), Ui.SLIDE_UP);
 
     currentWorkout.saveRecording();
 
-    progressBar.setDisplayString(str_activity_saved);
-    progressBar.setProgress(0.0);
-
     saveTimer = new Timer.Timer();
-    saveTimer.start(method(:saveDone), 3000, false);
+    saveTimer.start(method(:saveDone), 5000, false);
   }
 
   public function saveDone() as Void {
-    var WOI = currentWorkout.getWorkoutIndex();
-    currentWorkout = new $.workout(WOI);
+    if (saveTimer instanceof Timer.Timer) {
+      saveTimer.stop();
+      saveTimer = null;
+    }
+    initialize(currentWorkout.getWorkoutIndex());
 
     Ui.popView(Ui.SLIDE_DOWN);
     Ui.popView(Ui.SLIDE_DOWN);
     Ui.popView(Ui.SLIDE_DOWN);
   }
 
+  //@todo: this method needs to be rewritten
   function setNextWorkout() {
     var i;
     var workoutFound = false;
@@ -138,7 +132,7 @@ class iHIITController {
     for (i = WOI + 1; i <= maxWorkoutTestCount; i++) {
       if (WorkoutHelper.isSelectableWorkout(i)) {
         workoutFound = true;
-        currentWorkout = new $.workout(i);
+        currentWorkout = new $.Workout(i);
         break;
       }
     }
@@ -147,15 +141,18 @@ class iHIITController {
       for (i = 1; i <= WOI; i++) {
         if (WorkoutHelper.isSelectableWorkout(i)) {
           workoutFound = true;
-          currentWorkout = new $.workout(i);
+          currentWorkout = new $.Workout(i);
           break;
         }
       }
     }
 
+    Sys.println("WORKOUT(" + currentWorkout.getWorkoutIndex() + ") SET TO: " + currentWorkout.getTitle());
+
     return i;
   }
 
+  //@todo: this method needs to be rewritten
   function setPreviousWorkout() {
     var i;
     var workoutFound = false;
@@ -164,7 +161,7 @@ class iHIITController {
     for (i = WOI - 1; i > 0; i--) {
       if (WorkoutHelper.isSelectableWorkout(i)) {
         workoutFound = true;
-        currentWorkout = new $.workout(i);
+        currentWorkout = new $.Workout(i);
         break;
       }
     }
@@ -173,16 +170,18 @@ class iHIITController {
       for (i = maxWorkoutTestCount; i >= WOI; i--) {
         if (WorkoutHelper.isSelectableWorkout(i)) {
           workoutFound = true;
-          currentWorkout = new $.workout(i);
+          currentWorkout = new $.Workout(i);
           break;
         }
       }
     }
 
+    Sys.println("WORKOUT(" + currentWorkout.getWorkoutIndex() + ") SET TO: " + currentWorkout.getTitle());
+
     return i;
   }
 
-  public function getCurrentWorkout() {
+  public function getCurrentWorkout() as $.Workout {
     return currentWorkout;
   }
 

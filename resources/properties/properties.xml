@@ -1,14 +1,17 @@
 <resources>
+	
 	<properties>
 		<!-- Application properties -->
 		<property id="app_use_sound" type="boolean">true</property>
 		<property id="app_use_vibration" type="boolean">true</property>
 
 		<!-- WORKOUT #1 -->
-		<property id="w1_title" type="string">Workout 1</property>
+		<property id="w1_title" type="string">Full Body</property>
 		<property id="w1_enabled" type="boolean">true</property>
 		<property id="w1_exercise_duration" type="number">40</property>
 		<property id="w1_rest_duration" type="number">20</property>
+		<property id="w1_repetitions" type="number">1</property>
+		<property id="w1_repetition_pause" type="number">60</property>
 		<property id="w1_e1" type="string">Exercise 1</property>
 		<property id="w1_e2" type="string">Exercise 2</property>
 		<property id="w1_e3" type="string">Exercise 3</property>
@@ -29,12 +32,14 @@
 		<property id="w1_e18" type="string"></property>
 		<property id="w1_e19" type="string"></property>
 		<property id="w1_e20" type="string"></property>
-
+		
 		<!-- WORKOUT #2 -->
-		<property id="w2_title" type="string"></property>
-		<property id="w2_enabled" type="boolean">false</property>
-		<property id="w2_exercise_duration" type="number">30</property>
-		<property id="w2_rest_duration" type="number">30</property>
+		<property id="w2_title" type="string">Abdominals</property>
+		<property id="w2_enabled" type="boolean">true</property>
+		<property id="w2_exercise_duration" type="number">20</property>
+		<property id="w2_rest_duration" type="number">10</property>
+		<property id="w2_repetitions" type="number">3</property>
+		<property id="w2_repetition_pause" type="number">60</property>
 		<property id="w2_e1" type="string"></property>
 		<property id="w2_e2" type="string"></property>
 		<property id="w2_e3" type="string"></property>
@@ -55,12 +60,14 @@
 		<property id="w2_e18" type="string"></property>
 		<property id="w2_e19" type="string"></property>
 		<property id="w2_e20" type="string"></property>
-
-		<!-- WORKOUT #3 -->
+		
+		<!-- WORKOUT #3 -->	
 		<property id="w3_title" type="string"></property>
 		<property id="w3_enabled" type="boolean">false</property>
-		<property id="w3_exercise_duration" type="number">30</property>
-		<property id="w3_rest_duration" type="number">30</property>
+		<property id="w3_exercise_duration" type="number">40</property>
+		<property id="w3_rest_duration" type="number">20</property>
+		<property id="w3_repetitions" type="number">1</property>
+		<property id="w3_repetition_pause" type="number">120</property>
 		<property id="w3_e1" type="string"></property>
 		<property id="w3_e2" type="string"></property>
 		<property id="w3_e3" type="string"></property>
@@ -81,12 +88,14 @@
 		<property id="w3_e18" type="string"></property>
 		<property id="w3_e19" type="string"></property>
 		<property id="w3_e20" type="string"></property>
-
+		
 		<!-- WORKOUT #4 -->
 		<property id="w4_title" type="string"></property>
 		<property id="w4_enabled" type="boolean">false</property>
-		<property id="w4_exercise_duration" type="number">30</property>
-		<property id="w4_rest_duration" type="number">30</property>
+		<property id="w4_exercise_duration" type="number">40</property>
+		<property id="w4_rest_duration" type="number">20</property>
+		<property id="w4_repetitions" type="number">1</property>
+		<property id="w4_repetition_pause" type="number">120</property>
 		<property id="w4_e1" type="string"></property>
 		<property id="w4_e2" type="string"></property>
 		<property id="w4_e3" type="string"></property>
@@ -107,12 +116,14 @@
 		<property id="w4_e18" type="string"></property>
 		<property id="w4_e19" type="string"></property>
 		<property id="w4_e20" type="string"></property>
-
+		
 		<!-- WORKOUT #5 -->
 		<property id="w5_title" type="string"></property>
 		<property id="w5_enabled" type="boolean">false</property>
-		<property id="w5_exercise_duration" type="number">30</property>
-		<property id="w5_rest_duration" type="number">30</property>
+		<property id="w5_exercise_duration" type="number">40</property>
+		<property id="w5_rest_duration" type="number">20</property>
+		<property id="w5_repetitions" type="number">1</property>
+		<property id="w5_repetition_pause" type="number">120</property>
 		<property id="w5_e1" type="string"></property>
 		<property id="w5_e2" type="string"></property>
 		<property id="w5_e3" type="string"></property>
@@ -133,5 +144,5 @@
 		<property id="w5_e18" type="string"></property>
 		<property id="w5_e19" type="string"></property>
 		<property id="w5_e20" type="string"></property>
-    </properties>
+	</properties>
 </resources>

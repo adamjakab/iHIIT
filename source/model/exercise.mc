@@ -2,16 +2,16 @@ using Toybox.Application as App;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
-using Toybox.Math as Math;
 using Toybox.WatchUi as Ui;
 using Toybox.Attention as Attention;
 
 /**
  * Model: exercise
  */
-class exercise {
+class Exercise {
   const DEFAULT_EXERCISE_DURATION = 40;
   const DEFAULT_REST_DURATION = 20;
+  const COUNTDOWN_SECONDS = 3;
 
   private var app_use_sound = true;
   private var app_use_vibration = true;
@@ -29,14 +29,16 @@ class exercise {
   private var is_in_rest_mode = true;
 
   private var vibeDataStart = [
-    new Attention.VibeProfile(75, 500),
+    new Attention.VibeProfile(75, 1000),
     new Attention.VibeProfile(0, 500),
-    new Attention.VibeProfile(75, 500),
+    new Attention.VibeProfile(75, 1000),
     new Attention.VibeProfile(0, 500),
     new Attention.VibeProfile(100, 1000),
   ];
 
   private var vibeDataStop = [new Attention.VibeProfile(100, 2000)];
+
+  private var vibeDataCountdown = [new Attention.VibeProfile(100, 500)];
 
   // Initialize
   // @param WOI - Workout index
@@ -49,12 +51,12 @@ class exercise {
     self.exercise_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "exercise_duration",
-      exercise.DEFAULT_EXERCISE_DURATION
+      Exercise.DEFAULT_EXERCISE_DURATION
     );
     self.rest_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "rest_duration",
-      exercise.DEFAULT_REST_DURATION
+      Exercise.DEFAULT_REST_DURATION
     );
 
     self.app_use_sound = PropertyHelper.getProperty("app_use_sound", self.app_use_sound);
@@ -89,11 +91,35 @@ class exercise {
     }
     self.is_in_rest_mode = isItRestTime();
 
+    Ui.requestUpdate();
+    countdownBeeps();
+
     if (isExerciseTimeFinished()) {
       self.exercise_timer.stop();
       self.exercise_timer = null;
-      //alert();
       App.getApp().getController().getCurrentWorkout().setNextExercise(true);
+    }
+  }
+
+  private function countdownBeeps() {
+    var time_to_phase_end = 0;
+    if (self.is_in_rest_mode) {
+      time_to_phase_end = self.getRestRemainingSeconds();
+    } else {
+      time_to_phase_end = self.getExerciseRemainingSeconds();
+    }
+
+    if (time_to_phase_end > self.COUNTDOWN_SECONDS || time_to_phase_end == 0) {
+      return;
+    }
+    //Sys.println("COUNTDOWN: " + time_to_phase_end);
+
+    if (self.app_use_sound && Attention has :playTone) {
+      Attention.playTone(Attention.TONE_LOUD_BEEP);
+    }
+
+    if (self.app_use_vibration && Attention has :vibrate) {
+      Attention.vibrate(vibeDataCountdown);
     }
   }
 
@@ -126,8 +152,7 @@ class exercise {
   }
 
   function isExerciseTimeFinished() {
-    //return getExerciseRemainingSeconds() > 0;
-    return self.exercise_elapsed > self.exercise_duration + self.rest_duration;
+    return self.exercise_elapsed >= self.exercise_duration + self.rest_duration;
   }
 
   function getRestElapsedSeconds() {
@@ -139,7 +164,7 @@ class exercise {
   }
 
   function getExerciseElapsedSeconds() {
-    return isItRestTime() ? 0 : self.exercise_elapsed - self.rest_duration /* - 1*/;
+    return isItRestTime() ? 0 : self.exercise_elapsed - self.rest_duration;
   }
 
   function getExerciseRemainingSeconds() {

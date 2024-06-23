@@ -8,13 +8,13 @@ You can install the app on your device through the IQ app store. This is a [dire
 
 ## How does it work?
 
-You can configure up to 5 workouts, each of which can contain up to 20 exercises. Each workout will have an exercise duration (by default 40 seconds) and a rest duration (by default 20 seconds). Just name your workout, add the name of the exercises and get ready to sweat.
+You can configure up to 5 workouts. Each workout can contain up to 20 exercises with a set exercise duration (by default 40 seconds) and a rest duration (by default 20 seconds). Additionally, you can configure how many times the workout will repeat the exercises (repetitions) and the time to pause between repetitions.
 
 When you start the app on your watch it will propose you the configured workouts. You can scroll through the exercises with the up/down buttons and select one with the activity button. Once selected, iHIIT will lead you through your configured exercises alternating between exercise and rest periods.
 
 ## How to configure iHIIT?
 
-The easiest way to configure iHIIT is through the use the Garmin ConnctIQ application installed on your obile phone. Alternatively, you can use the GarminExpress application installed on your PC. 
+The easiest way to configure iHIIT is through the use the Garmin ConnctIQ application installed on your mobile phone. Alternatively, you can use the GarminExpress application installed on your PC. 
 
 **On Garmin ConnctIQ:**
 Open "My Device Apps" and Select the `iHIIT` application from the list of apps installed on your device. Hit the `Settings` button to open the configuration window. Enter/change your configuration and click `Save`. Your configuration will be immediately transferred to your device.
@@ -28,8 +28,8 @@ For each workout you can configure the following:
 - Enabled (Yes/No)
 - Exercise duration (seconds)
 - Rest duration between exercises (seconds)
-- Number of repetitions (the number of times the full set of exercises will be repeated)
-- Pause between repetitions (seconds) 
+- Number of repetitions (number of times the set of exercises will be repeated)
+- Pause between repetitions (seconds)
 - Name of exercises (1-20)
 
 Exercises must be consecutive. The first blank exercise title will indicate the end of the workout.
@@ -59,3 +59,15 @@ List of resources:
 
 - https://developer.garmin.com/connect-iq/api-docs/Toybox/Lang.html
 - https://developer.garmin.com/connect-iq/core-topics/persisting-data/
+
+
+## Contributions
+
+Always welcome!
+
+## Testing
+
+```bash
+docker pull ghcr.io/adamjakab/connectiq-builder:latest
+docker run --rm -v /mnt/Code/Garmin/iHIIT:/iHIIT -w /iHIIT ghcr.io/adamjakab/connectiq-builder:latest /scripts/test.sh --type-check-level=2
+```

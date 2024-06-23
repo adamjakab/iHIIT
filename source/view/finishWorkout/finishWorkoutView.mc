@@ -4,7 +4,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 
-class finishWorkoutView extends Ui.View {
+class FinishWorkoutView extends Ui.View {
   private var ctrl;
 
   private var select_items;
