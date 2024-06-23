@@ -44,18 +44,17 @@ class exercise {
     self.workout_index = WOI;
     self.exercise_index = EI;
 
-    self.title = ApeTools.ExerciseHelper.getPropertyForWorkoutExcercise(
+    self.title = ExerciseHelper.getPropertyForWorkoutExcercise(
       self.workout_index,
       self.exercise_index,
-      "title",
       ""
     );
-    self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(
+    self.exercise_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "exercise_duration",
       exercise.DEFAULT_EXERCISE_DURATION
     );
-    self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(
+    self.rest_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "rest_duration",
       exercise.DEFAULT_REST_DURATION

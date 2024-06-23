@@ -14,9 +14,7 @@ class finishWorkoutDelegate extends Ui.BehaviorDelegate {
     ctrl = App.getApp().getController();
     currentWorkout = ctrl.getCurrentWorkout();
 
-    select_items = ApeTools.AppHelper.getDiscardOptions(
-      currentWorkout.isTerminated()
-    );
+    select_items = AppHelper.getDiscardOptions(currentWorkout.isTerminated());
     max_items = select_items.size();
     item_keys = select_items.keys();
     current_key = 0;

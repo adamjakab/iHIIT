@@ -144,7 +144,7 @@ class iHIITController {
     var WOI = currentWorkout.getWorkoutIndex();
 
     for (i = WOI + 1; i <= maxWorkoutTestCount; i++) {
-      if (ApeTools.WorkoutHelper.isSelectableWorkout(i)) {
+      if (WorkoutHelper.isSelectableWorkout(i)) {
         workoutFound = true;
         currentWorkout = new $.workout(i);
         break;
@@ -153,7 +153,7 @@ class iHIITController {
 
     if (workoutFound == false) {
       for (i = 1; i <= WOI; i++) {
-        if (ApeTools.WorkoutHelper.isSelectableWorkout(i)) {
+        if (WorkoutHelper.isSelectableWorkout(i)) {
           workoutFound = true;
           currentWorkout = new $.workout(i);
           break;
@@ -178,7 +178,7 @@ class iHIITController {
     var WOI = currentWorkout.getWorkoutIndex();
 
     for (i = WOI - 1; i > 0; i--) {
-      if (ApeTools.WorkoutHelper.isSelectableWorkout(i)) {
+      if (WorkoutHelper.isSelectableWorkout(i)) {
         workoutFound = true;
         currentWorkout = new $.workout(i);
         break;
@@ -187,7 +187,7 @@ class iHIITController {
 
     if (workoutFound == false) {
       for (i = maxWorkoutTestCount; i >= WOI; i--) {
-        if (ApeTools.WorkoutHelper.isSelectableWorkout(i)) {
+        if (WorkoutHelper.isSelectableWorkout(i)) {
           workoutFound = true;
           currentWorkout = new $.workout(i);
           break;

@@ -46,38 +46,36 @@ class workout {
   // @param WOI - Workout index
   function initialize(WOI) {
     self.workout_index = WOI;
-    self.title = ApeTools.WorkoutHelper.getPropertyForWorkout(
+    self.title = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "title",
       ""
     );
     // self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", exercise.DEFAULT_EXERCISE_DURATION);
     // self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", exercise.DEFAULT_REST_DURATION);
-    self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(
+    self.exercise_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "exercise_duration",
       40
     );
-    self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(
+    self.rest_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "rest_duration",
       20
     );
-    self.repetitions = ApeTools.WorkoutHelper.getPropertyForWorkout(
+    self.repetitions = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "repetitions",
       1
     );
-    self.repetition_pause = ApeTools.WorkoutHelper.getPropertyForWorkout(
+    self.repetition_pause = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "repetition_pause",
       0
     );
 
     self.state = STATE_NOT_STARTED;
-    self.exercise_count = ApeTools.ExerciseHelper.getExerciseCount(
-      self.workout_index
-    );
+    self.exercise_count = ExerciseHelper.getExerciseCount(self.workout_index);
     self.times_repeated = 1;
     self.workout_elapsed_seconds = 0;
 
@@ -313,7 +311,7 @@ class workout {
 
   function getFormattedWorkoutDuration() {
     var total = self.getCalculatedWorkoutDuration();
-    return ApeTools.AppHelper.getFormattedTime(total);
+    return AppHelper.getFormattedTime(total);
   }
 
   function getCalculatedRepetitionDuration() {
@@ -338,7 +336,7 @@ class workout {
   function getElapsedSeconds(format) {
     var answer = self.workout_elapsed_seconds;
     if (format == true) {
-      answer = ApeTools.AppHelper.getFormattedTime(answer);
+      answer = AppHelper.getFormattedTime(answer);
     }
     return answer;
   }
