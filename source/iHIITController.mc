@@ -14,7 +14,7 @@ class iHIITController {
 
   // Initialize the controller
   public function initialize(WOI) {
-    currentWorkout = new $.workout(WOI);
+    currentWorkout = new $.Workout(WOI);
     finish_workout_option = 0;
   }
 
@@ -146,7 +146,7 @@ class iHIITController {
     for (i = WOI + 1; i <= maxWorkoutTestCount; i++) {
       if (WorkoutHelper.isSelectableWorkout(i)) {
         workoutFound = true;
-        currentWorkout = new $.workout(i);
+        currentWorkout = new $.Workout(i);
         break;
       }
     }
@@ -155,7 +155,7 @@ class iHIITController {
       for (i = 1; i <= WOI; i++) {
         if (WorkoutHelper.isSelectableWorkout(i)) {
           workoutFound = true;
-          currentWorkout = new $.workout(i);
+          currentWorkout = new $.Workout(i);
           break;
         }
       }
@@ -180,7 +180,7 @@ class iHIITController {
     for (i = WOI - 1; i > 0; i--) {
       if (WorkoutHelper.isSelectableWorkout(i)) {
         workoutFound = true;
-        currentWorkout = new $.workout(i);
+        currentWorkout = new $.Workout(i);
         break;
       }
     }
@@ -189,7 +189,7 @@ class iHIITController {
       for (i = maxWorkoutTestCount; i >= WOI; i--) {
         if (WorkoutHelper.isSelectableWorkout(i)) {
           workoutFound = true;
-          currentWorkout = new $.workout(i);
+          currentWorkout = new $.Workout(i);
           break;
         }
       }
@@ -205,7 +205,7 @@ class iHIITController {
     return i;
   }
 
-  public function getCurrentWorkout() as $.workout {
+  public function getCurrentWorkout() as $.Workout {
     return currentWorkout;
   }
 

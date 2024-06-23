@@ -10,7 +10,7 @@ using Toybox.Attention as Attention;
 /**
  * Model: workout
  */
-class workout {
+class Workout {
   const STATE_NOT_STARTED = 0;
   const STATE_RUNNING = 1;
   const STATE_PAUSED = 2; //User paused the execution manually
@@ -92,7 +92,7 @@ class workout {
 
   public function setNextExercise(autostart) {
     if (
-      self.currentExercise instanceof exercise &&
+      self.currentExercise instanceof Exercise &&
       !self.currentExercise.isExerciseTimeFinished()
     ) {
       Sys.println(
@@ -102,12 +102,12 @@ class workout {
     }
 
     var next_exercise_index = 1;
-    if (self.currentExercise instanceof exercise) {
+    if (self.currentExercise instanceof Exercise) {
       next_exercise_index = self.currentExercise.getExerciseIndex() + 1;
     }
 
     if (next_exercise_index <= self.exercise_count) {
-      self.currentExercise = new $.exercise(
+      self.currentExercise = new $.Exercise(
         self.workout_index,
         next_exercise_index
       );
@@ -155,7 +155,7 @@ class workout {
 
     self.times_repeated++;
     Sys.println("WORKOUT - Starting new repetition: " + self.times_repeated);
-    self.currentExercise = new $.exercise(self.workout_index, 1);
+    self.currentExercise = new $.Exercise(self.workout_index, 1);
     self.currentExercise.start();
     self.state = STATE_RUNNING;
   }

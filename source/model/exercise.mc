@@ -8,7 +8,7 @@ using Toybox.Attention as Attention;
 /**
  * Model: exercise
  */
-class exercise {
+class Exercise {
   const DEFAULT_EXERCISE_DURATION = 40;
   const DEFAULT_REST_DURATION = 20;
   const COUNTDOWN_SECONDS = 3;
@@ -52,12 +52,12 @@ class exercise {
     self.exercise_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "exercise_duration",
-      exercise.DEFAULT_EXERCISE_DURATION
+      Exercise.DEFAULT_EXERCISE_DURATION
     );
     self.rest_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "rest_duration",
-      exercise.DEFAULT_REST_DURATION
+      Exercise.DEFAULT_REST_DURATION
     );
 
     self.exercise_timer = new Timer.Timer();
