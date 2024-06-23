@@ -49,41 +49,15 @@ class Workout {
   // @param WOI - Workout index
   function initialize(WOI) {
     self.workout_index = WOI;
-    self.title = WorkoutHelper.getPropertyForWorkout(
-      self.workout_index,
-      "title",
-      ""
-    );
+    self.title = WorkoutHelper.getPropertyForWorkout(self.workout_index, "title", "");
     // self.exercise_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", exercise.DEFAULT_EXERCISE_DURATION);
     // self.rest_duration = ApeTools.WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", exercise.DEFAULT_REST_DURATION);
-    self.exercise_duration = WorkoutHelper.getPropertyForWorkout(
-      self.workout_index,
-      "exercise_duration",
-      40
-    );
-    self.rest_duration = WorkoutHelper.getPropertyForWorkout(
-      self.workout_index,
-      "rest_duration",
-      20
-    );
-    self.repetitions = WorkoutHelper.getPropertyForWorkout(
-      self.workout_index,
-      "repetitions",
-      1
-    );
-    self.repetition_pause = WorkoutHelper.getPropertyForWorkout(
-      self.workout_index,
-      "repetition_pause",
-      0
-    );
-    self.app_use_sound = PropertyHelper.getProperty(
-      "app_use_sound",
-      self.app_use_sound
-    );
-    self.app_use_vibration = PropertyHelper.getProperty(
-      "app_use_vibration",
-      self.app_use_vibration
-    );
+    self.exercise_duration = WorkoutHelper.getPropertyForWorkout(self.workout_index, "exercise_duration", 40);
+    self.rest_duration = WorkoutHelper.getPropertyForWorkout(self.workout_index, "rest_duration", 20);
+    self.repetitions = WorkoutHelper.getPropertyForWorkout(self.workout_index, "repetitions", 1);
+    self.repetition_pause = WorkoutHelper.getPropertyForWorkout(self.workout_index, "repetition_pause", 0);
+    self.app_use_sound = PropertyHelper.getProperty("app_use_sound", self.app_use_sound);
+    self.app_use_vibration = PropertyHelper.getProperty("app_use_vibration", self.app_use_vibration);
 
     self.state = STATE_NOT_STARTED;
     self.exercise_count = ExerciseHelper.getExerciseCount(self.workout_index);
@@ -102,13 +76,8 @@ class Workout {
   }
 
   public function setNextExercise(autostart) {
-    if (
-      self.currentExercise instanceof Exercise &&
-      !self.currentExercise.isExerciseTimeFinished()
-    ) {
-      Sys.println(
-        "WORKOUT - cannot start next exercise - current one is still running"
-      );
+    if (self.currentExercise instanceof Exercise && !self.currentExercise.isExerciseTimeFinished()) {
+      Sys.println("WORKOUT - cannot start next exercise - current one is still running");
       return;
     }
 
@@ -118,10 +87,7 @@ class Workout {
     }
 
     if (next_exercise_index <= self.exercise_count) {
-      self.currentExercise = new $.Exercise(
-        self.workout_index,
-        next_exercise_index
-      );
+      self.currentExercise = new $.Exercise(self.workout_index, next_exercise_index);
       if (autostart) {
         self.currentExercise.start();
       }
@@ -132,10 +98,7 @@ class Workout {
 
   protected function repetitionFinished() {
     Sys.println(
-      Lang.format("WORKOUT - All exercises finished in repetition: $1$/$2$!", [
-        self.times_repeated,
-        self.repetitions,
-      ])
+      Lang.format("WORKOUT - All exercises finished in repetition: $1$/$2$!", [self.times_repeated, self.repetitions])
     );
 
     if (self.app_use_sound && Attention has :playTone) {
@@ -313,11 +276,7 @@ class Workout {
 
   function getCalculatedWorkoutDuration() {
     // Last repetition_pause is removed because it will not be used at the end of the workout
-    return (
-      self.repetitions *
-        (self.getCalculatedRepetitionDuration() + self.repetition_pause) -
-      self.repetition_pause
-    );
+    return self.repetitions * (self.getCalculatedRepetitionDuration() + self.repetition_pause) - self.repetition_pause;
   }
 
   function getFormattedWorkoutDuration() {

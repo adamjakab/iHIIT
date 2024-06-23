@@ -48,12 +48,7 @@ class SelectWorkoutView extends Ui.View {
 
     // Exercises: 3 X 15 (reps X exercises)
     var reps = workout.getNumberOfRepetitions();
-    txt =
-      str_exercises +
-      ": " +
-      workout.getNumberOfRepetitions() +
-      " X " +
-      workout.getExerciseCount();
+    txt = str_exercises + ": " + workout.getNumberOfRepetitions() + " X " + workout.getExerciseCount();
     labelExercises.setText(txt);
 
     // WORK: 40s | REST: 20s

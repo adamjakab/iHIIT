@@ -18,11 +18,7 @@ module WorkoutHelper {
   /**
    * Gets a workout property
    **/
-  public function getPropertyForWorkout(
-    workout_number,
-    attribute_name,
-    default_value
-  ) {
+  public function getPropertyForWorkout(workout_number, attribute_name, default_value) {
     var property_id = Lang.format("w$1$_$2$", [workout_number, attribute_name]);
     return PropertyHelper.getProperty(property_id, default_value);
   }

@@ -45,12 +45,6 @@ class SaveWorkoutView extends Ui.View {
 
     // Text
     dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-    dc.drawText(
-      width / 2,
-      y,
-      Gfx.FONT_SYSTEM_LARGE,
-      txt,
-      Gfx.TEXT_JUSTIFY_CENTER
-    );
+    dc.drawText(width / 2, y, Gfx.FONT_SYSTEM_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
   }
 }

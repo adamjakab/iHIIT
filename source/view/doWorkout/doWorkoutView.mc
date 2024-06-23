@@ -93,17 +93,11 @@ class DoWorkoutView extends Ui.View {
     labelHeartRateValue.setText(txt);
 
     // REPS (R: 1/3)
-    txt = Lang.format(str_rep_of_reps, [
-      currentWorkout.getTimesRepeated(),
-      currentWorkout.getNumberOfRepetitions(),
-    ]);
+    txt = Lang.format(str_rep_of_reps, [currentWorkout.getTimesRepeated(), currentWorkout.getNumberOfRepetitions()]);
     labelReps.setText(txt);
 
     // EXERCISES (E: 4/12)
-    txt = Lang.format(str_exc_of_excs, [
-      currentExercise.getExerciseIndex(),
-      currentWorkout.getExerciseCount(),
-    ]);
+    txt = Lang.format(str_exc_of_excs, [currentExercise.getExerciseIndex(), currentWorkout.getExerciseCount()]);
     labelExcs.setText(txt);
 
     // NEXT EXERCISE
@@ -163,10 +157,7 @@ class DoWorkoutView extends Ui.View {
     labelHeartRateValue.setText(txt);
 
     // REPS (1/3)
-    txt = Lang.format("$1$ / $2$", [
-      currentWorkout.getTimesRepeated() + 1,
-      currentWorkout.getNumberOfRepetitions(),
-    ]);
+    txt = Lang.format("$1$ / $2$", [currentWorkout.getTimesRepeated() + 1, currentWorkout.getNumberOfRepetitions()]);
     labelReps.setText(txt);
 
     // REMAINING TIME
@@ -184,9 +175,7 @@ class DoWorkoutView extends Ui.View {
       labelTimeTotal = View.findDrawableById("labelTimeTotal");
     }
 
-    var txt = Lang.format(str_total_time, [
-      currentWorkout.getElapsedSeconds(true),
-    ]);
+    var txt = Lang.format(str_total_time, [currentWorkout.getElapsedSeconds(true)]);
     labelTimeTotal.setText(txt);
   }
 }

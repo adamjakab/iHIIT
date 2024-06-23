@@ -23,9 +23,7 @@ class iHIITController {
    */
   function beginCurrentWorkout() {
     if (!currentWorkout.isNotStarted()) {
-      Sys.println(
-        "CTRL - START REFUSED - Workout must be in stopped state to be started"
-      );
+      Sys.println("CTRL - START REFUSED - Workout must be in stopped state to be started");
       return;
     }
 
@@ -40,9 +38,7 @@ class iHIITController {
    */
   function stop() {
     if (!currentWorkout.isRunning() && !currentWorkout.isTerminated()) {
-      Sys.println(
-        "CTRL - STOP REFUSED - Workout must be running or terminated"
-      );
+      Sys.println("CTRL - STOP REFUSED - Workout must be running or terminated");
       return;
     }
 
@@ -50,11 +46,7 @@ class iHIITController {
     if (currentWorkout.isRunning()) {
       currentWorkout.stopRecording();
     }
-    Ui.pushView(
-      new FinishWorkoutView(),
-      new FinishWorkoutDelegate(),
-      Ui.SLIDE_UP
-    );
+    Ui.pushView(new FinishWorkoutView(), new FinishWorkoutDelegate(), Ui.SLIDE_UP);
   }
 
   /*
@@ -62,9 +54,7 @@ class iHIITController {
    */
   function resume() {
     if (!currentWorkout.isPaused()) {
-      Sys.println(
-        "CTRL - RESUME REFUSED - Workout must be paused to be resumed"
-      );
+      Sys.println("CTRL - RESUME REFUSED - Workout must be paused to be resumed");
       return;
     }
 
@@ -92,11 +82,7 @@ class iHIITController {
   // Discard - Ask confirmation
   function discard() {
     Sys.println("CTRL - DISCARD");
-    Ui.pushView(
-      new DiscardConfirmationView(),
-      new DiscardConfirmationDelegate(),
-      Ui.SLIDE_UP
-    );
+    Ui.pushView(new DiscardConfirmationView(), new DiscardConfirmationDelegate(), Ui.SLIDE_UP);
   }
 
   // Discard & go back to workout selection
@@ -161,12 +147,7 @@ class iHIITController {
       }
     }
 
-    Sys.println(
-      "WORKOUT(" +
-        currentWorkout.getWorkoutIndex() +
-        ") SET TO: " +
-        currentWorkout.getTitle()
-    );
+    Sys.println("WORKOUT(" + currentWorkout.getWorkoutIndex() + ") SET TO: " + currentWorkout.getTitle());
 
     return i;
   }
@@ -195,12 +176,7 @@ class iHIITController {
       }
     }
 
-    Sys.println(
-      "WORKOUT(" +
-        currentWorkout.getWorkoutIndex() +
-        ") SET TO: " +
-        currentWorkout.getTitle()
-    );
+    Sys.println("WORKOUT(" + currentWorkout.getWorkoutIndex() + ") SET TO: " + currentWorkout.getTitle());
 
     return i;
   }

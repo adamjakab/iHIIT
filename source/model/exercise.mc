@@ -47,11 +47,7 @@ class Exercise {
     self.workout_index = WOI;
     self.exercise_index = EI;
 
-    self.title = ExerciseHelper.getPropertyForWorkoutExcercise(
-      self.workout_index,
-      self.exercise_index,
-      ""
-    );
+    self.title = ExerciseHelper.getPropertyForWorkoutExcercise(self.workout_index, self.exercise_index, "");
     self.exercise_duration = WorkoutHelper.getPropertyForWorkout(
       self.workout_index,
       "exercise_duration",
@@ -63,14 +59,8 @@ class Exercise {
       Exercise.DEFAULT_REST_DURATION
     );
 
-    self.app_use_sound = PropertyHelper.getProperty(
-      "app_use_sound",
-      self.app_use_sound
-    );
-    self.app_use_vibration = PropertyHelper.getProperty(
-      "app_use_vibration",
-      self.app_use_vibration
-    );
+    self.app_use_sound = PropertyHelper.getProperty("app_use_sound", self.app_use_sound);
+    self.app_use_vibration = PropertyHelper.getProperty("app_use_vibration", self.app_use_vibration);
 
     self.exercise_timer = new Timer.Timer();
     self.exercise_elapsed = 0;
