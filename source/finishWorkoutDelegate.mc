@@ -2,7 +2,7 @@ using Toybox.WatchUi as Ui;
 using Toybox.Application as App;
 
 class finishWorkoutDelegate extends Ui.BehaviorDelegate {
-  private var ctrl, workout;
+  private var ctrl, currentWorkout;
 
   private var select_items;
   private var max_items = 3;
@@ -12,9 +12,11 @@ class finishWorkoutDelegate extends Ui.BehaviorDelegate {
   public function initialize() {
     BehaviorDelegate.initialize();
     ctrl = App.getApp().getController();
-    workout = ctrl.getCurrentWorkout();
+    currentWorkout = ctrl.getCurrentWorkout();
 
-    select_items = ApeTools.AppHelper.getDiscardOptions(workout.isTerminated());
+    select_items = ApeTools.AppHelper.getDiscardOptions(
+      currentWorkout.isTerminated()
+    );
     max_items = select_items.size();
     item_keys = select_items.keys();
     current_key = 0;
@@ -37,7 +39,7 @@ class finishWorkoutDelegate extends Ui.BehaviorDelegate {
   }
 
   public function onBack() {
-    if (!workout.isTerminated()) {
+    if (!currentWorkout.isTerminated()) {
       ctrl.resume();
     }
     return true;

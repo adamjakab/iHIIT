@@ -125,7 +125,7 @@ class iHIITController {
     saveTimer.start(method(:saveDone), 5000, false);
   }
 
-  public function saveDone() {
+  public function saveDone() as Void {
     if (saveTimer instanceof Timer.Timer) {
       saveTimer.stop();
       saveTimer = null;
@@ -205,7 +205,7 @@ class iHIITController {
     return i;
   }
 
-  public function getCurrentWorkout() {
+  public function getCurrentWorkout() as $.workout {
     return currentWorkout;
   }
 
