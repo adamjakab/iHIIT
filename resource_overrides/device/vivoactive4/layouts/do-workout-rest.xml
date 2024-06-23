@@ -3,6 +3,9 @@
 	<bitmap id="heartIcon" x="center" y="0" filename="../drawables/heart.png" />
 	<label id="labelHeartRateValue" x="center" y="20" text="0" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 	
+	<label id="labelReps" x="10%" y="45" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_LEFT" />
+	<label id="labelExcs" x="90%" y="45" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SMALL" justification="Gfx.TEXT_JUSTIFY_RIGHT" />
+	
 	<label id="labelNextUp" x="center" y="85" text="@Strings.do_workout_next_up" color="Gfx.COLOR_DK_GRAY" font="Gfx.FONT_SYSTEM_XTINY" justification="Gfx.TEXT_JUSTIFY_CENTER" />
 	
 	<label id="labelExerciseName" x="center" y="110" color="Gfx.COLOR_WHITE" font="Gfx.FONT_MEDIUM" justification="Gfx.TEXT_JUSTIFY_CENTER" />

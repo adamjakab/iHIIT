@@ -1,4 +1,4 @@
-// using Toybox.Application as App;
+using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Timer as Timer;
