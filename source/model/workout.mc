@@ -250,7 +250,7 @@ class workout {
   }
 
   //
-  function heartrateSensorCallback(info) {
+  function heartrateSensorCallback(info as $.Toybox.Sensor.Info) as Void {
     currentHR = 0;
     if (info.heartRate != null) {
       currentHR = info.heartRate.toNumber();
