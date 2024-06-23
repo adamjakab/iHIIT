@@ -6,7 +6,7 @@ using Toybox.System as Sys;
  */
 class iHIIT extends App.AppBase {
   //@todo: Make sure to set this to false when creating a release
-  private var debug_mode = true;
+  private var debug_mode = false;
 
   protected var controller;
 

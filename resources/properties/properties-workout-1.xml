@@ -1,0 +1,29 @@
+<resources>
+	<properties>
+		<!-- WORKOUT #1 -->
+		<property id="w1_title" type="string">Workout 1</property>
+		<property id="w1_enabled" type="boolean">true</property>
+		<property id="w1_exercise_duration" type="number">40</property>
+		<property id="w1_rest_duration" type="number">20</property>
+		<property id="w1_e1" type="string">Exercise 1</property>
+		<property id="w1_e2" type="string">Exercise 2</property>
+		<property id="w1_e3" type="string">Exercise 3</property>
+		<property id="w1_e4" type="string"></property>
+		<property id="w1_e5" type="string"></property>
+		<property id="w1_e6" type="string"></property>
+		<property id="w1_e7" type="string"></property>
+		<property id="w1_e8" type="string"></property>
+		<property id="w1_e9" type="string"></property>
+		<property id="w1_e10" type="string"></property>
+		<property id="w1_e11" type="string"></property>
+		<property id="w1_e12" type="string"></property>
+		<property id="w1_e13" type="string"></property>
+		<property id="w1_e14" type="string"></property>
+		<property id="w1_e15" type="string"></property>
+		<property id="w1_e16" type="string"></property>
+		<property id="w1_e17" type="string"></property>
+		<property id="w1_e18" type="string"></property>
+		<property id="w1_e19" type="string"></property>
+		<property id="w1_e20" type="string"></property>
+    </properties>
+</resources>

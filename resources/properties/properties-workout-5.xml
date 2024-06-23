@@ -1,0 +1,29 @@
+<resources>
+	<properties>
+		<!-- WORKOUT #5 -->
+		<property id="w5_title" type="string"></property>
+		<property id="w5_enabled" type="boolean">false</property>
+		<property id="w5_exercise_duration" type="number">0</property>
+		<property id="w5_rest_duration" type="number">0</property>
+		<property id="w5_e1" type="string"></property>
+		<property id="w5_e2" type="string"></property>
+		<property id="w5_e3" type="string"></property>
+		<property id="w5_e4" type="string"></property>
+		<property id="w5_e5" type="string"></property>
+		<property id="w5_e6" type="string"></property>
+		<property id="w5_e7" type="string"></property>
+		<property id="w5_e8" type="string"></property>
+		<property id="w5_e9" type="string"></property>
+		<property id="w5_e10" type="string"></property>
+		<property id="w5_e11" type="string"></property>
+		<property id="w5_e12" type="string"></property>
+		<property id="w5_e13" type="string"></property>
+		<property id="w5_e14" type="string"></property>
+		<property id="w5_e15" type="string"></property>
+		<property id="w5_e16" type="string"></property>
+		<property id="w5_e17" type="string"></property>
+		<property id="w5_e18" type="string"></property>
+		<property id="w5_e19" type="string"></property>
+		<property id="w5_e20" type="string"></property>
+    </properties>
+</resources>
