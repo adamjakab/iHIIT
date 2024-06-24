@@ -9,7 +9,57 @@
 		</setting>
 
 		<!-- WORKOUT #1 -->
-		<group id="workout_1" title="@Strings.group_title_w1">
+		<setting propertyKey="@Properties.w1_title" title="@Strings.workout_title">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>		
+		<setting propertyKey="@Properties.w1_enabled" title="@Strings.workout_enabled">
+			<settingConfig type="boolean" />
+		</setting>		
+		<setting propertyKey="@Properties.w1_exercise_duration" title="@Strings.exercise_duration">
+			<settingConfig type="numeric" min="1" max="600" />
+		</setting>
+		<setting propertyKey="@Properties.w1_rest_duration" title="@Strings.rest_duration">
+			<settingConfig type="numeric" min="1" max="600" />
+		</setting>
+		<setting propertyKey="@Properties.w1_repetitions" title="@Strings.workout_reps">
+			<settingConfig type="numeric" min="1" max="99" />
+		</setting>
+		<setting propertyKey="@Properties.w1_repetition_pause" title="@Strings.workout_rep_pause">
+			<settingConfig type="numeric" min="1" max="600" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e1" title="@Strings.exercise_title_1">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e2" title="@Strings.exercise_title_2">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e3" title="@Strings.exercise_title_3">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e4" title="@Strings.exercise_title_4">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e5" title="@Strings.exercise_title_5">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e6" title="@Strings.exercise_title_6">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e7" title="@Strings.exercise_title_7">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e8" title="@Strings.exercise_title_8">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e9" title="@Strings.exercise_title_9">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e10" title="@Strings.exercise_title_10">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+
+		<!-- WORKOUT #1 -->
+		<!-- <group id="workout_1" title="@Strings.group_title_w1">
 			<setting propertyKey="@Properties.w1_title" title="@Strings.workout_title">
 				<settingConfig type="alphaNumeric" maxLength="32" />
 			</setting>		
@@ -58,7 +108,7 @@
 			<setting propertyKey="@Properties.w1_e10" title="@Strings.exercise_title_10">
 				<settingConfig type="alphaNumeric" maxLength="32" />
 			</setting>
-		</group>
+		</group> -->
 		
 		<!-- WORKOUT #2 -->
 		<group id="workout_2" title="@Strings.group_title_w2">
