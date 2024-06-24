@@ -7,17 +7,18 @@
 		<setting propertyKey="@Properties.app_use_vibration" title="@Strings.use_vibration">
 			<settingConfig type="boolean"/>
 		</setting>
-		
+
 
 		<!-- WORKOUT #1 -->
-		<!-- Note that persisting settings inside groups does not work! There is a bug!  -->
-		<!-- <group id="workout_1" title="@Strings.group_title_w1"></group> -->
+		<setting propertyKey="@Properties.w1_divider" title="@Strings.empty">
+			<settingConfig type="alphaNumeric" readonly="true" />
+		</setting>
 		<setting propertyKey="@Properties.w1_title" title="@Strings.workout_title">
 			<settingConfig type="alphaNumeric" maxLength="32" />
-		</setting>		
+		</setting>
 		<setting propertyKey="@Properties.w1_enabled" title="@Strings.workout_enabled">
 			<settingConfig type="boolean" />
-		</setting>		
+		</setting>
 		<setting propertyKey="@Properties.w1_exercise_duration" title="@Strings.exercise_duration">
 			<settingConfig type="numeric" min="1" max="600" />
 		</setting>
@@ -60,15 +61,24 @@
 		<setting propertyKey="@Properties.w1_e10" title="@Strings.exercise_title_10">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
-		
-		
+		<setting propertyKey="@Properties.w1_e11" title="@Strings.exercise_title_11">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e12" title="@Strings.exercise_title_12">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+
+
 		<!-- WORKOUT #2 -->
+		<setting propertyKey="@Properties.w2_divider" title="@Strings.empty">
+			<settingConfig type="alphaNumeric" readonly="true" />
+		</setting>
 		<setting propertyKey="@Properties.w2_title" title="@Strings.workout_title">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
 		<setting propertyKey="@Properties.w2_enabled" title="@Strings.workout_enabled">
 			<settingConfig type="boolean" />
-		</setting>	
+		</setting>
 		<setting propertyKey="@Properties.w2_exercise_duration" title="@Strings.exercise_duration">
 			<settingConfig type="numeric" min="1" max="600" />
 		</setting>
@@ -111,15 +121,24 @@
 		<setting propertyKey="@Properties.w2_e10" title="@Strings.exercise_title_10">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
+		<setting propertyKey="@Properties.w2_e11" title="@Strings.exercise_title_11">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w2_e12" title="@Strings.exercise_title_12">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
 
-		
+
 		<!-- WORKOUT #3 -->
+		<setting propertyKey="@Properties.w3_divider" title="@Strings.empty">
+			<settingConfig type="alphaNumeric" readonly="true" />
+		</setting>
 		<setting propertyKey="@Properties.w3_title" title="@Strings.workout_title">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
 		<setting propertyKey="@Properties.w3_enabled" title="@Strings.workout_enabled">
 			<settingConfig type="boolean" />
-		</setting>	
+		</setting>
 		<setting propertyKey="@Properties.w3_exercise_duration" title="@Strings.exercise_duration">
 			<settingConfig type="numeric" min="1" max="600" />
 		</setting>
@@ -162,15 +181,24 @@
 		<setting propertyKey="@Properties.w3_e10" title="@Strings.exercise_title_10">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
+		<setting propertyKey="@Properties.w3_e11" title="@Strings.exercise_title_11">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w3_e12" title="@Strings.exercise_title_12">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
 
-		
+
 		<!-- WORKOUT #4 -->
+		<setting propertyKey="@Properties.w4_divider" title="@Strings.empty">
+			<settingConfig type="alphaNumeric" readonly="true" />
+		</setting>
 		<setting propertyKey="@Properties.w4_title" title="@Strings.workout_title">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
 		<setting propertyKey="@Properties.w4_enabled" title="@Strings.workout_enabled">
 			<settingConfig type="boolean" />
-		</setting>	
+		</setting>
 		<setting propertyKey="@Properties.w4_exercise_duration" title="@Strings.exercise_duration">
 			<settingConfig type="numeric" min="1" max="600" />
 		</setting>
@@ -213,9 +241,18 @@
 		<setting propertyKey="@Properties.w4_e10" title="@Strings.exercise_title_10">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
+		<setting propertyKey="@Properties.w4_e11" title="@Strings.exercise_title_11">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w4_e12" title="@Strings.exercise_title_12">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
 
-		
+
 		<!-- WORKOUT #5 -->
+		<setting propertyKey="@Properties.w5_divider" title="@Strings.empty">
+			<settingConfig type="alphaNumeric" readonly="true" />
+		</setting>
 		<setting propertyKey="@Properties.w5_title" title="@Strings.workout_title">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
@@ -262,6 +299,12 @@
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
 		<setting propertyKey="@Properties.w5_e10" title="@Strings.exercise_title_10">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e11" title="@Strings.exercise_title_11">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e12" title="@Strings.exercise_title_12">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
 
