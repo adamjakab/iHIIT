@@ -20,11 +20,11 @@ class iHIIT extends App.AppBase {
     return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
 
     //TEMPORARY - SKIP workout selection
-    //controller.beginCurrentWorkout();
-    //return [ new doWorkoutView(), new doWorkoutDelegate() ];
+    // controller.beginCurrentWorkout();
+    // return [new DoWorkoutView(), new DoWorkoutDelegate()];
 
-    //TEMPORARY - SKIP workout
-    //return [ new finishWorkoutView(), new finishWorkoutDelegate() ];
+    //TEMPORARY - TEST OmniMenu
+    //return controller.testOmniMenu();
   }
 
   // Hook called on application start up
@@ -37,7 +37,7 @@ class iHIIT extends App.AppBase {
     Sys.println("App:::STOP");
   }
 
-  public function getController() {
+  public function getController() as $.iHIITController {
     return controller;
   }
 

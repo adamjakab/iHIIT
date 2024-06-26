@@ -9,6 +9,13 @@
       "device": "fr235"
     },
     {
+      "name": "Run (Fenix7)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "fenix7"
+    },
+    {
       "name": "Run (Select Device)",
       "type": "monkeyc",
       "request": "launch",

@@ -2,6 +2,7 @@ using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Timer as Timer;
+import Toybox.Lang;
 
 class iHIITController {
   private var saveTimer;
@@ -11,6 +12,9 @@ class iHIITController {
 
   public var finish_workout_option;
   public var discardConfirmationSelection = 0;
+
+  public var omniMenuChoices as Dictionary = {};
+  public var omniMenuSelectedIndex as Number = 0;
 
   // Initialize the controller
   public function initialize(WOI) {
@@ -183,6 +187,26 @@ class iHIITController {
 
   public function getCurrentWorkout() as $.Workout {
     return currentWorkout;
+  }
+
+  public function testOmniMenu() {
+    var choices = {
+      0 => { "label" => "Choice #1", "callback" => method(:choiceOneAction) },
+      1 => { "label" => "Choice #2", "callback" => method(:choiceTwoAction) },
+      2 => { "label" => "Choice #3", "callback" => null },
+      3 => { "label" => "Choice #4", "callback" => null },
+      4 => { "label" => "Choice #5", "callback" => null },
+    };
+
+    return [new OmniMenuView(choices, 0), new OmniMenuDelegate()];
+  }
+
+  public function choiceOneAction() {
+    Sys.println("CTRL - Choice One Action!");
+  }
+
+  public function choiceTwoAction() {
+    Sys.println("CTRL - Choice Two Action!");
   }
 
   // Handle timing out after exit
