@@ -22,6 +22,17 @@ class iHIITController {
     finish_workout_option = 0;
   }
 
+  public function getInitialApplicationView() as [Ui.View, Ui.BehaviorDelegate] {
+    return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
+
+    //TEMPORARY - SKIP workout selection
+    //initialize(1)
+    //beginCurrentWorkout();
+    //return [new DoWorkoutView(), new DoWorkoutDelegate()];
+
+    //TEMPORARY - TEST OmniMenu
+    //return testOmniMenu();
+  }
   /*
    * Start the selected workout
    */
@@ -56,20 +67,20 @@ class iHIITController {
 
     // Resume
     if (!currentWorkout.isTerminated()) {
-      choices.put(0, {
+      choices.put(choices.size(), {
         "label" => Ui.loadResource(Rez.Strings.finish_workout_prompt_resume),
         "callback" => method(:resumeWorkout),
       });
     }
 
     // Save & Exit
-    choices.put(1, {
+    choices.put(choices.size(), {
       "label" => Ui.loadResource(Rez.Strings.finish_workout_prompt_save_and_exit),
       "callback" => method(:saveWorkout),
     });
 
     // Discard and Exit
-    choices.put(2, {
+    choices.put(choices.size(), {
       "label" => Ui.loadResource(Rez.Strings.finish_workout_prompt_discard_and_exit),
       "callback" => method(:discardWorkout),
     });
@@ -82,7 +93,7 @@ class iHIITController {
    */
   function resumeWorkout() {
     if (!currentWorkout.isPaused()) {
-      Sys.println("Controller: RESUME REFUSED - Workout must be paused to be resumed");
+      Sys.println("Controller: RESUME REFUSED - Workout is already ended.");
       return;
     }
 
@@ -218,22 +229,14 @@ class iHIITController {
   // @TODO: REMOVE ME!
   // public function testOmniMenu() {
   //   var choices = {
-  //     0 => { "label" => "Choice #1", "callback" => method(:choiceOneAction) },
-  //     1 => { "label" => "Choice #2", "callback" => method(:choiceTwoAction) },
+  //     0 => { "label" => "Choice #1", "callback" => null },
+  //     1 => { "label" => "Choice #2", "callback" => null },
   //     2 => { "label" => "Choice #3", "callback" => null },
   //     3 => { "label" => "Choice #4", "callback" => null },
   //     4 => { "label" => "Choice #5", "callback" => null },
   //   };
 
   //   return [new OmniMenuView(choices, 0), new OmniMenuDelegate(null)];
-  // }
-
-  // public function choiceOneAction() {
-  //   Sys.println("Controller: Choice One Action!");
-  // }
-
-  // public function choiceTwoAction() {
-  //   Sys.println("Controller: Choice Two Action!");
   // }
 
   // Handle timing out after exit

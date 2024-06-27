@@ -1,14 +1,17 @@
 using Toybox.Application as App;
 using Toybox.System as Sys;
+using Toybox.WatchUi as Ui;
+import Toybox.Lang;
 
 /**
  * ENTRY POINT
  */
 class iHIIT extends App.AppBase {
   //@todo: Make sure to set this to false when creating a release
-  private var debug_mode = false;
+  private var debug_mode as Boolean = false;
 
-  protected var controller;
+  // The controller
+  protected var controller as $.iHIITController;
 
   public function initialize() {
     AppBase.initialize();
@@ -17,23 +20,16 @@ class iHIIT extends App.AppBase {
 
   // Return the initial view of your application here
   public function getInitialView() {
-    //return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
-
-    //TEMPORARY - SKIP workout selection
-    controller.beginCurrentWorkout();
-    return [new DoWorkoutView(), new DoWorkoutDelegate()];
-
-    //TEMPORARY - TEST OmniMenu
-    //return controller.testOmniMenu();
+    return controller.getInitialApplicationView();
   }
 
   // Hook called on application start up
-  public function onStart(state) {
+  public function onStart(state) as Void {
     Sys.println("App:::START");
   }
 
   // Hook called on application stop
-  public function onStop(state) {
+  public function onStop(state) as Void {
     Sys.println("App:::STOP");
   }
 
@@ -41,7 +37,7 @@ class iHIIT extends App.AppBase {
     return controller;
   }
 
-  public function isDebugMode() {
+  public function isDebugMode() as Boolean {
     return debug_mode;
   }
 }

@@ -26,7 +26,7 @@ class OmniMenuView extends Ui.View {
   }
 
   public function onShow() {
-    Sys.println("OmniMenu: Show");
+    Sys.println("OmniMenu: Show (index: " + currentChoiceIndex + ")");
     ctrl.omniMenuChoices = defaultChoices;
     ctrl.omniMenuSelectedIndex = currentChoiceIndex;
   }
@@ -72,7 +72,10 @@ class OmniMenuView extends Ui.View {
     dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
     dc.drawText(width / 2, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
 
-    // View.onUpdate(dc);
+    // Update current index stored in the controller in this instance
+    // So next time the OnShow is called we can restore it (necessary for concatenated OmniMenu displays)
+    currentChoiceIndex = ctrl.omniMenuSelectedIndex;
+
     Sys.println("OmniMenu:::updated");
   }
 
