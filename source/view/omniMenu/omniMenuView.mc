@@ -73,7 +73,7 @@ class OmniMenuView extends Ui.View {
     dc.drawText(width / 2, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
 
     // View.onUpdate(dc);
-    Sys.println("SFO:::updated");
+    Sys.println("OmniMenu:::updated");
   }
 
   private function getDisplayChoices() as Dictionary {

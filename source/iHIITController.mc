@@ -27,42 +27,77 @@ class iHIITController {
    */
   function beginCurrentWorkout() {
     if (!currentWorkout.isNotStarted()) {
-      Sys.println("CTRL - START REFUSED - Workout must be in stopped state to be started");
+      Sys.println("Controller: START REFUSED - Workout must be in stopped state to be started");
       return;
     }
 
-    Sys.println("CTRL - START");
+    Sys.println("Controller: Starting Workout...");
     currentWorkout.startRecording();
     Ui.pushView(new DoWorkoutView(), new DoWorkoutDelegate(), Ui.SLIDE_UP);
   }
 
   /*
-   * Stop workout
-   * This is also called after Workout reaches last exercise and auto-terminates
+   * Stop the current Workout
+   * Called by stop/back button presses and when Workout reaches last exercise and auto-terminates
    */
-  function stop() {
+  function stopWorkout() {
     if (!currentWorkout.isRunning() && !currentWorkout.isTerminated()) {
-      Sys.println("CTRL - STOP REFUSED - Workout must be running or terminated");
+      Sys.println("Controller: STOP REFUSED - Workout must be running or terminated");
       return;
     }
 
-    Sys.println("CTRL - STOP");
+    Sys.println("Controller: Stopping workout...");
     if (currentWorkout.isRunning()) {
       currentWorkout.stopRecording();
     }
-    Ui.pushView(new FinishWorkoutView(), new FinishWorkoutDelegate(), Ui.SLIDE_UP);
+
+    // Configure choices
+    var choices = ({}) as Dictionary;
+
+    // Resume
+    if (!currentWorkout.isTerminated()) {
+      choices.put(0, {
+        "label" => Ui.loadResource(Rez.Strings.finish_workout_prompt_resume),
+        "callback" => method(:resumeWorkout),
+      });
+    }
+
+    // Save & Exit
+    choices.put(1, {
+      "label" => Ui.loadResource(Rez.Strings.finish_workout_prompt_save_and_exit),
+      "callback" => method(:save),
+    });
+
+    // Discard and Exit
+    choices.put(2, {
+      "label" => Ui.loadResource(Rez.Strings.finish_workout_prompt_discard_and_exit),
+      "callback" => method(:discard),
+    });
+
+    Ui.pushView(new OmniMenuView(choices, 0), new OmniMenuDelegate(method(:resumeWorkout)), Ui.SLIDE_UP);
+
+    // var choices = {
+    //   0 => { "label" => "Choice #1", "callback" => method(:choiceOneAction) },
+    //   1 => { "label" => "Choice #2", "callback" => method(:choiceTwoAction) },
+    //   2 => { "label" => "Choice #3", "callback" => null },
+    //   3 => { "label" => "Choice #4", "callback" => null },
+    //   4 => { "label" => "Choice #5", "callback" => null },
+    // };
+    //return [new OmniMenuView(choices, 0), new OmniMenuDelegate()];
+
+    //Ui.pushView(new FinishWorkoutView(), new FinishWorkoutDelegate(), Ui.SLIDE_UP);
   }
 
   /*
    * Resume workout
    */
-  function resume() {
+  function resumeWorkout() {
     if (!currentWorkout.isPaused()) {
-      Sys.println("CTRL - RESUME REFUSED - Workout must be paused to be resumed");
+      Sys.println("Controller: RESUME REFUSED - Workout must be paused to be resumed");
       return;
     }
 
-    Sys.println("CTRL - RESUME");
+    Sys.println("Controller: RESUME");
     currentWorkout.startRecording();
     Ui.popView(Ui.SLIDE_DOWN);
   }
@@ -73,7 +108,7 @@ class iHIITController {
   function finishWorkout() {
     if (finish_workout_option == 0) {
       /* RESUME */
-      resume();
+      resumeWorkout();
     } else if (finish_workout_option == 1) {
       /* SAVE & EXIT */
       save();
@@ -85,7 +120,7 @@ class iHIITController {
 
   // Discard - Ask confirmation
   function discard() {
-    Sys.println("CTRL - DISCARD");
+    Sys.println("Controller: DISCARD");
     Ui.pushView(new DiscardConfirmationView(), new DiscardConfirmationDelegate(), Ui.SLIDE_UP);
   }
 
@@ -106,7 +141,7 @@ class iHIITController {
 
   // Save
   public function save() {
-    Sys.println("CTRL - SAVE");
+    Sys.println("Controller: SAVE");
     Ui.pushView(new SaveWorkoutView(), new SaveWorkoutDelegate(), Ui.SLIDE_UP);
 
     currentWorkout.saveRecording();
@@ -189,6 +224,7 @@ class iHIITController {
     return currentWorkout;
   }
 
+  // @TODO: REMOVE ME!
   public function testOmniMenu() {
     var choices = {
       0 => { "label" => "Choice #1", "callback" => method(:choiceOneAction) },
@@ -198,15 +234,15 @@ class iHIITController {
       4 => { "label" => "Choice #5", "callback" => null },
     };
 
-    return [new OmniMenuView(choices, 0), new OmniMenuDelegate()];
+    return [new OmniMenuView(choices, 0), new OmniMenuDelegate(null)];
   }
 
   public function choiceOneAction() {
-    Sys.println("CTRL - Choice One Action!");
+    Sys.println("Controller: Choice One Action!");
   }
 
   public function choiceTwoAction() {
-    Sys.println("CTRL - Choice Two Action!");
+    Sys.println("Controller: Choice Two Action!");
   }
 
   // Handle timing out after exit

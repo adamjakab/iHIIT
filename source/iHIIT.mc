@@ -20,11 +20,11 @@ class iHIIT extends App.AppBase {
     //return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
 
     //TEMPORARY - SKIP workout selection
-    // controller.beginCurrentWorkout();
-    // return [new DoWorkoutView(), new DoWorkoutDelegate()];
+    controller.beginCurrentWorkout();
+    return [new DoWorkoutView(), new DoWorkoutDelegate()];
 
     //TEMPORARY - TEST OmniMenu
-    return controller.testOmniMenu();
+    //return controller.testOmniMenu();
   }
 
   // Hook called on application start up

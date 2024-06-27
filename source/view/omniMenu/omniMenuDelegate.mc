@@ -1,12 +1,18 @@
+import Toybox.Lang;
 using Toybox.Application as App;
 using Toybox.System as Sys;
-import Toybox.Lang;
 using Toybox.WatchUi as Ui;
 
+/**
+ ** Select button callbacks will be taken from the omniMenuChoices on the controller
+ ** An optional onBackCallback can be passed to the constructor for back button funcitonality
+ **/
 class OmniMenuDelegate extends Ui.BehaviorDelegate {
   private var ctrl as iHIITController;
+  private var backButtonCallback as Method? = null;
 
-  public function initialize() {
+  public function initialize(back_button_callback as Method?) {
+    backButtonCallback = back_button_callback;
     BehaviorDelegate.initialize();
     ctrl = App.getApp().getController();
   }
@@ -18,7 +24,7 @@ class OmniMenuDelegate extends Ui.BehaviorDelegate {
       index = 0;
     }
     ctrl.omniMenuSelectedIndex = index;
-    // Sys.println("SFO:::+Index: " + index);
+    // Sys.println("OmniMenu:+Index: " + index);
     Ui.requestUpdate();
     return true;
   }
@@ -29,7 +35,7 @@ class OmniMenuDelegate extends Ui.BehaviorDelegate {
       index = ctrl.omniMenuChoices.size() - 1;
     }
     ctrl.omniMenuSelectedIndex = index;
-    // Sys.println("SFO:::-Index: " + index);
+    // Sys.println("OmniMenu:-Index: " + index);
     Ui.requestUpdate();
     return true;
   }
@@ -37,16 +43,20 @@ class OmniMenuDelegate extends Ui.BehaviorDelegate {
   public function onSelect() {
     var callback = getChoiceCallbackAtIndex(ctrl.omniMenuSelectedIndex);
     if (callback) {
-      Sys.println("SFO:::Invoking callback at Index: " + ctrl.omniMenuSelectedIndex);
+      Sys.println("OmniMenu:Invoking callback at Index: " + ctrl.omniMenuSelectedIndex);
       callback.invoke();
-      return true;
     }
     // Sys.println("SFO:::No callback is defined for this option.");
-    return false;
+    return true;
   }
 
   public function onBack() {
-    Sys.println("SFO:::BACK-1");
+    if (backButtonCallback) {
+      backButtonCallback.invoke();
+    } else {
+      Sys.println("OmniMenu: No back button callback was defined.");
+    }
+
     return true;
   }
 

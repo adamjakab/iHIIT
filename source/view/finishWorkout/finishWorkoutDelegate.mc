@@ -38,7 +38,7 @@ class FinishWorkoutDelegate extends Ui.BehaviorDelegate {
 
   public function onBack() {
     if (!currentWorkout.isTerminated()) {
-      ctrl.resume();
+      ctrl.resumeWorkout();
     }
     return true;
   }

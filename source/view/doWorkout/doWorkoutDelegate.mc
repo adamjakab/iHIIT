@@ -3,7 +3,7 @@ using Toybox.System as Sys;
 using Toybox.Application as App;
 
 class DoWorkoutDelegate extends Ui.BehaviorDelegate {
-  private var ctrl;
+  private var ctrl as iHIITController;
 
   function initialize() {
     BehaviorDelegate.initialize();
@@ -19,12 +19,12 @@ class DoWorkoutDelegate extends Ui.BehaviorDelegate {
   }
 
   public function onSelect() {
-    ctrl.stop();
+    ctrl.stopWorkout();
     return true;
   }
 
   public function onBack() {
-    ctrl.stop();
+    ctrl.stopWorkout();
     return true;
   }
 
