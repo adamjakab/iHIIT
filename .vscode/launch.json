@@ -2,6 +2,48 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Run (Select Device)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "${command:GetTargetDevice}"
+    },
+    {
+      "name": "Run (d2bravo)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "d2bravo"
+    },
+    {
+      "name": "Run (d2bravo_titanium)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "d2bravo_titanium"
+    },
+    {
+      "name": "Run (fenix3)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "fenix3"
+    },
+    {
+      "name": "Run (fenix3_hr)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "fenix3_hr"
+    },
+    {
+      "name": "Run (fr230)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "fr230"
+    },
+    {
       "name": "Run (FR235)",
       "type": "monkeyc",
       "request": "launch",
@@ -9,18 +51,46 @@
       "device": "fr235"
     },
     {
-      "name": "Run (Fenix7)",
+      "name": "Run (FR630)",
       "type": "monkeyc",
       "request": "launch",
       "stopAtLaunch": false,
-      "device": "fenix7"
+      "device": "fr630"
     },
     {
-      "name": "Run (Select Device)",
+      "name": "Run (fr735xt)",
       "type": "monkeyc",
       "request": "launch",
       "stopAtLaunch": false,
-      "device": "${command:GetTargetDevice}"
+      "device": "fr735xt"
+    },
+    {
+      "name": "Run (FR920xt)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "fr920xt"
+    },
+    {
+      "name": "Run (vivoactive)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "vivoactive"
+    },
+    {
+      "name": "Run (vívoactive4)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "vívoactive4"
+    },
+    {
+      "name": "Run (approachs60)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "approachs60"
     }
   ]
 }

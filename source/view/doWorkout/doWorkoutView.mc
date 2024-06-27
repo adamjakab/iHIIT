@@ -137,6 +137,7 @@ class DoWorkoutView extends Ui.View {
     labelTimeRemaining.setText(txt);
   }
 
+  // Displayed between two repetitions
   protected function updateLayoutRepetitionPause(dc) {
     //LAYOUT_PAUSE
     if (currentLayout != LAYOUT_PAUSE) {
