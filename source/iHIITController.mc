@@ -37,7 +37,7 @@ class iHIITController {
   }
 
   /*
-   * Stop the current Workout
+   * Stop the current Workout and show menu of options
    * Called by stop/back button presses and when Workout reaches last exercise and auto-terminates
    */
   function stopWorkout() {
@@ -65,27 +65,16 @@ class iHIITController {
     // Save & Exit
     choices.put(1, {
       "label" => Ui.loadResource(Rez.Strings.finish_workout_prompt_save_and_exit),
-      "callback" => method(:save),
+      "callback" => method(:saveWorkout),
     });
 
     // Discard and Exit
     choices.put(2, {
       "label" => Ui.loadResource(Rez.Strings.finish_workout_prompt_discard_and_exit),
-      "callback" => method(:discard),
+      "callback" => method(:discardWorkout),
     });
 
     Ui.pushView(new OmniMenuView(choices, 0), new OmniMenuDelegate(method(:resumeWorkout)), Ui.SLIDE_UP);
-
-    // var choices = {
-    //   0 => { "label" => "Choice #1", "callback" => method(:choiceOneAction) },
-    //   1 => { "label" => "Choice #2", "callback" => method(:choiceTwoAction) },
-    //   2 => { "label" => "Choice #3", "callback" => null },
-    //   3 => { "label" => "Choice #4", "callback" => null },
-    //   4 => { "label" => "Choice #5", "callback" => null },
-    // };
-    //return [new OmniMenuView(choices, 0), new OmniMenuDelegate()];
-
-    //Ui.pushView(new FinishWorkoutView(), new FinishWorkoutDelegate(), Ui.SLIDE_UP);
   }
 
   /*
@@ -97,35 +86,40 @@ class iHIITController {
       return;
     }
 
-    Sys.println("Controller: RESUME");
+    Sys.println("Controller: Resuming workout.");
     currentWorkout.startRecording();
     Ui.popView(Ui.SLIDE_DOWN);
   }
 
   /*
-   * Finish workout - decide how
+   * Discard workout - Ask confirmation
    */
-  function finishWorkout() {
-    if (finish_workout_option == 0) {
-      /* RESUME */
-      resumeWorkout();
-    } else if (finish_workout_option == 1) {
-      /* SAVE & EXIT */
-      save();
-    } else if (finish_workout_option == 2) {
-      /* DISCARD & EXIT */
-      discard();
-    }
+  function discardWorkout() {
+    Sys.println("Controller: DISCARD");
+
+    // Configure choices
+    var choices = ({}) as Dictionary;
+
+    choices.put(0, {
+      "label" => Ui.loadResource(Rez.Strings.no),
+      "callback" => method(:discardWorkout_Cancel),
+    });
+
+    choices.put(1, {
+      "label" => Ui.loadResource(Rez.Strings.yes),
+      "callback" => method(:discardWorkout_Confirm),
+    });
+
+    Ui.pushView(new OmniMenuView(choices, 0), new OmniMenuDelegate(method(:discardWorkout_Cancel)), Ui.SLIDE_UP);
   }
 
-  // Discard - Ask confirmation
-  function discard() {
-    Sys.println("Controller: DISCARD");
-    Ui.pushView(new DiscardConfirmationView(), new DiscardConfirmationDelegate(), Ui.SLIDE_UP);
+  // Discard Confirmation & go back to previouse selection
+  function discardWorkout_Cancel() {
+    Ui.popView(Ui.SLIDE_DOWN);
   }
 
   // Discard & go back to workout selection
-  function discard_confirmed() {
+  function discardWorkout_Confirm() {
     currentWorkout.discardRecording();
     initialize(currentWorkout.getWorkoutIndex());
 
@@ -134,23 +128,20 @@ class iHIITController {
     Ui.popView(Ui.SLIDE_DOWN);
   }
 
-  // Discard & go back to workout selection
-  function discard_cancelled() {
-    Ui.popView(Ui.SLIDE_DOWN);
-  }
-
-  // Save
-  public function save() {
-    Sys.println("Controller: SAVE");
+  /*
+   * Save workout
+   */
+  public function saveWorkout() {
+    Sys.println("Controller: Saving current workout...");
     Ui.pushView(new SaveWorkoutView(), new SaveWorkoutDelegate(), Ui.SLIDE_UP);
 
     currentWorkout.saveRecording();
 
     saveTimer = new Timer.Timer();
-    saveTimer.start(method(:saveDone), 5000, false);
+    saveTimer.start(method(:saveWorkoutDone), 5000, false);
   }
 
-  public function saveDone() as Void {
+  public function saveWorkoutDone() as Void {
     if (saveTimer instanceof Timer.Timer) {
       saveTimer.stop();
       saveTimer = null;
@@ -163,7 +154,7 @@ class iHIITController {
   }
 
   //@todo: this method needs to be rewritten
-  function setNextWorkout() {
+  public function setNextWorkout() {
     var i;
     var workoutFound = false;
     var WOI = currentWorkout.getWorkoutIndex();
@@ -192,7 +183,7 @@ class iHIITController {
   }
 
   //@todo: this method needs to be rewritten
-  function setPreviousWorkout() {
+  public function setPreviousWorkout() {
     var i;
     var workoutFound = false;
     var WOI = currentWorkout.getWorkoutIndex();
@@ -225,25 +216,25 @@ class iHIITController {
   }
 
   // @TODO: REMOVE ME!
-  public function testOmniMenu() {
-    var choices = {
-      0 => { "label" => "Choice #1", "callback" => method(:choiceOneAction) },
-      1 => { "label" => "Choice #2", "callback" => method(:choiceTwoAction) },
-      2 => { "label" => "Choice #3", "callback" => null },
-      3 => { "label" => "Choice #4", "callback" => null },
-      4 => { "label" => "Choice #5", "callback" => null },
-    };
+  // public function testOmniMenu() {
+  //   var choices = {
+  //     0 => { "label" => "Choice #1", "callback" => method(:choiceOneAction) },
+  //     1 => { "label" => "Choice #2", "callback" => method(:choiceTwoAction) },
+  //     2 => { "label" => "Choice #3", "callback" => null },
+  //     3 => { "label" => "Choice #4", "callback" => null },
+  //     4 => { "label" => "Choice #5", "callback" => null },
+  //   };
 
-    return [new OmniMenuView(choices, 0), new OmniMenuDelegate(null)];
-  }
+  //   return [new OmniMenuView(choices, 0), new OmniMenuDelegate(null)];
+  // }
 
-  public function choiceOneAction() {
-    Sys.println("Controller: Choice One Action!");
-  }
+  // public function choiceOneAction() {
+  //   Sys.println("Controller: Choice One Action!");
+  // }
 
-  public function choiceTwoAction() {
-    Sys.println("Controller: Choice Two Action!");
-  }
+  // public function choiceTwoAction() {
+  //   Sys.println("Controller: Choice Two Action!");
+  // }
 
   // Handle timing out after exit
   public function onExit() {
