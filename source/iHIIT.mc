@@ -17,14 +17,14 @@ class iHIIT extends App.AppBase {
 
   // Return the initial view of your application here
   public function getInitialView() {
-    return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
+    //return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
 
     //TEMPORARY - SKIP workout selection
     // controller.beginCurrentWorkout();
     // return [new DoWorkoutView(), new DoWorkoutDelegate()];
 
     //TEMPORARY - TEST OmniMenu
-    //return controller.testOmniMenu();
+    return controller.testOmniMenu();
   }
 
   // Hook called on application start up

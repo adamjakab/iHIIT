@@ -18,7 +18,7 @@ class OmniMenuDelegate extends Ui.BehaviorDelegate {
       index = 0;
     }
     ctrl.omniMenuSelectedIndex = index;
-    Sys.println("SFO:::+Index: " + index);
+    // Sys.println("SFO:::+Index: " + index);
     Ui.requestUpdate();
     return true;
   }
@@ -29,7 +29,7 @@ class OmniMenuDelegate extends Ui.BehaviorDelegate {
       index = ctrl.omniMenuChoices.size() - 1;
     }
     ctrl.omniMenuSelectedIndex = index;
-    Sys.println("SFO:::-Index: " + index);
+    // Sys.println("SFO:::-Index: " + index);
     Ui.requestUpdate();
     return true;
   }
@@ -37,10 +37,11 @@ class OmniMenuDelegate extends Ui.BehaviorDelegate {
   public function onSelect() {
     var callback = getChoiceCallbackAtIndex(ctrl.omniMenuSelectedIndex);
     if (callback) {
+      Sys.println("SFO:::Invoking callback at Index: " + ctrl.omniMenuSelectedIndex);
       callback.invoke();
       return true;
     }
-    Sys.println("SFO:::No callback is defined for this option.");
+    // Sys.println("SFO:::No callback is defined for this option.");
     return false;
   }
 

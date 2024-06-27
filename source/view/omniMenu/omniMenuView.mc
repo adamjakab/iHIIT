@@ -1,27 +1,43 @@
-using Toybox.Application as App;
 import Toybox.Lang;
+using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 
+/**
+ ** OmniMenuView - Generic class to visualize menu items
+ **/
 class OmniMenuView extends Ui.View {
   private var ctrl;
-  private var display_choices as Dictionary = {};
+  private var defaultChoices as Dictionary = {};
+  private var currentChoiceIndex as Number = 0;
 
-  function initialize(defaultChoices as Dictionary, defaultIndex as Number) {
-    View.initialize();
+  function initialize(default_choices as Dictionary, default_index as Number) {
     ctrl = App.getApp().getController();
-    ctrl.omniMenuChoices = defaultChoices;
-    if (defaultIndex >= ctrl.omniMenuChoices.size() or defaultIndex < 0) {
-      defaultIndex = 0;
+
+    defaultChoices = default_choices;
+    if (default_index >= defaultChoices.size() or default_index < 0) {
+      default_index = 0;
     }
-    ctrl.omniMenuSelectedIndex = defaultIndex;
-    Sys.println("SFO:::inited");
+    currentChoiceIndex = default_index;
+
+    Ui.View.initialize();
+    Sys.println("OmniMenu: Initialized");
+  }
+
+  public function onShow() {
+    Sys.println("OmniMenu: Show");
+    ctrl.omniMenuChoices = defaultChoices;
+    ctrl.omniMenuSelectedIndex = currentChoiceIndex;
+  }
+
+  public function onHide() {
+    Sys.println("OmniMenu: Hide");
   }
 
   // Update the view
   public function onUpdate(dc) {
-    self.updateDisplayChoices();
+    var choices = self.getDisplayChoices();
 
     var index, txt, text_height, y;
 
@@ -34,7 +50,7 @@ class OmniMenuView extends Ui.View {
 
     // CENTRAL ITEM
     index = 1;
-    txt = display_choices.get(index);
+    txt = choices.get(index);
     text_height = 34;
     y = (height - text_height) / 2;
     dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
@@ -42,7 +58,7 @@ class OmniMenuView extends Ui.View {
 
     // ITEM TOP
     index = 0;
-    txt = display_choices.get(index);
+    txt = choices.get(index);
     text_height = 17;
     y = (height - text_height) / 2 - 52;
     dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
@@ -50,7 +66,7 @@ class OmniMenuView extends Ui.View {
 
     // ITEM TOP
     index = 2;
-    txt = display_choices.get(index);
+    txt = choices.get(index);
     text_height = 17;
     y = (height - text_height) / 2 + 52;
     dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
@@ -60,7 +76,8 @@ class OmniMenuView extends Ui.View {
     Sys.println("SFO:::updated");
   }
 
-  private function updateDisplayChoices() {
+  private function getDisplayChoices() as Dictionary {
+    var choices = {};
     var i;
 
     // Previous Item
@@ -68,18 +85,20 @@ class OmniMenuView extends Ui.View {
     if (i < 0) {
       i = ctrl.omniMenuChoices.size() - 1;
     }
-    display_choices.put(0, self.getChoiceLabelAtIndex(i));
+    choices.put(0, self.getChoiceLabelAtIndex(i));
 
     // Selected (Central) Item
     i = ctrl.omniMenuSelectedIndex;
-    display_choices.put(1, self.getChoiceLabelAtIndex(i));
+    choices.put(1, self.getChoiceLabelAtIndex(i));
 
     // Last Item
     i = ctrl.omniMenuSelectedIndex + 1;
     if (i >= ctrl.omniMenuChoices.size()) {
       i = 0;
     }
-    display_choices.put(2, self.getChoiceLabelAtIndex(i));
+    choices.put(2, self.getChoiceLabelAtIndex(i));
+
+    return choices;
   }
 
   private function getChoiceLabelAtIndex(index as Number) as String {
