@@ -16,7 +16,7 @@ class iHIITController {
   public var omniMenuChoices as Dictionary = {};
   public var omniMenuSelectedIndex as Number = 0;
 
-  public var test_view_number as Number = 0;
+  public var test_view_index as Number = 0;
   private var test_view_count as Number = 0;
 
   // Initialize the controller
@@ -230,46 +230,90 @@ class iHIITController {
     return currentWorkout;
   }
 
-  // @TODO: REMOVE ME!
+  // ===================================================================================================TEST MODE
+  /*
+   * Init Test Mode
+   */
+  (:debug)
   public function runTestMode() {
     test_view_count = 0;
     return [new TestModeView(), new TestModeDelegate()];
   }
-  public function runTestModeNextScreen() {
+
+  (:debug)
+  private function getViewsToTest() as Array {
+    // OmniView choices
+    var choices =
+      ({
+        0 => { "label" => "Option #1", "callback" => null },
+        1 => { "label" => "Option #2", "callback" => null },
+        2 => { "label" => "Option #3", "callback" => null },
+      }) as Dictionary;
+
+    return [
+      new TestModeView(),
+      new SelectWorkoutView(),
+      new DoWorkoutView(),
+      new DoWorkoutView(),
+      new DoWorkoutView(),
+      new SaveWorkoutView(),
+      new OmniMenuView(choices, 0),
+    ];
+  }
+
+  (:debug)
+  public function testModeNextScreen() as Void {
     Sys.println("TESTMODE: next");
-    test_view_number = test_view_number + 1;
-    if (test_view_number > 2) {
-      test_view_number = 0;
+    var max = getViewsToTest().size();
+    test_view_index = test_view_index + 1;
+    if (test_view_index >= max) {
+      test_view_index = 0;
     }
-    runTestModeSetView();
+    testModeSetView();
   }
-  public function runTestModePreviousScreen() {
+
+  (:debug)
+  public function testModePreviousScreen() as Void {
     Sys.println("TESTMODE: prev");
-    test_view_number = test_view_number - 1;
-    if (test_view_number < 0) {
-      test_view_number = 2;
+    var max = getViewsToTest().size();
+    test_view_index = test_view_index - 1;
+    if (test_view_index < 0) {
+      test_view_index = max - 1;
     }
+    testModeSetView();
   }
-  public function runTestModeSetView() {
-    Sys.println("TESTMODE: setting screen: " + test_view_number);
+
+  (:debug)
+  public function testModeSetView() {
+    Sys.println("TESTMODE: setting screen: " + test_view_index);
+
+    // Special cases
+    switch (test_view_index) {
+      case 2:
+        currentWorkout.setState(1); // Do workout
+        break;
+      case 3:
+        currentWorkout.setState(3); // Workout terminated
+        break;
+      case 4:
+        currentWorkout.setState(5); // Pausing between Repetitions
+        break;
+    }
+
+    // Remove the previous view
     if (test_view_count > 1) {
       Ui.popView(Ui.SLIDE_DOWN);
       test_view_count = test_view_count - 1;
     }
 
-    var view = null;
+    var views = getViewsToTest();
+    var view = views[test_view_index];
     var deleg = new TestModeDelegate();
-    if (test_view_number == 0) {
-      view = new TestModeView();
-    } else if (test_view_number == 1) {
-      view = new SelectWorkoutView();
-    } else if (test_view_number == 2) {
-      view = new SaveWorkoutView();
-    }
 
     Ui.pushView(view, deleg, Ui.SLIDE_UP);
     test_view_count = test_view_count + 1;
   }
+  // ===================================================================================================TEST MODE
 
   // Handle timing out after exit
   public function onExit() {

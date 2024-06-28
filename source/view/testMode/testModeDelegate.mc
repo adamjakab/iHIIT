@@ -11,13 +11,13 @@ class TestModeDelegate extends Ui.BehaviorDelegate {
   }
 
   public function onNextPage() {
-    ctrl.runTestModeNextScreen();
+    ctrl.testModeNextScreen();
     Ui.requestUpdate();
     return true;
   }
 
   public function onPreviousPage() {
-    ctrl.runTestModePreviousScreen();
+    ctrl.testModePreviousScreen();
     Ui.requestUpdate();
     return true;
   }

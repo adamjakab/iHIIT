@@ -1,6 +1,6 @@
+import Toybox.Lang;
 using Toybox.Application as App;
 using Toybox.System as Sys;
-using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
 using Toybox.ActivityRecording as ActivityRecording;
 using Toybox.Sensor as Sensor;
@@ -12,10 +12,10 @@ using Toybox.Attention as Attention;
  */
 class Workout {
   const STATE_NOT_STARTED = 0;
-  const STATE_RUNNING = 1;
-  const STATE_PAUSED = 2; //User paused the execution manually
-  const STATE_TERMINATED = 3; //All reps/exercises are finished - waiting to be saved/discarded
-  const STATE_SAVED = 4; //Save completed - Workout can be disposed
+  const STATE_RUNNING = 1; // Running
+  const STATE_PAUSED = 2; // User paused the execution manually
+  const STATE_TERMINATED = 3; // All reps/exercises are finished - waiting to be saved/discarded
+  const STATE_SAVED = 4; // Save completed - Workout can be disposed
   const STATE_IN_REPETITION_PAUSE = 5; // In pause between two repetitions
 
   private var app_use_sound = true;
@@ -266,8 +266,17 @@ class Workout {
     return self.currentExercise;
   }
 
-  function getState() {
+  public function getState() {
     return self.state;
+  }
+
+  /*
+   * Only used when testing
+   */
+  (:debug)
+  public function setState(state as Number) {
+    self.state = state;
+    self.currentExercise = new $.Exercise(self.workout_index, 1);
   }
 
   function getCurrentHeartRate() {
