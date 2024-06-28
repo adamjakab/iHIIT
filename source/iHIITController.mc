@@ -16,6 +16,9 @@ class iHIITController {
   public var omniMenuChoices as Dictionary = {};
   public var omniMenuSelectedIndex as Number = 0;
 
+  public var test_view_number as Number = 0;
+  private var test_view_count as Number = 0;
+
   // Initialize the controller
   public function initialize(WOI) {
     currentWorkout = new $.Workout(WOI);
@@ -229,13 +232,43 @@ class iHIITController {
 
   // @TODO: REMOVE ME!
   public function runTestMode() {
+    test_view_count = 0;
     return [new TestModeView(), new TestModeDelegate()];
   }
   public function runTestModeNextScreen() {
     Sys.println("TESTMODE: next");
+    test_view_number = test_view_number + 1;
+    if (test_view_number > 2) {
+      test_view_number = 0;
+    }
+    runTestModeSetView();
   }
   public function runTestModePreviousScreen() {
     Sys.println("TESTMODE: prev");
+    test_view_number = test_view_number - 1;
+    if (test_view_number < 0) {
+      test_view_number = 2;
+    }
+  }
+  public function runTestModeSetView() {
+    Sys.println("TESTMODE: setting screen: " + test_view_number);
+    if (test_view_count > 1) {
+      Ui.popView(Ui.SLIDE_DOWN);
+      test_view_count = test_view_count - 1;
+    }
+
+    var view = null;
+    var deleg = new TestModeDelegate();
+    if (test_view_number == 0) {
+      view = new TestModeView();
+    } else if (test_view_number == 1) {
+      view = new SelectWorkoutView();
+    } else if (test_view_number == 2) {
+      view = new SaveWorkoutView();
+    }
+
+    Ui.pushView(view, deleg, Ui.SLIDE_UP);
+    test_view_count = test_view_count + 1;
   }
 
   // Handle timing out after exit
