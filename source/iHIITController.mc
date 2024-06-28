@@ -23,15 +23,16 @@ class iHIITController {
   }
 
   public function getInitialApplicationView() as [Ui.View, Ui.BehaviorDelegate] {
+    if (App.getApp().isTestMode()) {
+      return runTestMode();
+    }
+
     return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
 
     //TEMPORARY - SKIP workout selection
     //initialize(1)
     //beginCurrentWorkout();
     //return [new DoWorkoutView(), new DoWorkoutDelegate()];
-
-    //TEMPORARY - TEST OmniMenu
-    //return testOmniMenu();
   }
   /*
    * Start the selected workout
@@ -227,17 +228,15 @@ class iHIITController {
   }
 
   // @TODO: REMOVE ME!
-  // public function testOmniMenu() {
-  //   var choices = {
-  //     0 => { "label" => "Choice #1", "callback" => null },
-  //     1 => { "label" => "Choice #2", "callback" => null },
-  //     2 => { "label" => "Choice #3", "callback" => null },
-  //     3 => { "label" => "Choice #4", "callback" => null },
-  //     4 => { "label" => "Choice #5", "callback" => null },
-  //   };
-
-  //   return [new OmniMenuView(choices, 0), new OmniMenuDelegate(null)];
-  // }
+  public function runTestMode() {
+    return [new TestModeView(), new TestModeDelegate()];
+  }
+  public function runTestModeNextScreen() {
+    Sys.println("TESTMODE: next");
+  }
+  public function runTestModePreviousScreen() {
+    Sys.println("TESTMODE: prev");
+  }
 
   // Handle timing out after exit
   public function onExit() {

@@ -7,8 +7,9 @@ import Toybox.Lang;
  * ENTRY POINT
  */
 class iHIIT extends App.AppBase {
-  //@todo: Make sure to set this to false when creating a release
-  private var debug_mode as Boolean = false;
+  //@todo: Make sure to set these to false when creating a release
+  private var debug_mode as Boolean = true;
+  private var test_mode as Boolean = true;
 
   // The controller
   protected var controller as $.iHIITController;
@@ -37,7 +38,13 @@ class iHIIT extends App.AppBase {
     return controller;
   }
 
+  // Debug mode will produce more verbose console output
   public function isDebugMode() as Boolean {
     return debug_mode;
+  }
+
+  // test mode will show static screens only
+  public function isTestMode() as Boolean {
+    return test_mode;
   }
 }

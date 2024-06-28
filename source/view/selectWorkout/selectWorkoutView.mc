@@ -64,8 +64,5 @@ class SelectWorkoutView extends Ui.View {
     labelDuration.setText(txt);
 
     View.onUpdate(dc);
-
-    //@TODO: check me! should be only when debugging
-    AppHelper.drawScreenGuides(dc);
   }
 }
