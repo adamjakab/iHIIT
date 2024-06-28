@@ -9,6 +9,13 @@
       "device": "${command:GetTargetDevice}"
     },
     {
+      "name": "Run (approachs60)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "approachs60"
+    },
+    {
       "name": "Run (d2bravo)",
       "type": "monkeyc",
       "request": "launch",
@@ -84,13 +91,6 @@
       "request": "launch",
       "stopAtLaunch": false,
       "device": "vívoactive4"
-    },
-    {
-      "name": "Run (approachs60)",
-      "type": "monkeyc",
-      "request": "launch",
-      "stopAtLaunch": false,
-      "device": "approachs60"
     }
   ]
 }
