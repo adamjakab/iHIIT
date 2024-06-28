@@ -256,6 +256,7 @@ class iHIITController {
       new DoWorkoutView(),
       new DoWorkoutView(),
       new DoWorkoutView(),
+      new DoWorkoutView(),
       new SaveWorkoutView(),
       new OmniMenuView(choices, 0),
     ];
@@ -290,13 +291,18 @@ class iHIITController {
     // Special cases
     switch (test_view_index) {
       case 2:
-        currentWorkout.setState(1); // Do workout
+        currentWorkout.setState(1); // Do workout - work
+        currentWorkout.getCurrentExercise().setRestTime(true);
         break;
       case 3:
-        currentWorkout.setState(3); // Workout terminated
+        currentWorkout.setState(1); // Do workout - rest
+        currentWorkout.getCurrentExercise().setRestTime(false);
         break;
       case 4:
-        currentWorkout.setState(5); // Pausing between Repetitions
+        currentWorkout.setState(5); // Pausing between repetitions
+        break;
+      case 4:
+        currentWorkout.setState(3); // Workout terminated
         break;
     }
 
