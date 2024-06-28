@@ -86,11 +86,11 @@
       "device": "vivoactive"
     },
     {
-      "name": "Run (vívoactive4)",
+      "name": "Run (vivoactive4)",
       "type": "monkeyc",
       "request": "launch",
       "stopAtLaunch": false,
-      "device": "vívoactive4"
+      "device": "vivoactive4"
     }
   ]
 }

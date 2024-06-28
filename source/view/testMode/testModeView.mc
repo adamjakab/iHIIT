@@ -18,7 +18,6 @@ class TestModeView extends Ui.View {
   // Set up the layout
   public function onLayout(dc) {
     // Strings
-    str_testing = "TESTING";
   }
 
   // Update the view
@@ -28,18 +27,34 @@ class TestModeView extends Ui.View {
     var width = dc.getWidth();
     var height = dc.getHeight();
     var text_height = 34;
-    var y = (height - text_height) / 2;
-
-    txt = str_testing;
-    color = Gfx.COLOR_DK_RED;
+    var center_y = (height - text_height) / 2;
 
     //** clear screen
     dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
     dc.clear();
 
     // Text
-    dc.setColor(color, Gfx.COLOR_TRANSPARENT);
-    dc.drawText(width / 2, y, Gfx.FONT_SYSTEM_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
+    txt = "TESTING";
+    dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
+    dc.drawText(width / 2, 5, Gfx.FONT_SYSTEM_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
+
+    // Device Shape
+    var ds = System.getDeviceSettings();
+    txt = "Unknown #" + ds.screenShape;
+    if (ds.screenShape == Sys.SCREEN_SHAPE_ROUND) {
+      txt = "Round";
+    } else if (ds.screenShape == Sys.SCREEN_SHAPE_SEMI_ROUND) {
+      txt = "Semi-Round";
+    } else if (ds.screenShape == Sys.SCREEN_SHAPE_RECTANGLE) {
+      txt = "Rectangle";
+    }
+    dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+    dc.drawText(width / 2, 35, Gfx.FONT_SYSTEM_XTINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
+
+    // Device Size
+    txt = "" + width + "x" + height;
+    dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+    dc.drawText(width / 2, 50, Gfx.FONT_SYSTEM_XTINY, txt, Gfx.TEXT_JUSTIFY_CENTER);
 
     AppHelper.drawScreenGuides(dc);
   }
