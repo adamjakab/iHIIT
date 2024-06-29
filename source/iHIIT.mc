@@ -9,7 +9,6 @@ import Toybox.Lang;
 class iHIIT extends App.AppBase {
   //@todo: Make sure to set these to false when creating a release
   private var debug_mode as Boolean = false;
-  // private var test_mode as Boolean = false;
 
   // The controller
   protected var controller as $.iHIITController;
@@ -43,9 +42,4 @@ class iHIIT extends App.AppBase {
   public function isDebugMode() as Boolean {
     return debug_mode;
   }
-
-  // test mode will show static screens only
-  // public function isTestMode() as Boolean {
-  //   return test_mode;
-  // }
 }
