@@ -80,7 +80,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Round
 - Screen Size: 205x148
 - Supported: Yes
-- Notes: Requires UI review
+- Notes: OK
 
 ## vívoactive® (vivoactive)
 
@@ -88,7 +88,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Round
 - Screen Size: 205x148
 - Supported: Yes
-- Notes: Requires UI review
+- Notes: OK
 
 ## Vívoactive® 4 (vivoactive4)
 
