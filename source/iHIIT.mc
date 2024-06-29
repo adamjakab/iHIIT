@@ -21,8 +21,8 @@ class iHIIT extends App.AppBase {
 
   // Return the initial view of the application
   public function getInitialView() {
-    // return controller.getInitialApplicationView();
-    return controller.getInitialApplicationTestView();
+    return controller.getInitialApplicationView();
+    // return controller.getInitialApplicationTestView();
   }
 
   // Hook called on application start up
