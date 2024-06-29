@@ -234,7 +234,7 @@ class iHIITController {
    */
   (:debug)
   public function runTestMode() {
-    test_view_index = 5;
+    test_view_index = 0;
     test_view_count = 0;
     var views = getViewsToTest();
     var view = views[test_view_index];

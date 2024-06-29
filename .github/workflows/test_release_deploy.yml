@@ -1,9 +1,10 @@
 name: Test & Release
 
-on:
-  push:
-    tags:
-      - "v*"
+# on:
+#   push:
+#     tags:
+#       - "v*"
+on: push
 
 jobs:
   test:
@@ -14,8 +15,11 @@ jobs:
         device:
           [
             approachs60,
+            approachs62,
             d2bravo,
             d2bravo_titanium,
+            d2charlie,
+            descentmk1,
             fenix3,
             fenix3_hr,
             fr230,
@@ -24,7 +28,9 @@ jobs:
             fr735xt,
             fr920xt,
             vivoactive,
+            vivoactive3d,
             vivoactive4,
+            vivoactive_hr,
           ]
         # device: [fr235]
     steps:
@@ -40,6 +46,7 @@ jobs:
     needs: test
     name: Release
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/stable'
     steps:
       - uses: actions/checkout@v4
       - name: Package App
