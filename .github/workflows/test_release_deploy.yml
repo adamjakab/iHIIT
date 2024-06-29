@@ -1,9 +1,10 @@
 name: Test & Release
 
-on:
-  push:
-    tags:
-      - "v*"
+# on:
+#   push:
+#     tags:
+#       - "v*"
+on: push
 
 jobs:
   test:
@@ -43,6 +44,7 @@ jobs:
     needs: test
     name: Release
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/stable'
     steps:
       - uses: actions/checkout@v4
       - name: Package App
