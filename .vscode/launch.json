@@ -38,6 +38,12 @@
       "device": "d2charlie"
     },
     {
+      "name": "Run (descentmk1)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "descentmk1"
+    },
+    {
       "name": "Run (fenix3)",
       "type": "monkeyc",
       "request": "launch",
