@@ -32,6 +32,12 @@
       "device": "d2bravo_titanium"
     },
     {
+      "name": "Run (d2charlie)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "d2charlie"
+    },
+    {
       "name": "Run (fenix3)",
       "type": "monkeyc",
       "request": "launch",

@@ -5,7 +5,6 @@ Please note that the below list is or development purposes and might not contain
 - API 1.4 - all devices are supported
 - API 2.4 - all devices are supported
 - API 3.0 - Missing device support for:
-  - D2™ Charlie (d2charlie)
   - Descent™ Mk1 (descentmk1)
   - Vívoactive® 3 Mercedes-Benz® Collection (vivoactive3d)
 - API 3.1 - Development has not started
@@ -46,6 +45,14 @@ Please note that the below list is or development purposes and might not contain
 - Screen Size: 218x218
 - Supported: Yes
 - Notes: OK
+
+## D2™ Charlie (d2charlie)
+
+- API: 3.0
+- Screen Shape: Round
+- Screen Size: 240x240
+- Supported: Yes
+- Notes: Under Review
 
 ## Fēnix® 3 / Tactix® Bravo / Quatix® 3 (fenix3)
 
@@ -125,4 +132,4 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Rectangle
 - Screen Size: 148x205
 - Supported: Yes
-- Notes: Under Review
+- Notes: OK
