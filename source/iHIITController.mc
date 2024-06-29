@@ -81,7 +81,11 @@ class iHIITController {
       "callback" => method(:discardWorkout),
     });
 
-    Ui.pushView(new OmniMenuView(choices, 0), new OmniMenuDelegate(method(:resumeWorkout)), Ui.SLIDE_UP);
+    Ui.pushView(
+      new OmniMenuView(choices, 0, Ui.loadResource(Rez.Strings.finish_workout_prompt)),
+      new OmniMenuDelegate(method(:resumeWorkout)),
+      Ui.SLIDE_UP
+    );
   }
 
   /*
@@ -117,7 +121,11 @@ class iHIITController {
       "callback" => method(:discardWorkout_Confirm),
     });
 
-    Ui.pushView(new OmniMenuView(choices, 0), new OmniMenuDelegate(method(:discardWorkout_Cancel)), Ui.SLIDE_UP);
+    Ui.pushView(
+      new OmniMenuView(choices, 0, Ui.loadResource(Rez.Strings.discard_workout_confirmation_prompt)),
+      new OmniMenuDelegate(method(:discardWorkout_Cancel)),
+      Ui.SLIDE_UP
+    );
   }
 
   // Discard Confirmation & go back to previouse selection
@@ -234,7 +242,7 @@ class iHIITController {
    */
   (:debug)
   public function runTestMode() {
-    test_view_index = 0;
+    test_view_index = 7;
     test_view_count = 0;
     var views = getViewsToTest();
     var view = views[test_view_index];
@@ -259,7 +267,7 @@ class iHIITController {
       new DoWorkoutView(),
       new DoWorkoutView(),
       new SaveWorkoutView(),
-      new OmniMenuView(choices, 0),
+      new OmniMenuView(choices, 0, "What's it gonna be?"),
     ];
   }
 

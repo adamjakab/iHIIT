@@ -2,6 +2,8 @@
 
 Please note that the below list is or development purposes and might not contain the full list of compatible devices.
 
+## API Status
+
 - API 1.4 - all devices are supported
 - API 2.4 - all devices are supported
 - API 3.0 - all devices are supported
@@ -22,6 +24,17 @@ Please note that the below list is or development purposes and might not contain
 - API 3.4 - Development has not started
 - API 4.2 - Development has not started
 - API 5.0 - Development has not started
+
+## Test Samples
+
+One device from each watch-face category:
+
+- fr235 (semiround-215x180) Base Layout
+- vivoactive4 (round-260x260)
+- fr645m (round-240x240)
+- fenix3 (round-218x218)
+- vivoactive (rectangle-205x148)
+- vivoactive_hr (rectangle-148x205)
 
 ## Approach® S60 (approachs60)
 
@@ -93,7 +106,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Semi-Round
 - Screen Size: 215x180
 - Supported: Yes
-- Notes: OK
+- Notes: OK (Base layout)
 
 ## Forerunner® 235 (fr235)
 
@@ -101,7 +114,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Semi-Round
 - Screen Size: 215x180
 - Supported: Yes
-- Notes: Base model - all layouts in the resource folder are based on this model.
+- Notes: Base layout - all layouts in the resource folder are based on this model.
 
 ## Forerunner® 630 (fr630)
 
@@ -109,7 +122,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Semi-Round
 - Screen Size: 215x180
 - Supported: Yes
-- Notes: OK
+- Notes: OK (Base layout)
 
 ## Forerunner® 645 Music (fr645m)
 
@@ -125,7 +138,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Semi-Round
 - Screen Size: 215x180
 - Supported: Yes
-- Notes: OK
+- Notes: OK (Base layout)
 
 ## Forerunner® 920XT (fr920xt)
 

@@ -1,34 +1,36 @@
 <resources>
 	<strings>
 		<!-- Generic / Application -->
-	    <string id="app_name">iHIIT</string>
-	    <string id="empty"> </string>
-	    <string id="yes">Yes</string>
-	    <string id="no">No</string>
-	    <string id="activity_saving">Saving...</string>
-	    <string id="activity_saved">Activity saved.</string>
-	    
+		<string id="app_name">iHIIT</string>
+		<string id="empty"></string>
+		<string id="yes">Yes</string>
+		<string id="no">No</string>
+		<string id="activity_saving">Saving...</string>
+		<string id="activity_saved">Activity saved.</string>
+		<string id="omni_menu_default_question">Select an option</string>
+
 		<!-- Exercise Selection -->
 		<string id="sel_prompt">Select a workout</string>
-	    <string id="sel_exercises">Exercises</string>
-	    <string id="sel_wrk_rst_pse">W: $1$s | R: $2$s | P: $3$s</string>
-	    <string id="sel_duration">Duration</string>
-	    
-	    <!-- Do Workout -->
-	    <string id="do_workout_next_up">Next Up</string>
-	    <string id="do_workout_rep_of_reps">R: $1$/$2$</string>
-	    <string id="do_workout_exc_of_excs">E: $1$/$2$</string>
-	    <string id="do_workout_pause">Pausing before next set</string>
-	    <string id="do_workout_done_msg">Well done!</string>
-	    <string id="do_workout_done_total_time">Total time: $1$</string>
-	    
-	    <!-- Finish Workout -->
-	    <string id="finish_workout_prompt_resume">Resume</string>
-	    <string id="finish_workout_prompt_save_and_exit">Save</string>
-	    <string id="finish_workout_prompt_discard_and_exit">Discard</string>
-	    <string id="discard_workout_confirmation_prompt">Discard activity?</string>
-	    
-	    <!-- Settings: Application -->
+		<string id="sel_exercises">Exercises</string>
+		<string id="sel_wrk_rst_pse">W: $1$s | R: $2$s | P: $3$s</string>
+		<string id="sel_duration">Duration</string>
+
+		<!-- Do Workout -->
+		<string id="do_workout_next_up">Next Up</string>
+		<string id="do_workout_rep_of_reps">R: $1$/$2$</string>
+		<string id="do_workout_exc_of_excs">E: $1$/$2$</string>
+		<string id="do_workout_pause">Pausing before next set</string>
+		<string id="do_workout_done_msg">Well done!</string>
+		<string id="do_workout_done_total_time">Total time: $1$</string>
+
+		<!-- Finish Workout -->
+		<string id="finish_workout_prompt">What do you want to do?</string>
+		<string id="finish_workout_prompt_resume">Resume</string>
+		<string id="finish_workout_prompt_save_and_exit">Save</string>
+		<string id="finish_workout_prompt_discard_and_exit">Discard</string>
+		<string id="discard_workout_confirmation_prompt">Discard activity?</string>
+
+		<!-- Settings: Application -->
 		<string id="use_sound">Use sound</string>
 		<string id="use_vibration">Use vibration</string>
 
@@ -38,7 +40,7 @@
 		<string id="group_title_w3">Workout #3</string>
 		<string id="group_title_w4">Workout #4</string>
 		<string id="group_title_w5">Workout #5</string>
-		
+
 		<!-- Settings: Workout Main -->
 		<string id="workout_title">Workout title</string>
 		<string id="workout_enabled">Enabled</string>
@@ -46,7 +48,7 @@
 		<string id="rest_duration">Rest duration(s)</string>
 		<string id="workout_reps">Repetitions(times)</string>
 		<string id="workout_rep_pause">Pause between repetitions(s)</string>
-		
+
 		<!-- Settings: Workout Exercises -->
 		<string id="exercise_title_1">Exercise 1</string>
 		<string id="exercise_title_2">Exercise 2</string>
@@ -57,7 +59,7 @@
 		<string id="exercise_title_7">Exercise 7</string>
 		<string id="exercise_title_8">Exercise 8</string>
 		<string id="exercise_title_9">Exercise 9</string>
-		<string id="exercise_title_10">Exercise 10</string>	
+		<string id="exercise_title_10">Exercise 10</string>
 		<string id="exercise_title_11">Exercise 11</string>
 		<string id="exercise_title_12">Exercise 12</string>
 		<string id="exercise_title_13">Exercise 13</string>
@@ -67,6 +69,6 @@
 		<string id="exercise_title_17">Exercise 17</string>
 		<string id="exercise_title_18">Exercise 18</string>
 		<string id="exercise_title_19">Exercise 19</string>
-		<string id="exercise_title_20">Exercise 20</string>	
+		<string id="exercise_title_20">Exercise 20</string>
 	</strings>
 </resources>

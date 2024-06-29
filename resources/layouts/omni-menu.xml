@@ -1,0 +1,9 @@
+<layout id="LayoutOmniMenu">
+
+    <label id="action_name" x="center" y="40" color="Gfx.COLOR_WHITE" font="Gfx.FONT_SYSTEM_MEDIUM" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+
+    <label id="option_top" x="center" y="80" color="Gfx.COLOR_DK_GRAY" font="Gfx.FONT_SYSTEM_MEDIUM" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+    <label id="option_center" x="center" y="105" color="Gfx.COLOR_ORANGE" font="Gfx.FONT_LARGE" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+    <label id="option_bottom" x="center" y="140" color="Gfx.COLOR_DK_GRAY" font="Gfx.FONT_SYSTEM_MEDIUM" justification="Gfx.TEXT_JUSTIFY_CENTER" />
+
+</layout>

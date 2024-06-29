@@ -13,7 +13,14 @@ class OmniMenuView extends Ui.View {
   private var defaultChoices as Dictionary = {};
   private var currentChoiceIndex as Number = 0;
 
-  function initialize(default_choices as Dictionary, default_index as Number) {
+  // Strings
+  private var txtActionName as String?;
+
+  // Layout elements
+  private var labelActionName;
+  private var labelOptionTop, labelOptionCenter, labelOptionBottom;
+
+  function initialize(default_choices as Dictionary, default_index as Number, question as String?) {
     ctrl = App.getApp().getController();
 
     defaultChoices = default_choices;
@@ -21,9 +28,27 @@ class OmniMenuView extends Ui.View {
       default_index = 0;
     }
     currentChoiceIndex = default_index;
+    txtActionName = question;
 
     Ui.View.initialize();
     Sys.println("OmniMenu: Initialized");
+  }
+
+  // Set up the layout
+  public function onLayout(dc) {
+    // Strings
+    if (txtActionName == null) {
+      txtActionName = Ui.loadResource(Rez.Strings.omni_menu_default_question);
+    }
+
+    // Layout
+    setLayout(Rez.Layouts.LayoutOmniMenu(dc));
+
+    // Labels
+    labelActionName = View.findDrawableById("action_name");
+    labelOptionTop = View.findDrawableById("option_top");
+    labelOptionCenter = View.findDrawableById("option_center");
+    labelOptionBottom = View.findDrawableById("option_bottom");
   }
 
   public function onShow() {
@@ -40,43 +65,33 @@ class OmniMenuView extends Ui.View {
   public function onUpdate(dc) {
     var choices = self.getDisplayChoices();
 
-    var index, txt, text_height, y;
+    var index, txt;
 
-    var width = dc.getWidth();
-    var height = dc.getHeight();
-
-    // Clear screen
-    dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
-    dc.clear();
-
-    // CENTRAL ITEM
-    index = 1;
-    txt = choices.get(index);
-    text_height = 34;
-    y = (height - text_height) / 2;
-    dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT);
-    dc.drawText(width / 2, y, Gfx.FONT_SYSTEM_LARGE, txt, Gfx.TEXT_JUSTIFY_CENTER);
+    // Action Name
+    txt = txtActionName;
+    labelActionName.setText(txt);
 
     // ITEM TOP
     index = 0;
     txt = choices.get(index);
-    text_height = 17;
-    y = (height - text_height) / 2 - 52;
-    dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-    dc.drawText(width / 2, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
+    labelOptionTop.setText(txt);
 
-    // ITEM TOP
+    // CENTRAL ITEM
+    index = 1;
+    txt = choices.get(index);
+    labelOptionCenter.setText(txt);
+
+    // ITEM BOTTOM
     index = 2;
     txt = choices.get(index);
-    text_height = 17;
-    y = (height - text_height) / 2 + 52;
-    dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-    dc.drawText(width / 2, y, Gfx.FONT_SYSTEM_MEDIUM, txt, Gfx.TEXT_JUSTIFY_CENTER);
+    labelOptionBottom.setText(txt);
 
     // Update current index stored in the controller in this instance
     // So next time the OnShow is called we can restore it (necessary for concatenated OmniMenu displays)
     currentChoiceIndex = ctrl.omniMenuSelectedIndex;
 
+    View.onUpdate(dc);
+    // AppHelper.drawScreenGuides(dc);
     Sys.println("OmniMenu:::updated");
   }
 
