@@ -2,11 +2,32 @@
 
 Please note that the below list is or development purposes and might not contain the full list of compatible devices.
 
+- API 1.4 - all devices are supported
+- API 2.4 - all devices are supported
+- API 3.0 - Missing device support for:
+  - D2™ Charlie (d2charlie)
+  - Descent™ Mk1 (descentmk1)
+  - Vívoactive® 3 Mercedes-Benz® Collection (vivoactive3d)
+- API 3.1 - Development has not started
+- API 3.2 - Development has not started
+- API 3.3 - Development has not started
+- API 3.4 - Development has not started
+- API 4.2 - Development has not started
+- API 5.0 - Development has not started
+
 ## Approach® S60 (approachs60)
 
 - API: 2.4
 - Screen Shape: Round
 - Screen Size: 240x240
+- Supported: Yes
+- Notes: OK
+
+## Approach® S62 (approachs62)
+
+- API: 3.0
+- Screen Shape: Round
+- Screen Size: 260x260
 - Supported: Yes
 - Notes: OK
 

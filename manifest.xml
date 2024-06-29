@@ -2,6 +2,7 @@
     <iq:application version="2.1.8" entry="iHIIT" id="5fa082b017864e7fa1f3ec51bb340e8a" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="1.4.0" name="@Strings.app_name" type="watch-app">
         <iq:products>
             <iq:product id="approachs60"/>
+            <iq:product id="approachs62"/>
             <iq:product id="d2bravo_titanium"/>
             <iq:product id="d2bravo"/>
             <iq:product id="fenix3_hr"/>
