@@ -8,7 +8,6 @@
 			<settingConfig type="boolean"/>
 		</setting>
 
-
 		<!-- WORKOUT #1 -->
 		<setting propertyKey="@Properties.w1_divider" title="@Strings.empty">
 			<settingConfig type="alphaNumeric" readonly="true" />
@@ -67,7 +66,30 @@
 		<setting propertyKey="@Properties.w1_e12" title="@Strings.exercise_title_12">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
-
+		<setting propertyKey="@Properties.w1_e13" title="@Strings.exercise_title_13">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e14" title="@Strings.exercise_title_14">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e15" title="@Strings.exercise_title_15">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e16" title="@Strings.exercise_title_16">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e17" title="@Strings.exercise_title_17">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e18" title="@Strings.exercise_title_18">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e19" title="@Strings.exercise_title_19">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w1_e20" title="@Strings.exercise_title_20">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
 
 		<!-- WORKOUT #2 -->
 		<setting propertyKey="@Properties.w2_divider" title="@Strings.empty">
@@ -127,7 +149,30 @@
 		<setting propertyKey="@Properties.w2_e12" title="@Strings.exercise_title_12">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
-
+		<setting propertyKey="@Properties.w2_e13" title="@Strings.exercise_title_13">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w2_e14" title="@Strings.exercise_title_14">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w2_e15" title="@Strings.exercise_title_15">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w2_e16" title="@Strings.exercise_title_16">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w2_e17" title="@Strings.exercise_title_17">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w2_e18" title="@Strings.exercise_title_18">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w2_e19" title="@Strings.exercise_title_19">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w2_e20" title="@Strings.exercise_title_20">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
 
 		<!-- WORKOUT #3 -->
 		<setting propertyKey="@Properties.w3_divider" title="@Strings.empty">
@@ -187,7 +232,30 @@
 		<setting propertyKey="@Properties.w3_e12" title="@Strings.exercise_title_12">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
-
+		<setting propertyKey="@Properties.w3_e13" title="@Strings.exercise_title_13">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w3_e14" title="@Strings.exercise_title_14">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w3_e15" title="@Strings.exercise_title_15">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w3_e16" title="@Strings.exercise_title_16">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w3_e17" title="@Strings.exercise_title_17">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w3_e18" title="@Strings.exercise_title_18">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w3_e19" title="@Strings.exercise_title_19">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w3_e20" title="@Strings.exercise_title_20">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
 
 		<!-- WORKOUT #4 -->
 		<setting propertyKey="@Properties.w4_divider" title="@Strings.empty">
@@ -247,7 +315,30 @@
 		<setting propertyKey="@Properties.w4_e12" title="@Strings.exercise_title_12">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
-
+		<setting propertyKey="@Properties.w4_e13" title="@Strings.exercise_title_13">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w4_e14" title="@Strings.exercise_title_14">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w4_e15" title="@Strings.exercise_title_15">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w4_e16" title="@Strings.exercise_title_16">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w4_e17" title="@Strings.exercise_title_17">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w4_e18" title="@Strings.exercise_title_18">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w4_e19" title="@Strings.exercise_title_19">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w4_e20" title="@Strings.exercise_title_20">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
 
 		<!-- WORKOUT #5 -->
 		<setting propertyKey="@Properties.w5_divider" title="@Strings.empty">
@@ -305,6 +396,30 @@
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
 		<setting propertyKey="@Properties.w5_e12" title="@Strings.exercise_title_12">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e13" title="@Strings.exercise_title_13">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e14" title="@Strings.exercise_title_14">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e15" title="@Strings.exercise_title_15">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e16" title="@Strings.exercise_title_16">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e17" title="@Strings.exercise_title_17">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e18" title="@Strings.exercise_title_18">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e19" title="@Strings.exercise_title_19">
+			<settingConfig type="alphaNumeric" maxLength="32" />
+		</setting>
+		<setting propertyKey="@Properties.w5_e20" title="@Strings.exercise_title_20">
 			<settingConfig type="alphaNumeric" maxLength="32" />
 		</setting>
 
