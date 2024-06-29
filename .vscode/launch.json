@@ -91,6 +91,13 @@
       "request": "launch",
       "stopAtLaunch": false,
       "device": "vivoactive4"
+    },
+    {
+      "name": "Run (vivoactive_hr)",
+      "type": "monkeyc",
+      "request": "launch",
+      "stopAtLaunch": false,
+      "device": "vivoactive_hr"
     }
   ]
 }

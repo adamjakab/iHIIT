@@ -34,7 +34,7 @@ Please note that the below list is or development purposes and might not contain
 - Supported: Yes
 - Notes: OK
 
-## fēnix® 3 HR (fenix3_hr)
+## Fēnix® 3 HR (fenix3_hr)
 
 - API: 1.4
 - Screen Shape: Round
@@ -82,7 +82,7 @@ Please note that the below list is or development purposes and might not contain
 - Supported: Yes
 - Notes: OK
 
-## vívoactive® (vivoactive)
+## Vívoactive® (vivoactive)
 
 - API: 1.4
 - Screen Shape: Rectangle
@@ -97,3 +97,11 @@ Please note that the below list is or development purposes and might not contain
 - Screen Size: 260x260
 - Supported: Yes
 - Notes: OK
+
+## Vívoactive® HR (vivoactive_hr)
+
+- API: 2.4
+- Screen Shape: Rectangle
+- Screen Size: 148x205
+- Supported: Yes
+- Notes: Under Review

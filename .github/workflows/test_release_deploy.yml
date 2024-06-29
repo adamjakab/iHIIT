@@ -25,6 +25,7 @@ jobs:
             fr920xt,
             vivoactive,
             vivoactive4,
+            vivoactive_hr,
           ]
         # device: [fr235]
     steps:
