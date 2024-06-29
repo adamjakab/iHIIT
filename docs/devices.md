@@ -5,7 +5,18 @@ Please note that the below list is or development purposes and might not contain
 - API 1.4 - all devices are supported
 - API 2.4 - all devices are supported
 - API 3.0 - all devices are supported
-- API 3.1 - Development has not started
+- API 3.1 - Devices under development:
+  - D2™ Delta (d2delta)
+  - D2™ Delta PX (d2deltapx)
+  - D2™ Delta S (d2deltas)
+  - fēnix® 5 / quatix® 5 (fenix5)
+  - fēnix® 5S (fenix5s)
+  - fēnix® 5X / tactix® Charlie (fenix5x)
+  - fēnix® Chronos (fenixchronos)
+  - Forerunner® 645 (fr645)
+  - Forerunner® 935 (fr935)
+  - vívoactive® 3 (vivoactive3)
+  - vívoactive® 3 Music LTE (vivoactive3mlte)
 - API 3.2 - Development has not started
 - API 3.3 - Development has not started
 - API 3.4 - Development has not started
@@ -97,6 +108,14 @@ Please note that the below list is or development purposes and might not contain
 - API: 1.4
 - Screen Shape: Semi-Round
 - Screen Size: 215x180
+- Supported: Yes
+- Notes: OK
+
+## Forerunner® 645 Music (fr645m)
+
+- API: 3.2
+- Screen Shape: Round
+- Screen Size: 240x240
 - Supported: Yes
 - Notes: OK
 

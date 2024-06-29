@@ -62,16 +62,22 @@
       "device": "fr230"
     },
     {
-      "name": "Run (FR235)",
+      "name": "Run (fr235)",
       "type": "monkeyc",
       "request": "launch",
       "device": "fr235"
     },
     {
-      "name": "Run (FR630)",
+      "name": "Run (fr630)",
       "type": "monkeyc",
       "request": "launch",
       "device": "fr630"
+    },
+    {
+      "name": "Run (fr645m)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "fr645m"
     },
     {
       "name": "Run (fr735xt)",
@@ -80,7 +86,7 @@
       "device": "fr735xt"
     },
     {
-      "name": "Run (FR920xt)",
+      "name": "Run (fr920xt)",
       "type": "monkeyc",
       "request": "launch",
       "device": "fr920xt"
