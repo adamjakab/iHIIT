@@ -2,18 +2,112 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run (FR235)",
-      "type": "monkeyc",
-      "request": "launch",
-      "stopAtLaunch": false,
-      "device": "fr235"
-    },
-    {
       "name": "Run (Select Device)",
       "type": "monkeyc",
       "request": "launch",
-      "stopAtLaunch": false,
       "device": "${command:GetTargetDevice}"
+    },
+    {
+      "name": "Run (approachs60)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "approachs60"
+    },
+    {
+      "name": "Run (approachs62)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "approachs62"
+    },
+    {
+      "name": "Run (d2bravo)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "d2bravo"
+    },
+    {
+      "name": "Run (d2bravo_titanium)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "d2bravo_titanium"
+    },
+    {
+      "name": "Run (d2charlie)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "d2charlie"
+    },
+    {
+      "name": "Run (descentmk1)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "descentmk1"
+    },
+    {
+      "name": "Run (fenix3)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "fenix3"
+    },
+    {
+      "name": "Run (fenix3_hr)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "fenix3_hr"
+    },
+    {
+      "name": "Run (fr230)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "fr230"
+    },
+    {
+      "name": "Run (FR235)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "fr235"
+    },
+    {
+      "name": "Run (FR630)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "fr630"
+    },
+    {
+      "name": "Run (fr735xt)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "fr735xt"
+    },
+    {
+      "name": "Run (FR920xt)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "fr920xt"
+    },
+    {
+      "name": "Run (vivoactive)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "vivoactive"
+    },
+    {
+      "name": "Run (vivoactive3d)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "vivoactive3d"
+    },
+    {
+      "name": "Run (vivoactive4)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "vivoactive4"
+    },
+    {
+      "name": "Run (vivoactive_hr)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "vivoactive_hr"
     }
   ]
 }

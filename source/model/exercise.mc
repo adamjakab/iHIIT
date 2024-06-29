@@ -1,6 +1,6 @@
+import Toybox.Lang;
 using Toybox.Application as App;
 using Toybox.System as Sys;
-using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
 using Toybox.WatchUi as Ui;
 using Toybox.Attention as Attention;
@@ -149,6 +149,20 @@ class Exercise {
   //--------------------------------------------------------------------------GETTERS
   function isItRestTime() {
     return self.exercise_elapsed < self.rest_duration;
+  }
+
+  /*
+   * Only used when testing
+   */
+  (:debug)
+  public function setRestTime(restTime as Boolean) {
+    if (restTime) {
+      self.exercise_elapsed = 5;
+      self.rest_duration = 20;
+    } else {
+      self.exercise_elapsed = 20;
+      self.rest_duration = 5;
+    }
   }
 
   function isExerciseTimeFinished() {

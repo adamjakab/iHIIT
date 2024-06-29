@@ -1,5 +1,4 @@
 <resources>
-
 	<properties>
 		<!-- Application -->
 		<property id="app_use_sound" type="boolean">true</property>

@@ -41,8 +41,6 @@ class DoWorkoutView extends Ui.View {
     Sys.println("DO-WORKOUT-VIEW - INIT");
   }
 
-  //public function onLayout(dc) {}
-
   // Update the view - update is requested (Ui.requestUpdate()) by the workout model
   public function onUpdate(dc) {
     currentWorkout = app.getController().getCurrentWorkout();
@@ -50,7 +48,7 @@ class DoWorkoutView extends Ui.View {
     View.onUpdate(dc);
 
     //@TODO: check me!
-    AppHelper.drawScreenGuides(dc);
+    // AppHelper.drawScreenGuides(dc);
   }
 
   // Update the view with the current layout
@@ -72,6 +70,7 @@ class DoWorkoutView extends Ui.View {
   }
 
   protected function updateLayoutResting(dc) {
+    Sys.println("DO-WORKOUT-VIEW - Resting");
     if (currentLayout != LAYOUT_REST) {
       //Sys.println("Layout changed to: RST");
       currentLayout = LAYOUT_REST;
@@ -110,6 +109,7 @@ class DoWorkoutView extends Ui.View {
   }
 
   protected function updateLayoutWorking(dc) {
+    Sys.println("DO-WORKOUT-VIEW - Working");
     if (currentLayout != LAYOUT_WORK) {
       //Sys.println("Layout changed to: WRK");
       currentLayout = LAYOUT_WORK;
@@ -137,7 +137,9 @@ class DoWorkoutView extends Ui.View {
     labelTimeRemaining.setText(txt);
   }
 
+  // Displayed between two repetitions
   protected function updateLayoutRepetitionPause(dc) {
+    Sys.println("DO-WORKOUT-VIEW - Pausing");
     //LAYOUT_PAUSE
     if (currentLayout != LAYOUT_PAUSE) {
       //Sys.println("Layout changed to: PAUSE");
@@ -166,6 +168,7 @@ class DoWorkoutView extends Ui.View {
   }
 
   protected function updateLayoutTerminated(dc) {
+    Sys.println("DO-WORKOUT-VIEW - Terminated");
     if (currentLayout != LAYOUT_DONE) {
       //Sys.println("Layout changed to: TRM");
       currentLayout = LAYOUT_DONE;

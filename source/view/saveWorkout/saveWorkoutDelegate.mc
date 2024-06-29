@@ -13,14 +13,14 @@ class SaveWorkoutDelegate extends Ui.BehaviorDelegate {
 
   public function onBack() {
     if (currentWorkout.isSaved()) {
-      ctrl.saveDone();
+      ctrl.saveWorkoutDone();
     }
     return true;
   }
 
   public function onSelect() {
     if (currentWorkout.isSaved()) {
-      ctrl.saveDone();
+      ctrl.saveWorkoutDone();
     }
     return true;
   }
