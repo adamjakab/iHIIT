@@ -77,7 +77,7 @@ Please note that the below list is or development purposes and might not contain
 ## Forerunner® 920XT (fr920xt)
 
 - API: 1.4
-- Screen Shape: Round
+- Screen Shape: Rectangle
 - Screen Size: 205x148
 - Supported: Yes
 - Notes: OK
@@ -85,7 +85,7 @@ Please note that the below list is or development purposes and might not contain
 ## vívoactive® (vivoactive)
 
 - API: 1.4
-- Screen Shape: Round
+- Screen Shape: Rectangle
 - Screen Size: 205x148
 - Supported: Yes
 - Notes: OK
