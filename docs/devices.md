@@ -16,7 +16,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Round
 - Screen Size: 218x218
 - Supported: Yes
-- Notes: Requires UI review
+- Notes: OK
 
 ## D2™ Bravo Titanium (d2bravo_titanium)
 
@@ -24,7 +24,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Round
 - Screen Size: 218x218
 - Supported: Yes
-- Notes: Requires UI review
+- Notes: OK
 
 ## Fēnix® 3 / Tactix® Bravo / Quatix® 3 (fenix3)
 
@@ -32,7 +32,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Round
 - Screen Size: 218x218
 - Supported: Yes
-- Notes: Requires UI review
+- Notes: OK
 
 ## fēnix® 3 HR (fenix3_hr)
 
@@ -40,7 +40,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Round
 - Screen Size: 218x218
 - Supported: Yes
-- Notes: Requires UI review
+- Notes: OK
 
 ## Forerunner® 230 (fr230)
 
