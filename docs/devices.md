@@ -8,6 +8,7 @@ Please note that the below list is or development purposes and might not contain
 - Screen Shape: Round
 - Screen Size: 240x240
 - Supported: Yes
+- Notes: OK
 
 ## D2™ Bravo (d2bravo)
 
