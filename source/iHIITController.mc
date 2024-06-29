@@ -236,8 +236,8 @@ class iHIITController {
    */
   (:debug)
   public function runTestMode() {
-    test_view_count = 0;
     test_view_index = 1;
+    test_view_count = 0;
     var views = getViewsToTest();
     var view = views[test_view_index];
     return [view, new TestModeDelegate()];
@@ -295,11 +295,11 @@ class iHIITController {
     switch (test_view_index) {
       case 2:
         currentWorkout.setState(1); // Do workout - work
-        currentWorkout.getCurrentExercise().setRestTime(true);
+        currentWorkout.getCurrentExercise().setRestTime(false);
         break;
       case 3:
         currentWorkout.setState(1); // Do workout - rest
-        currentWorkout.getCurrentExercise().setRestTime(false);
+        currentWorkout.getCurrentExercise().setRestTime(true);
         break;
       case 4:
         currentWorkout.setState(5); // Pausing between repetitions
