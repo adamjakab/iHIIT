@@ -28,6 +28,7 @@ jobs:
             fr735xt,
             fr920xt,
             vivoactive,
+            vivoactive3d,
             vivoactive4,
             vivoactive_hr,
           ]

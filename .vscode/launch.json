@@ -92,6 +92,12 @@
       "device": "vivoactive"
     },
     {
+      "name": "Run (vivoactive3d)",
+      "type": "monkeyc",
+      "request": "launch",
+      "device": "vivoactive3d"
+    },
+    {
       "name": "Run (vivoactive4)",
       "type": "monkeyc",
       "request": "launch",
