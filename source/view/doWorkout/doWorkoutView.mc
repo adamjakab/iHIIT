@@ -139,6 +139,7 @@ class DoWorkoutView extends Ui.View {
 
   // Displayed between two repetitions
   protected function updateLayoutRepetitionPause(dc) {
+    Sys.println("DO-WORKOUT-VIEW - Pausing");
     //LAYOUT_PAUSE
     if (currentLayout != LAYOUT_PAUSE) {
       //Sys.println("Layout changed to: PAUSE");
@@ -167,6 +168,7 @@ class DoWorkoutView extends Ui.View {
   }
 
   protected function updateLayoutTerminated(dc) {
+    Sys.println("DO-WORKOUT-VIEW - Terminated");
     if (currentLayout != LAYOUT_DONE) {
       //Sys.println("Layout changed to: TRM");
       currentLayout = LAYOUT_DONE;

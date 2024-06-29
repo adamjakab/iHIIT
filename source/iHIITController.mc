@@ -26,17 +26,9 @@ class iHIITController {
   }
 
   public function getInitialApplicationView() as [Ui.View, Ui.BehaviorDelegate] {
-    if (App.getApp().isTestMode()) {
-      return runTestMode();
-    }
-
     return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
-
-    //TEMPORARY - SKIP workout selection
-    //initialize(1)
-    //beginCurrentWorkout();
-    //return [new DoWorkoutView(), new DoWorkoutDelegate()];
   }
+
   /*
    * Start the selected workout
    */
@@ -231,6 +223,12 @@ class iHIITController {
   }
 
   // ===================================================================================================TEST MODE
+  // Init Test Mode - modification is needed in iHIIT:getInitialView to call this method
+  (:debug)
+  public function getInitialApplicationTestView() as [Ui.View, Ui.BehaviorDelegate] {
+    return runTestMode();
+  }
+
   /*
    * Init Test Mode
    */
@@ -304,7 +302,7 @@ class iHIITController {
       case 4:
         currentWorkout.setState(5); // Pausing between repetitions
         break;
-      case 4:
+      case 5:
         currentWorkout.setState(3); // Workout terminated
         break;
     }
