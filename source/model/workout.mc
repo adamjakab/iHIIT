@@ -276,6 +276,7 @@ class Workout {
   (:debug)
   public function setState(state as Number) {
     self.state = state;
+    Sys.println("WORKOUT-MODEL - State: " + self.state);
     self.currentExercise = new $.Exercise(self.workout_index, 1);
   }
 

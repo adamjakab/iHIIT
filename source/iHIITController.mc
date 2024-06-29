@@ -26,17 +26,9 @@ class iHIITController {
   }
 
   public function getInitialApplicationView() as [Ui.View, Ui.BehaviorDelegate] {
-    if (App.getApp().isTestMode()) {
-      return runTestMode();
-    }
-
     return [new SelectWorkoutView(), new SelectWorkoutDelegate()];
-
-    //TEMPORARY - SKIP workout selection
-    //initialize(1)
-    //beginCurrentWorkout();
-    //return [new DoWorkoutView(), new DoWorkoutDelegate()];
   }
+
   /*
    * Start the selected workout
    */
@@ -231,13 +223,22 @@ class iHIITController {
   }
 
   // ===================================================================================================TEST MODE
+  // Init Test Mode - modification is needed in iHIIT:getInitialView to call this method
+  (:debug)
+  public function getInitialApplicationTestView() as [Ui.View, Ui.BehaviorDelegate] {
+    return runTestMode();
+  }
+
   /*
    * Init Test Mode
    */
   (:debug)
   public function runTestMode() {
+    test_view_index = 1;
     test_view_count = 0;
-    return [new TestModeView(), new TestModeDelegate()];
+    var views = getViewsToTest();
+    var view = views[test_view_index];
+    return [view, new TestModeDelegate()];
   }
 
   (:debug)
@@ -253,6 +254,7 @@ class iHIITController {
     return [
       new TestModeView(),
       new SelectWorkoutView(),
+      new DoWorkoutView(),
       new DoWorkoutView(),
       new DoWorkoutView(),
       new DoWorkoutView(),
@@ -290,13 +292,18 @@ class iHIITController {
     // Special cases
     switch (test_view_index) {
       case 2:
-        currentWorkout.setState(1); // Do workout
+        currentWorkout.setState(1); // Do workout - work
+        currentWorkout.getCurrentExercise().setRestTime(false);
         break;
       case 3:
-        currentWorkout.setState(3); // Workout terminated
+        currentWorkout.setState(1); // Do workout - rest
+        currentWorkout.getCurrentExercise().setRestTime(true);
         break;
       case 4:
-        currentWorkout.setState(5); // Pausing between Repetitions
+        currentWorkout.setState(5); // Pausing between repetitions
+        break;
+      case 5:
+        currentWorkout.setState(3); // Workout terminated
         break;
     }
 

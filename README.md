@@ -64,6 +64,10 @@ List of resources:
 - https://developer.garmin.com/connect-iq/api-docs/Toybox/Lang.html
 - https://developer.garmin.com/connect-iq/core-topics/persisting-data/
 
+## Device list and notes
+
+This [device list](./docs/devices.md) is intended for development checklist purposes.
+
 ## Contributions
 
 Always welcome!

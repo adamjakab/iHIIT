@@ -10,27 +10,32 @@ class TestModeDelegate extends Ui.BehaviorDelegate {
     BehaviorDelegate.initialize();
   }
 
+  (:debug)
   public function onNextPage() {
     ctrl.testModeNextScreen();
     Ui.requestUpdate();
     return true;
   }
 
+  (:debug)
   public function onPreviousPage() {
     ctrl.testModePreviousScreen();
     Ui.requestUpdate();
     return true;
   }
 
+  (:debug)
   public function onSelect() {
     return true;
   }
 
+  (:debug)
   public function onBack() {
     Sys.println("Test mode: Not exiting!");
     return true;
   }
 
+  (:debug)
   public function onMenu() {
     return true;
   }
