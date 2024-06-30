@@ -1,5 +1,5 @@
+import Toybox.Lang;
 using Toybox.Application as App;
-using Toybox.Lang as Lang;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
@@ -20,6 +20,9 @@ class DoWorkoutView extends Ui.View {
   private var str_rep_of_reps;
   private var str_exc_of_excs;
 
+  // Properties
+  private var countdown_color as Number;
+
   // Layout elements
   private var labelHeartRateValue;
   private var labelReps;
@@ -37,6 +40,11 @@ class DoWorkoutView extends Ui.View {
     str_total_time = Ui.loadResource(Rez.Strings.do_workout_done_total_time);
     str_rep_of_reps = Ui.loadResource(Rez.Strings.do_workout_rep_of_reps);
     str_exc_of_excs = Ui.loadResource(Rez.Strings.do_workout_exc_of_excs);
+
+    // Properties
+    // var ci = PropertyHelper.getProperty("app_color_work_countdown", 0);
+    // Sys.println("ColorIndex: " + ci);
+    // countdown_color = Gfx.COLOR_PURPLE;
 
     Sys.println("DO-WORKOUT-VIEW - INIT");
   }
@@ -135,6 +143,7 @@ class DoWorkoutView extends Ui.View {
     // REMAINING TIME
     txt = currentExercise.getExerciseRemainingSeconds().toString();
     labelTimeRemaining.setText(txt);
+    // labelTimeRemaining.setColor(countdown_color);
   }
 
   // Displayed between two repetitions

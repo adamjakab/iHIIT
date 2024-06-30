@@ -3,6 +3,9 @@
 		<!-- Application -->
 		<property id="app_use_sound" type="boolean">true</property>
 		<property id="app_use_vibration" type="boolean">true</property>
+		<property id="app_color_countdown_work" type="number">0xFF5500</property>
+		<property id="app_color_countdown_rest" type="number">0x00FF00</property>
+		<property id="app_color_countdown_pause" type="number">0xFFAA00</property>
 
 		<!-- WORKOUT #1 -->
 		<property id="w1_divider" type="string">|=============: WORKOUT #1 :=============|</property>

@@ -33,6 +33,8 @@
 		<!-- Settings: Application -->
 		<string id="use_sound">Use sound</string>
 		<string id="use_vibration">Use vibration</string>
+		<string id="color_countdown_work">Work color</string>
+
 
 		<!-- Settings: Workout Groupss -->
 		<string id="group_title_w1">Workout #1</string>
