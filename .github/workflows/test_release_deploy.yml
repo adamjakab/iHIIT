@@ -11,6 +11,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 3
       matrix:
         device:
           [
