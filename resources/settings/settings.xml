@@ -8,14 +8,14 @@
 			<settingConfig type="boolean"/>
 		</setting>
 
-		<!-- <setting propertyKey="@Properties.app_color_countdown_work" title="@Strings.color_countdown_work">
+		<setting propertyKey="@Properties.app_color_countdown_work" title="@Strings.color_countdown_work">
 			<settingConfig type="list">
 				<listEntry value="0">Black</listEntry>
 				<listEntry value="1">White</listEntry>
 				<listEntry value="2">Orange</listEntry>
 				<listEntry value="3">Blue</listEntry>
 			</settingConfig>
-		</setting> -->
+		</setting>
 
 		<!-- WORKOUT #1 -->
 		<setting propertyKey="@Properties.w1_divider" title="@Strings.empty">

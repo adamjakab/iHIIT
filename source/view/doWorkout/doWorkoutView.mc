@@ -21,7 +21,7 @@ class DoWorkoutView extends Ui.View {
   private var str_exc_of_excs;
 
   // Properties
-  private var countdown_color as Number;
+  private var countdown_color as Number = 0;
 
   // Layout elements
   private var labelHeartRateValue;
@@ -42,8 +42,8 @@ class DoWorkoutView extends Ui.View {
     str_exc_of_excs = Ui.loadResource(Rez.Strings.do_workout_exc_of_excs);
 
     // Properties
-    // var ci = PropertyHelper.getProperty("app_color_work_countdown", 0);
-    // Sys.println("ColorIndex: " + ci);
+    var countdown_color = PropertyHelper.getProperty("app_color_countdown_work", 0);
+    Sys.println("countdown_color: " + countdown_color);
     // countdown_color = Gfx.COLOR_PURPLE;
 
     Sys.println("DO-WORKOUT-VIEW - INIT");
