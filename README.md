@@ -1,16 +1,57 @@
 # iHIIT
 
-High Intensity Interval Training (or any other repetition based) App for your Garmin device.
+High Intensity Interval Training (HIIT or any other repetition based) App for your Garmin device. This app was written originally for my Forerunner 235 and it is intented to maintain compatibility with all those older devices which do not have the HIIT activity type and therefore can not be syncronized with Garmin's built-in HIIT workouts. This app is and will always remain free.
 
 ## How to obtain it?
 
-You can install the app on your device through the IQ app store. This is a [direct link](https://apps.garmin.com/en-US/apps/bc02f0f2-9d7d-4476-8aaf-ef99f2e78c33) to the app page.
+You can install the app on your device through the Connect IQ app. Just search for "iHIIT" and look for the below icon. This is a [direct link](https://apps.garmin.com/en-US/apps/bc02f0f2-9d7d-4476-8aaf-ef99f2e78c33) to the app page.
+
+![AppIcon](docs/assets/app_icon.png)
+
+## What devices are compatible?
+
+Please use the [Compatible Devices](https://apps.garmin.com/apps/bc02f0f2-9d7d-4476-8aaf-ef99f2e78c33?tid=1) page and check if your device is listed there. You can also take a look at this [device list](./docs/devices.md) which is used as a checklist to add new devices to the application.
 
 ## How does it work?
 
-You can configure up to 5 workouts. Each workout can contain up to 12 exercises with a set exercise duration and a rest duration. Additionally, you can configure how many times the workout will repeat the exercises (repetitions) and the time to pause between repetitions.
+You can configure up to 5 workouts. Each workout can contain up to 20 exercises with a set exercise duration and a rest duration. Additionally, you can configure how many times the workout will repeat the set of exercises (repetitions) and the time to pause between repetitions.
 
-When you start the app on your watch it will propose you the configured workouts. You can scroll through the exercises with the up/down buttons and select one with the activity button. Once selected, iHIIT will lead you through your configured exercises alternating between exercise and rest periods.
+When you start the app on your watch it will propose you the configured workouts. You can scroll through the exercises with the up/down buttons and select one with the activity button.
+
+![WorkoutSelection](docs/assets/screen_workout_selection.png)
+
+The exercise select screen, as shown on the screenshot above, shows you the name of the workout together with the details of that workout configured by you:
+
+- `Exercises: [# of Repetitions] X [# of Exercises]` - Shows how many exercises you will be doing through how many repetitions.
+- `W: [Exercise duration] | [Rest duration] | [Pause duration]` - The duration in seconds of each exercise, the rest between them and the length of the pause between two consecutive repetitions.
+- `Duration: [Workout duration]` - Displays the overall duration of the workout.
+
+Once the workout is selected, iHIIT will lead you through your configured exercises alternating between exercise and rest periods. The app uses the KISS (Keep It Simple, Stupid!) principle for the interface purposefully. When you are doing high intensity workout you do not have the time to look at your watch. So do not expect fancy graphs showing HR histograms. You will encounter 3 screens: Work, rest, and pause.
+
+The `Work` screen displays only the name of the exercise you are doing and a big countdown number in the center showing how many seconds you have remaning.
+
+![WorkScreen](docs/assets/screen_work.png)
+
+The `Rest` screen displays:
+
+- `Next Up` - the name of the next exercise that is coming up
+- the countdown showing how many seconds remain to rest
+- `R: [Current repetition] / [Total number of repetitions]`
+- `E: [Current exercise] / [Total number of exercises]`
+
+![RestScreen](docs/assets/screen_rest.png)
+
+The `Pause` screen shown between consecutive repetitions displays the number of repetitions completed out of the total number of repetitions as well as the countdown of the time remaining until the start of the next repetition.
+
+![PauseScreen](docs/assets/screen_pause.png)
+
+Additionally, all of the above screens will display the current heart rate below the heart icon on the top of the screen.
+
+A beep and a vibration will let you know when you are changing from work to rest and vice versa. This can now be configured to be swithed on/off in the application settings.
+
+At any moment during a running workout you can press the `activity` or the `back` button to bring up the options menu that will allow you to `Save`, `Discard` or `Resume` the workout. Whilst the menu is shown your workout will remain paused.
+
+![OptionsScreen](docs/assets/screen_options.png)
 
 ## How to configure iHIIT?
 
@@ -22,59 +63,29 @@ Open "My Device Apps" and Select the `iHIIT` application from the list of apps i
 **On GarminExpress:**
 Select the `iHIIT` application from the list of IQ Apps installed on your device. Hit the `...` button next to the name of of the application to open the configuration window. Enter/change your configuration and click `Save`. Your configuration will be immediately transferred to your device.
 
-For each workout you can configure the following:
+Independently from how you are configuring the application you will be able to set the following options:
 
-- Title
-- Enabled (Yes/No)
-- Exercise duration (seconds)
-- Rest between exercises (seconds)
-- Number of repetitions (number of times the set of exercises will be repeated)
-- Rest between repetitions (seconds)
-- Name of the exercises (1-12)
+![ConfigurationScreen](docs/assets/screen_configuration.jpg)
 
-Exercises must be consecutive. The first blank exercise title will indicate the end of the workout.
+### Application configuration options
+
+- Use sound: When enabled the app will use sound to warn you 3 seconds before time is up (both in `Work` and in `Rest` phase).
+- Use vibration: When enabled the app will use vibration to warn you 3 seconds before time is up (both in `Work` and in `Rest` phase).
+
+### Workout configuration options
+
+For each workout you can configure the following options:
+
+- `Title` - The title of the workout that will show up on the workout selection screen.
+- `Enabled` - Only enabled workouts will be shown on the workout selection screen.
+- `Exercise duration(s)` - The duration in seconds of each exercise.
+- `Rest duration(s)` - the duration in seconds of the rest period between exercises.
+- `Repetitions(s)` - The number of times the set of exercises will be repeated during the workout.
+- `Pause between repetitions(s)` - The pause in seconds you will have between the end of one and the beginning of another repetition.
+- `Exercise 1 - 20` - The names of the exercises configured for this workout. Please note that the naming of the exercises must be consecutive. The first blank exercise title will indicate the end of the workout.
 
 ## Bugs? Enhancements? Contributions
 
-Please use github for [Issues & Enhancement requests](https://github.com/adamjakab/iHIIT/issues).
+Please use github for [Issues & enhancement requests](https://github.com/adamjakab/iHIIT/issues).
 
-[Contributions](https://github.com/adamjakab/iHIIT) are absolutely welcome!
-
-If you haven't got a github account write a review or use the 'Contact Developer' link on the right under 'Additional information'.
-
-## Development
-
-- Follow the SDK setup guide [here](https://developer.garmin.com/connect-iq/sdk/)
-- install Java JRE/JDK:
-
-```bash
-    sudo apt install openjdk-18-jre-headless default-jre
-    sudo apt install openjdk-18-jdk --fix-missing
-```
-
-- Set `Monkey C: Type Check Level` to `Off` if you get type check errors. (it's better to fix them ;)
-- Use _Ctrl + Shift + P_ to invoke `Monkey C` commands.
-
-Note: Note that saving settings inside groups does not work! There is a bug:
-My tests show that it works the first time in ConnectIQ app but not after.
-https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://forums.garmin.com/developer/connect-iq/f/discussion/289743/settings-in-groups-are-not-persisted&ved=2ahUKEwiKu4vc_POGAxXM-AIHHV6OCHQQFnoECB0QAQ&usg=AOvVaw2vo5c1OfK5KCKtMFwv4f1C
-
-List of resources:
-
-- https://developer.garmin.com/connect-iq/api-docs/Toybox/Lang.html
-- https://developer.garmin.com/connect-iq/core-topics/persisting-data/
-
-## Device list and notes
-
-This [device list](./docs/devices.md) is intended for development checklist purposes.
-
-## Contributions
-
-Always welcome!
-
-## Testing
-
-```bash
-docker pull ghcr.io/adamjakab/connectiq-builder:latest
-docker run --rm -v /mnt/Code/Garmin/iHIIT:/iHIIT -w /iHIIT ghcr.io/adamjakab/connectiq-builder:latest /scripts/test.sh --type-check-level=2
-```
+Contributions are always welcome!
