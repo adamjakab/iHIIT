@@ -242,7 +242,7 @@ class iHIITController {
    */
   (:debug)
   public function runTestMode() {
-    test_view_index = 1;
+    test_view_index = 0;
     test_view_count = 0;
     var views = getViewsToTest();
     var view = views[test_view_index];
@@ -299,6 +299,9 @@ class iHIITController {
 
     // Special cases
     switch (test_view_index) {
+      case 1:
+        currentWorkout = new $.Workout(1);
+        break;
       case 2:
         currentWorkout.setState(1); // Do workout - work
         currentWorkout.getCurrentExercise().setRestTime(false);
