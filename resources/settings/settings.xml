@@ -7,13 +7,55 @@
 		<setting propertyKey="@Properties.app_use_vibration" title="@Strings.use_vibration">
 			<settingConfig type="boolean"/>
 		</setting>
-
 		<setting propertyKey="@Properties.app_color_countdown_work" title="@Strings.color_countdown_work">
 			<settingConfig type="list">
-				<listEntry value="0">Black</listEntry>
-				<listEntry value="1">White</listEntry>
-				<listEntry value="2">Orange</listEntry>
-				<listEntry value="3">Blue</listEntry>
+				<listEntry value="0x000000">Black</listEntry>
+				<listEntry value="0xFFFFFF">White</listEntry>
+				<listEntry value="0xAAAAAA">Light Gray</listEntry>
+				<listEntry value="0x555555">Dark Gray</listEntry>
+				<listEntry value="0xFF0000">Red</listEntry>
+				<listEntry value="0xAA0000">Dark Red</listEntry>
+				<listEntry value="0xFF5500">Orange</listEntry>
+				<listEntry value="0xFFAA00">Yellow</listEntry>
+				<listEntry value="0x00FF00">Green</listEntry>
+				<listEntry value="0x00AA00">Dark Green</listEntry>
+				<listEntry value="0x00AAFF">Blue</listEntry>
+				<listEntry value="0x0000FF">Dark Blue</listEntry>
+				<listEntry value="0xFF00FF">Pink</listEntry>
+			</settingConfig>
+		</setting>
+		<setting propertyKey="@Properties.app_color_countdown_rest" title="@Strings.color_countdown_rest">
+			<settingConfig type="list">
+				<listEntry value="0x000000">Black</listEntry>
+				<listEntry value="0xFFFFFF">White</listEntry>
+				<listEntry value="0xAAAAAA">Light Gray</listEntry>
+				<listEntry value="0x555555">Dark Gray</listEntry>
+				<listEntry value="0xFF0000">Red</listEntry>
+				<listEntry value="0xAA0000">Dark Red</listEntry>
+				<listEntry value="0xFF5500">Orange</listEntry>
+				<listEntry value="0xFFAA00">Yellow</listEntry>
+				<listEntry value="0x00FF00">Green</listEntry>
+				<listEntry value="0x00AA00">Dark Green</listEntry>
+				<listEntry value="0x00AAFF">Blue</listEntry>
+				<listEntry value="0x0000FF">Dark Blue</listEntry>
+				<listEntry value="0xFF00FF">Pink</listEntry>
+			</settingConfig>
+		</setting>
+		<setting propertyKey="@Properties.app_color_countdown_pause" title="@Strings.color_countdown_pause">
+			<settingConfig type="list">
+				<listEntry value="0x000000">Black</listEntry>
+				<listEntry value="0xFFFFFF">White</listEntry>
+				<listEntry value="0xAAAAAA">Light Gray</listEntry>
+				<listEntry value="0x555555">Dark Gray</listEntry>
+				<listEntry value="0xFF0000">Red</listEntry>
+				<listEntry value="0xAA0000">Dark Red</listEntry>
+				<listEntry value="0xFF5500">Orange</listEntry>
+				<listEntry value="0xFFAA00">Yellow</listEntry>
+				<listEntry value="0x00FF00">Green</listEntry>
+				<listEntry value="0x00AA00">Dark Green</listEntry>
+				<listEntry value="0x00AAFF">Blue</listEntry>
+				<listEntry value="0x0000FF">Dark Blue</listEntry>
+				<listEntry value="0xFF00FF">Pink</listEntry>
 			</settingConfig>
 		</setting>
 

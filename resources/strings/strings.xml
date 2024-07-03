@@ -34,6 +34,8 @@
 		<string id="use_sound">Use sound</string>
 		<string id="use_vibration">Use vibration</string>
 		<string id="color_countdown_work">Work color</string>
+		<string id="color_countdown_rest">Rest color</string>
+		<string id="color_countdown_pause">Pause color</string>
 
 
 		<!-- Settings: Workout Groupss -->

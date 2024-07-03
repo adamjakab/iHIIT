@@ -21,7 +21,9 @@ class DoWorkoutView extends Ui.View {
   private var str_exc_of_excs;
 
   // Properties
-  private var countdown_color as Number = 0;
+  private var countdown_color_work as Number = 0xffffff;
+  private var countdown_color_rest as Number = 0xffffff;
+  private var countdown_color_pause as Number = 0xffffff;
 
   // Layout elements
   private var labelHeartRateValue;
@@ -42,9 +44,12 @@ class DoWorkoutView extends Ui.View {
     str_exc_of_excs = Ui.loadResource(Rez.Strings.do_workout_exc_of_excs);
 
     // Properties
-    var countdown_color = PropertyHelper.getProperty("app_color_countdown_work", 0);
-    Sys.println("countdown_color: " + countdown_color);
-    // countdown_color = Gfx.COLOR_PURPLE;
+    countdown_color_work = PropertyHelper.getProperty("app_color_countdown_work", 0xffffff);
+    countdown_color_rest = PropertyHelper.getProperty("app_color_countdown_rest", 0xffffff);
+    countdown_color_pause = PropertyHelper.getProperty("app_color_countdown_pause", 0xffffff);
+    Sys.println("countdown_color_work: " + countdown_color_work);
+    Sys.println("countdown_color_rest: " + countdown_color_rest);
+    Sys.println("countdown_color_pause: " + countdown_color_pause);
 
     Sys.println("DO-WORKOUT-VIEW - INIT");
   }
@@ -114,6 +119,7 @@ class DoWorkoutView extends Ui.View {
     // REMAINING TIME
     txt = currentExercise.getRestRemainingSeconds().toString();
     labelTimeRemaining.setText(txt);
+    labelTimeRemaining.setColor(countdown_color_rest);
   }
 
   protected function updateLayoutWorking(dc) {
@@ -143,7 +149,7 @@ class DoWorkoutView extends Ui.View {
     // REMAINING TIME
     txt = currentExercise.getExerciseRemainingSeconds().toString();
     labelTimeRemaining.setText(txt);
-    // labelTimeRemaining.setColor(countdown_color);
+    labelTimeRemaining.setColor(countdown_color_work);
   }
 
   // Displayed between two repetitions
@@ -174,6 +180,7 @@ class DoWorkoutView extends Ui.View {
     // REMAINING TIME
     txt = currentWorkout.getRepetitionPauseRemainingSeconds().toString();
     labelTimeRemaining.setText(txt);
+    labelTimeRemaining.setColor(countdown_color_pause);
   }
 
   protected function updateLayoutTerminated(dc) {
