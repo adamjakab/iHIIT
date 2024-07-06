@@ -8,45 +8,20 @@ on: push
 
 jobs:
   test:
-    name: Test
+    name: Test all devices
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 3
-      matrix:
-        device:
-          [
-            approachs60,
-            approachs62,
-            d2bravo,
-            d2bravo_titanium,
-            d2charlie,
-            descentmk1,
-            fenix3,
-            fenix3_hr,
-            fr230,
-            fr235,
-            fr630,
-            fr645m,
-            fr735xt,
-            fr920xt,
-            vivoactive,
-            vivoactive3d,
-            vivoactive4,
-            vivoactive_hr,
-          ]
-        # device: [fr235]
     steps:
       - uses: actions/checkout@v4
-      - name: Test on device ${{ matrix.device }}
+      - name: Test on all supported devices
         id: run_tests
         uses: adamjakab/action-connectiq-builder@v1
         with:
           operation: TEST
-          device: ${{ matrix.device }}
+          devices: approachs60,approachs62,d2bravo,d2bravo_titanium,d2charlie,descentmk1,fenix3,fenix3_hr,fr230,fr235,fr630,fr645m,fr735xt,fr920xt,vivoactive,vivoactive3d,vivoactive4,vivoactive_hr
           certificate: ${{ secrets.CONNECTIQ_DEVELOPER_KEY_BASE64}}
   release:
     needs: test
-    name: Release
+    name: Package & Release
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
