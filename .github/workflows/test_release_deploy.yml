@@ -4,6 +4,7 @@ name: Test & Release
 #   push:
 #     tags:
 #       - "v*"
+
 on: push
 
 jobs:
